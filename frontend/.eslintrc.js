@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
@@ -19,6 +21,24 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react'],
-  rules: {},
+  plugins: ['react', 'import-helpers'],
+  rules: {
+    'import/prefer-default-export': 'off',
+    'import-helpers/order-imports': [
+      'warn',
+      {
+        newlinesBetween: 'always',
+        groups: ['/react$/', 'module', '/^~/', ['parent', 'sibling', 'index']],
+        alphabetize: { order: 'asc', ignoreCase: true },
+      },
+    ],
+  },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [['^~', path.resolve(__dirname, './src')]],
+        extensions: ['.js', '.jsx', '.json'],
+      },
+    },
+  },
 };

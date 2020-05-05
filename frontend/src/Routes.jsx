@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Switch, Route } from 'react-router-dom';
 
-import MenuList from './pages/MenuList';
-import NotFound from './pages/NotFound';
+import MenuList from '~/pages/MenuList';
+import NotFound from '~/pages/NotFound';
 
 export default function Routes() {
   return (
