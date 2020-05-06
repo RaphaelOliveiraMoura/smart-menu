@@ -4,6 +4,8 @@ import { AppBar, Tabs, Tab } from '@material-ui/core';
 
 import TabPanel from '~/components/TabPanel';
 
+import Finished from './Finished';
+import InProgress from './InProgress';
 import { Container } from './styles';
 
 function Requests() {
@@ -11,10 +13,12 @@ function Requests() {
 
   return (
     <Container>
-      <AppBar position="static">
+      <AppBar position="static" elevation="1">
         <Tabs
           value={currentTabIndex}
           onChange={(_, selectedIndex) => setCurrentTabIndex(selectedIndex)}
+          variant="fullWidth"
+          centered
         >
           <Tab label="Em andamento" />
           <Tab label="Finalizado" />
@@ -22,10 +26,10 @@ function Requests() {
       </AppBar>
 
       <TabPanel currentTabIndex={currentTabIndex} index={0}>
-        Pedidos em andamento
+        <InProgress />
       </TabPanel>
       <TabPanel currentTabIndex={currentTabIndex} index={1}>
-        Pedidos finalizados
+        <Finished />
       </TabPanel>
     </Container>
   );
