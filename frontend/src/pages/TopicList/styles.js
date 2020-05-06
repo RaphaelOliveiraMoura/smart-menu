@@ -30,6 +30,7 @@ export const Container = styled.section`
 
     h1 {
       font-size: 1.4em;
+      font-weight: normal;
     }
   }
 

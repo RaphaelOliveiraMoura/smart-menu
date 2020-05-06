@@ -1,10 +1,4 @@
-import React from 'react';
-
-import { AiOutlineRight } from 'react-icons/ai';
-
-import { Container } from './styles';
-
-const topics = [
+export default [
   {
     id: 1,
     title: 'Pizzas',
@@ -40,25 +34,3 @@ const topics = [
       'https://images.vexels.com/media/users/3/143047/isolated/preview/b0c9678466af11dd45a62163bdcf03fe-fast-food-hamburger-flat-icon-by-vexels.png',
   },
 ];
-
-function MenuList() {
-  return (
-    <Container>
-      {topics.map((topic) => (
-        <article key={String(topic.id)}>
-          <picture>
-            <img src={topic.image} alt={topic.title} />
-          </picture>
-          <div>
-            <h1>{topic.title}</h1>
-          </div>
-          <button type="button">
-            <AiOutlineRight />
-          </button>
-        </article>
-      ))}
-    </Container>
-  );
-}
-
-export default MenuList;

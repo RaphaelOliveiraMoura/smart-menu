@@ -24,6 +24,7 @@ module.exports = {
   plugins: ['react', 'import-helpers'],
   rules: {
     'import/prefer-default-export': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'import-helpers/order-imports': [
       'warn',
       {
