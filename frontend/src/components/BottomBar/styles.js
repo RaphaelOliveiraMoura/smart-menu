@@ -13,7 +13,7 @@ export const Container = styled.nav`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 80px;
+    height: 60px;
   }
 
   a {

@@ -4,7 +4,6 @@ import {
   AiOutlineHome,
   AiOutlineSearch,
   AiOutlineFileDone,
-  AiOutlineUser,
 } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
@@ -16,26 +15,20 @@ function BottomBar() {
       <ul>
         <li>
           <Link to="/">
-            <AiOutlineHome size={28} />
+            <AiOutlineHome size={20} />
             <span>Ínicio</span>
           </Link>
         </li>
         <li>
-          <Link to="/">
-            <AiOutlineSearch size={28} />
+          <Link to="/search">
+            <AiOutlineSearch size={20} />
             <span>Busca</span>
           </Link>
         </li>
         <li>
           <Link to="/requests">
-            <AiOutlineFileDone size={28} />
+            <AiOutlineFileDone size={20} />
             <span>Pedidos</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/">
-            <AiOutlineUser size={28} />
-            <span>Perfil</span>
           </Link>
         </li>
       </ul>

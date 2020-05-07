@@ -13,7 +13,7 @@ function Requests() {
 
   return (
     <Container>
-      <AppBar position="static" elevation="1">
+      <AppBar position="static" elevation={1}>
         <Tabs
           value={currentTabIndex}
           onChange={(_, selectedIndex) => setCurrentTabIndex(selectedIndex)}
