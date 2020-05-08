@@ -14,6 +14,7 @@ export default function Routes() {
   return (
     <Switch>
       <RouteWrapper path="/" exact component={Home} isPrivate />
+      <RouteWrapper path="/home" exact component={Home} isPrivate />
       <RouteWrapper path="/search" exact component={TopicList} isPrivate />
       <RouteWrapper path="/requests" exact component={Requests} isPrivate />
       <RouteWrapper path="/item/:id" exact component={ItemInfo} isPrivate />

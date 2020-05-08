@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 26px;
+  margin: 16px;
 
   article {
     background: #fff;
@@ -24,7 +24,7 @@ export const Container = styled.div`
     text-align: right;
 
     picture {
-      border-radius: 30px;
+      width: 120px;
       border-radius: 8px 30px;
       overflow: hidden;
     }
@@ -45,6 +45,9 @@ export const Container = styled.div`
     h1 {
       font-size: 1.2em;
       margin-bottom: 12px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     span {

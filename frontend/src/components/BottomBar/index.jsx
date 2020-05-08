@@ -14,7 +14,7 @@ function BottomBar() {
     <Container>
       <ul>
         <li>
-          <Link to="/">
+          <Link to="/home">
             <AiOutlineHome size={20} />
             <span>Ínicio</span>
           </Link>

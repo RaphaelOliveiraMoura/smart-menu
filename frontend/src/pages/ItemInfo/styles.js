@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
+  position: relative;
+
   header {
     .toolbar {
       position: absolute;
@@ -83,7 +85,7 @@ export const Container = styled.section`
   }
 
   footer {
-    position: absolute;
+    position: sticky;
     left: 8px;
     right: 8px;
     bottom: 16px;

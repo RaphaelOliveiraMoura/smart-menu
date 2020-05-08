@@ -7,6 +7,7 @@ import {
 } from 'react-icons/ai';
 
 import item from '~/mocks/itemInfo';
+import history from '~/services/history';
 
 import { Container } from './styles';
 
@@ -15,7 +16,7 @@ function ItemInfo() {
     <Container>
       <header>
         <div className="toolbar">
-          <AiOutlineArrowLeft size={20} />
+          <AiOutlineArrowLeft size={20} onClick={() => history.goBack()} />
         </div>
         <picture>
           <img src={item.image} alt={item.title} />
