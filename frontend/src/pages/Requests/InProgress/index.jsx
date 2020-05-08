@@ -13,9 +13,9 @@ function InProgress() {
         <article key={String(request.id)}>
           <header>
             <picture>
-              <img src={request.item.topic.image} alt={request.item.title} />
+              <img src={request.item.image} alt={request.item.title} />
             </picture>
-            <div>
+            <div className="content">
               <h1>{request.item.title}</h1>
               <span>
                 Pedido realizado há&nbsp;
@@ -25,6 +25,7 @@ function InProgress() {
                 Tempo estimado de&nbsp;
                 <strong>{request.formattedEstimatedTime}</strong>
               </span>
+              <button type="button">Confirmar entrega</button>
             </div>
           </header>
           <div className="separator" />

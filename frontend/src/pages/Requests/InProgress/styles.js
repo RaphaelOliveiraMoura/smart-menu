@@ -5,32 +5,34 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 26px 0;
+  margin: 26px;
 
   article {
     background: #fff;
-    padding: 26px 12px;
     border-radius: 4px;
     margin: 8px;
-    width: 280px;
+    width: 100%;
+  }
+
+  article .content {
+    padding: 12px 12px 0 12px;
   }
 
   header {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     text-align: right;
 
     picture {
-      width: 60px;
-      height: 60px;
       border-radius: 30px;
-      margin-right: 16px;
+      border-radius: 8px 30px;
+      overflow: hidden;
     }
 
     img {
-      width: 100%;
+      width: 120px;
       height: 100%;
+      object-fit: cover;
     }
   }
 
@@ -41,12 +43,25 @@ export const Container = styled.div`
 
   header {
     h1 {
-      font-size: 1.4em;
+      font-size: 1.2em;
       margin-bottom: 12px;
     }
 
     span {
-      font-size: 0.8em;
+      font-size: 0.7em;
+      margin-bottom: 4px;
+    }
+
+    button {
+      align-self: flex-end;
+      padding: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #c23520;
+      margin-top: 16px;
+      color: #fff;
+      border-radius: 8px;
     }
   }
 
@@ -61,6 +76,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 12px 12px 12px;
 
     button {
       display: flex;

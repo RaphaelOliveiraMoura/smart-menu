@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { promotions } from '~/mocks/homeInfo';
 
 import { Container } from './styles';
@@ -11,23 +13,25 @@ function PromotionList() {
       <ul>
         {promotions.map((item) => (
           <li key={String(item.id)}>
-            <article>
-              <picture>
-                <img src={item.image} alt={item.title} />
-              </picture>
+            <Link to={`/item/${item.id}`}>
+              <article>
+                <picture>
+                  <img src={item.image} alt={item.title} />
+                </picture>
 
-              <aside>
-                <div>
-                  <h1>{item.title}</h1>
-                  <p>{item.description}</p>
-                </div>
+                <aside>
+                  <div>
+                    <h1>{item.title}</h1>
+                    <p>{item.description}</p>
+                  </div>
 
-                <footer>
-                  <span>{item.formattedOldPrice}</span>
-                  <strong>{item.formattedPrice}</strong>
-                </footer>
-              </aside>
-            </article>
+                  <footer>
+                    <span>{item.formattedOldPrice}</span>
+                    <strong>{item.formattedPrice}</strong>
+                  </footer>
+                </aside>
+              </article>
+            </Link>
           </li>
         ))}
       </ul>
