@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
+    '@typescript-eslint/camelcase': ['off'],
     'import/extensions': [
       'error',
       'ignorePackages',

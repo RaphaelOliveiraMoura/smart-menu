@@ -29,9 +29,13 @@ export const Container = styled.section`
     background: #fff;
   }
 
+  picture {
+    margin: auto;
+  }
+
   img {
     width: 140px;
-    height: 80px;
+    height: 100%;
     object-fit: cover;
   }
 
@@ -48,9 +52,11 @@ export const Container = styled.section`
     p {
       font-size: 0.8em;
       color: #333;
-      overflow: hidden;
-      text-overflow: ellipsis;
       margin-top: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
   }
 
