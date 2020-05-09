@@ -29,7 +29,7 @@ export default createGlobalStyle`
   }
 
   body, input, button, textarea {
-    font: 14px 'Roboto', sans-serif;
+    font: 14px 'Comfortaa', cursive;
   }
 
   a {

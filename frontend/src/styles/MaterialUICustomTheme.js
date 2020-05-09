@@ -8,4 +8,7 @@ export default createMuiTheme({
     primary: { main: primaryColor },
     secondary: { main: secondaryColor },
   },
+  typography: {
+    fontFamily: ['Comfortaa', 'cursive'].join(','),
+  },
 });

@@ -36,6 +36,8 @@ export const Container = styled.section`
     display: flex;
     flex-direction: column;
     padding: 8px 12px;
+    flex: 1;
+    text-align: right;
 
     h1 {
       font-size: 1em;
