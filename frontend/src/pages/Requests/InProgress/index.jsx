@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 import { AiOutlineQuestionCircle, AiOutlineInfoCircle } from 'react-icons/ai';
+import { MdErrorOutline } from 'react-icons/md';
 
 import api from '~/services/api';
 
@@ -27,6 +28,12 @@ function InProgress() {
 
   return (
     <Container>
+      {requests.length === 0 && (
+        <div className="empty-requests">
+          Nenhum pedido em andamento
+          <MdErrorOutline size={24} color="#888" />
+        </div>
+      )}
       {requests.map((request) => (
         <article key={String(request.id)}>
           <header>

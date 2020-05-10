@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Rating from '@material-ui/lab/Rating';
+import { MdErrorOutline } from 'react-icons/md';
 
 import api from '~/services/api';
 
@@ -20,6 +21,12 @@ function Finished() {
 
   return (
     <Container>
+      {finishedRequests.length === 0 && (
+        <div className="empty-requests">
+          Nenhum pedido em andamento
+          <MdErrorOutline size={24} color="#888" />
+        </div>
+      )}
       <ul>
         {finishedRequests.map((finishedRequest) => (
           <li key={String(finishedRequest.id)}>
@@ -36,7 +43,7 @@ function Finished() {
                   Pedido entregue há&nbsp;
                   <strong>{finishedRequest.formattedFinishedAt}</strong>
                 </h2>
-                <Rating name="rating" />
+                <Rating name={`rating-${finishedRequest.id}`} />
                 <p>Deixe sua avaliação !!</p>
               </div>
             </article>

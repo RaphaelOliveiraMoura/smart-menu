@@ -7,6 +7,14 @@ export const Container = styled.div`
   align-items: center;
   margin: 16px;
 
+  .empty-requests {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+  }
+
   article {
     background: #fff;
     border-radius: 4px;

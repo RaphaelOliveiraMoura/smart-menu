@@ -1,10 +1,7 @@
 import React from 'react';
 
-import {
-  AiOutlineHome,
-  AiOutlineSearch,
-  AiOutlineFileDone,
-} from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineFileDone } from 'react-icons/ai';
+import { FiHelpCircle } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import { Container } from './styles';
@@ -20,15 +17,15 @@ function BottomBar() {
           </Link>
         </li>
         <li>
-          <Link to="/search">
-            <AiOutlineSearch size={20} />
-            <span>Busca</span>
-          </Link>
-        </li>
-        <li>
           <Link to="/requests">
             <AiOutlineFileDone size={20} />
             <span>Pedidos</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/help">
+            <FiHelpCircle size={20} />
+            <span>Ajuda</span>
           </Link>
         </li>
       </ul>

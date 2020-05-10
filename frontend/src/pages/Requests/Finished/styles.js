@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
+  margin: 16px;
+
+  .empty-requests {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+  }
+
   ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 26px;
   }
 
   li {
