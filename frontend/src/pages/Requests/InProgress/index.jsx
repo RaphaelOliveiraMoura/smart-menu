@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { AiOutlineQuestionCircle, AiOutlineInfoCircle } from 'react-icons/ai';
 
-import { inProgress as requests } from '~/mocks/requests';
+import api from '~/services/api';
 
 import { Container } from './styles';
 
 function InProgress() {
+  const [requests, setRequests] = useState([]);
+
+  const loadRequests = useCallback(async () => {
+    const response = await api.get('/requests');
+    setRequests(response.data);
+  }, []);
+
+  useEffect(() => {
+    loadRequests();
+  }, [loadRequests]);
+
+  async function handleFinishRequest(requestId) {
+    await api.post('/requests/finished', {
+      requestId,
+    });
+    loadRequests();
+  }
+
   return (
     <Container>
       {requests.map((request) => (
         <article key={String(request.id)}>
           <header>
-            <picture>
-              <img src={request.item.image} alt={request.item.title} />
-            </picture>
+            <img src={request.item.image_url} alt={request.item.title} />
             <div className="content">
               <h1>{request.item.title}</h1>
               <span>
@@ -25,7 +41,12 @@ function InProgress() {
                 Tempo estimado de&nbsp;
                 <strong>{request.formattedEstimatedTime}</strong>
               </span>
-              <button type="button">Confirmar entrega</button>
+              <button
+                type="button"
+                onClick={() => handleFinishRequest(request.id)}
+              >
+                Confirmar entrega
+              </button>
             </div>
           </header>
           <div className="separator" />

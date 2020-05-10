@@ -29,7 +29,7 @@ export const Container = styled.section`
   img {
     width: 120px;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   article .content {

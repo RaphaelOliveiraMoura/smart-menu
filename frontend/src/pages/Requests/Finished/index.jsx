@@ -1,21 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Rating from '@material-ui/lab/Rating';
 
-import { finished } from '~/mocks/requests';
+import api from '~/services/api';
 
 import { Container } from './styles';
 
 function Finished() {
+  const [finishedRequests, setFinishedRequests] = useState([]);
+
+  useEffect(() => {
+    async function loadFinishedRequests() {
+      const response = await api.get('/requests/finished');
+      setFinishedRequests(response.data);
+    }
+
+    loadFinishedRequests();
+  }, []);
+
   return (
     <Container>
       <ul>
-        {finished.map((finishedRequest) => (
+        {finishedRequests.map((finishedRequest) => (
           <li key={String(finishedRequest.id)}>
             <article>
               <picture>
                 <img
-                  src={finishedRequest.item.image}
+                  src={finishedRequest.item.image_url}
                   alt={finishedRequest.item.title}
                 />
               </picture>
@@ -25,7 +36,7 @@ function Finished() {
                   Pedido entregue há&nbsp;
                   <strong>{finishedRequest.formattedFinishedAt}</strong>
                 </h2>
-                <Rating />
+                <Rating name="rating" />
                 <p>Deixe sua avaliação !!</p>
               </div>
             </article>

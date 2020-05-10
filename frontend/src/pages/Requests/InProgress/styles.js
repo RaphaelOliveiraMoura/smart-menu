@@ -23,16 +23,13 @@ export const Container = styled.div`
     justify-content: space-between;
     text-align: right;
 
-    picture {
-      width: 120px;
-      border-radius: 8px 30px;
-      overflow: hidden;
-    }
-
     img {
       width: 120px;
       height: 100%;
       object-fit: cover;
+      border-radius: 8px 30px;
+      overflow: hidden;
+      margin: auto;
     }
   }
 
@@ -48,6 +45,7 @@ export const Container = styled.div`
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      max-width: 140px;
     }
 
     span {
