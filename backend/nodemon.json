@@ -1,6 +1,10 @@
 {
   "ext": "*.ts",
-  "ignore": ["node_modules"],
+  "ignore": ["**/*.test.ts", "**/*.spec.ts", ".git", "node_modules"],
   "watch": ["src", "yarn.lock"],
-  "exec": "ts-node -r tsconfig-paths/register src/index.ts"
+  "delay": 3000,
+  "exec": "ts-node -r tsconfig-paths/register src/index.ts",
+  "events": {
+    "restart": "fuser -k -n tcp 3333"
+  }
 }

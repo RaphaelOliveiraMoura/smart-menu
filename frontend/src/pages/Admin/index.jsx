@@ -9,7 +9,7 @@ function Admin() {
 
   useEffect(() => {
     async function loadOrders() {
-      const response = await api.get('/admin');
+      const response = await api.get('/dashboard');
       setOrders(response.data);
     }
 
@@ -25,15 +25,21 @@ function Admin() {
             <li key={String(order.id)}>
               <article>
                 <div className="order-content">
-                  <img src={order.item.image_url} alt={order.item.title} />
+                  <img
+                    src={order.product.image_url}
+                    alt={order.product.title}
+                  />
                   <div className="order-informations">
-                    <h1>{order.item.title}</h1>
+                    <h1>{order.product.title}</h1>
                     <span>Observações</span>
                     <p>{order.observations || 'Nenhuma observação'}</p>
                   </div>
                 </div>
                 <footer>
-                  <strong>Mesa 1</strong>
+                  <strong>
+                    Mesa
+                    {order.table.id}
+                  </strong>
                 </footer>
               </article>
             </li>
@@ -48,9 +54,12 @@ function Admin() {
             <li key={String(order.id)}>
               <article>
                 <div className="order-content">
-                  <img src={order.item.image_url} alt={order.item.title} />
+                  <img
+                    src={order.product.image_url}
+                    alt={order.product.title}
+                  />
                   <div className="order-informations">
-                    <h1>{order.item.title}</h1>
+                    <h1>{order.product.title}</h1>
                     <span>Observações</span>
                     <p>{order.observations || 'Nenhuma observação'}</p>
                   </div>

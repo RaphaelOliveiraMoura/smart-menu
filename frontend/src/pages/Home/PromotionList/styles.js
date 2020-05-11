@@ -2,49 +2,39 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   h2 {
-    margin: 8px 8px 0px 8px;
+    margin: 0px 8px;
     font-weight: normal;
   }
 
   ul {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin: 8px;
-  }
-
-  li {
-    width: 100%;
-  }
-
-  li + li {
-    margin-top: 16px;
+    overflow-x: scroll;
   }
 
   article {
-    display: flex;
+    width: 120px;
     border-radius: 8px;
     overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
     background: #fff;
+    margin: 8px;
   }
 
-  picture {
-    margin: auto;
+  article .main {
+    padding: 4px;
   }
 
-  img {
-    width: 140px;
-    height: 100%;
+  article img {
+    width: 100%;
+    height: 80px;
     object-fit: cover;
   }
 
-  aside {
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
+  .main {
     h1 {
       font-size: 0.9em;
     }
@@ -52,16 +42,19 @@ export const Container = styled.section`
     p {
       font-size: 0.8em;
       color: #333;
-      margin-top: 4px;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
       overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-top: 4px;
     }
   }
 
-  aside footer {
-    align-self: flex-end;
+  footer {
+    margin-top: 8px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     span {
       color: #c23520aa;
@@ -71,7 +64,6 @@ export const Container = styled.section`
 
     strong {
       color: #c23520;
-      margin-left: 8px;
     }
   }
 `;

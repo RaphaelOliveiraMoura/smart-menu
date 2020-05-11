@@ -15,7 +15,7 @@ function Home() {
 
   useEffect(() => {
     async function getHomeInformations() {
-      const response = await api.get('/dashboard');
+      const response = await api.get('/overview');
 
       setHomeInformations(response.data);
     }
@@ -30,8 +30,8 @@ function Home() {
         className="search-filters"
         label="Busque os melhores pratos"
       />
-      <RecommendedList recommendations={homeInformations.recommendations} />
       <PromotionList promotions={homeInformations.promotions} />
+      <RecommendedList recommendations={homeInformations.recommended} />
     </Container>
   );
 }

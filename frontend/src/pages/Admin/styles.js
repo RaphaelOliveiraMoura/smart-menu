@@ -34,6 +34,7 @@ export const Container = styled.section`
 
     img {
       width: 120px;
+      border-radius: 8px 30px;
     }
 
     h1 {

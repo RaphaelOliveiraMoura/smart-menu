@@ -20,7 +20,7 @@ function ItemInfo() {
 
   useEffect(() => {
     async function getItemInformations() {
-      const response = await api.get(`items/${id}`);
+      const response = await api.get(`products/${id}`);
       setItem(response.data);
     }
 
@@ -28,7 +28,7 @@ function ItemInfo() {
   }, [id]);
 
   async function handleSubmitRequest() {
-    await api.post('/requests', { itemId: item.id, observations });
+    await api.post('/orders', { idProduct: item.id, observations });
     history.push('/home');
   }
 

@@ -11,7 +11,7 @@ function InProgress() {
   const [requests, setRequests] = useState([]);
 
   const loadRequests = useCallback(async () => {
-    const response = await api.get('/requests');
+    const response = await api.get('/orders');
     setRequests(response.data);
   }, []);
 
@@ -19,9 +19,9 @@ function InProgress() {
     loadRequests();
   }, [loadRequests]);
 
-  async function handleFinishRequest(requestId) {
-    await api.post('/requests/finished', {
-      requestId,
+  async function handleFinishRequest(idOrder) {
+    await api.post('/orders/finished', {
+      idOrder,
     });
     loadRequests();
   }
@@ -37,9 +37,9 @@ function InProgress() {
       {requests.map((request) => (
         <article key={String(request.id)}>
           <header>
-            <img src={request.item.image_url} alt={request.item.title} />
+            <img src={request.product.image_url} alt={request.product.title} />
             <div className="content">
-              <h1>{request.item.title}</h1>
+              <h1>{request.product.title}</h1>
               <span>
                 Pedido realizado há&nbsp;
                 <strong>

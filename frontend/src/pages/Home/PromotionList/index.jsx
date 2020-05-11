@@ -31,17 +31,15 @@ function PromotionList({ promotions }) {
                   <img src={item.image_url} alt={item.title} />
                 </picture>
 
-                <aside>
-                  <div>
-                    <h1>{item.title}</h1>
-                    <p>{item.description}</p>
-                  </div>
+                <div className="main">
+                  <h1>{item.title}</h1>
+                  <p>{item.description}</p>
+                </div>
 
-                  <footer>
-                    <span>{formattedOldPrices[index]}</span>
-                    <strong>{formattedPrices[index]}</strong>
-                  </footer>
-                </aside>
+                <footer>
+                  <span>{item.oldPrice ? formattedOldPrices[index] : ''}</span>
+                  <strong>{formattedPrices[index]}</strong>
+                </footer>
               </article>
             </Link>
           </li>
@@ -57,6 +55,7 @@ PromotionList.propTypes = {
       id: PropTypes.number,
       image_url: PropTypes.string,
       title: PropTypes.string,
+      description: PropTypes.string,
     })
   ),
 };

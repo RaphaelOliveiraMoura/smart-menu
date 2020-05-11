@@ -12,7 +12,7 @@ function Finished() {
 
   useEffect(() => {
     async function loadFinishedRequests() {
-      const response = await api.get('/requests/finished');
+      const response = await api.get('/orders/finished');
       setFinishedRequests(response.data);
     }
 
@@ -33,12 +33,12 @@ function Finished() {
             <article>
               <picture>
                 <img
-                  src={finishedRequest.item.image_url}
-                  alt={finishedRequest.item.title}
+                  src={finishedRequest.product.image_url}
+                  alt={finishedRequest.product.title}
                 />
               </picture>
               <div className="content">
-                <h1>{finishedRequest.item.title}</h1>
+                <h1>{finishedRequest.product.title}</h1>
                 <h2>
                   Pedido entregue há&nbsp;
                   <strong>

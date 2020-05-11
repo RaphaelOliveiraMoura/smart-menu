@@ -1,22 +1,23 @@
 import { Router } from 'express';
 
 import DashboardController from '@controllers/DashboardController';
-import ItemController from '@controllers/ItemController';
-import RequestController from '@controllers/RequestController';
-import FinishRequestController from '@controllers/FinishRequestController';
-import PendingOrderController from '@controllers/PendingOrderController';
+import ProductController from '@controllers/ProductController';
+import RequestOrderController from '@controllers/RequestOrderController';
+import ProductsOverviewController from '@controllers/ProductsOverviewController';
+import FinishedOrderController from '@controllers/FinishedOrderController';
 
 const routes = Router();
 
 routes.get('/dashboard', DashboardController.index);
-routes.get('/items/:id', ItemController.show);
 
-routes.get('/requests', RequestController.show);
-routes.post('/requests', RequestController.store);
+routes.get('/orders/finished', FinishedOrderController.show);
+routes.post('/orders/finished', FinishedOrderController.store);
 
-routes.get('/requests/finished', FinishRequestController.show);
-routes.post('/requests/finished', FinishRequestController.store);
+routes.get('/products/:id', ProductController.show);
 
-routes.get('/admin', PendingOrderController.index);
+routes.get('/orders', RequestOrderController.index);
+routes.post('/orders', RequestOrderController.store);
+
+routes.get('/overview', ProductsOverviewController.index);
 
 export default routes;

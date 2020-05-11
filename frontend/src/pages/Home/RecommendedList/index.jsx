@@ -11,7 +11,7 @@ function RecommendedList({ recommendations }) {
   const formattedOldPrices = useMemo(
     () =>
       recommendations.map(
-        (recommendation) => formattCurrency(recommendation.oldPrice),
+        (recomentation) => formattCurrency(recomentation.oldPrice),
         {}
       ),
     [recommendations]
@@ -20,7 +20,7 @@ function RecommendedList({ recommendations }) {
   const formattedPrices = useMemo(
     () =>
       recommendations.map(
-        (recommendation) => formattCurrency(recommendation.price),
+        (recomentation) => formattCurrency(recomentation.price),
         {}
       ),
     [recommendations]
@@ -38,15 +38,19 @@ function RecommendedList({ recommendations }) {
                   <img src={item.image_url} alt={item.title} />
                 </picture>
 
-                <div className="main">
-                  <h1>{item.title}</h1>
-                  <p>{item.description}</p>
-                </div>
+                <aside>
+                  <div>
+                    <h1>{item.title}</h1>
+                    <p>{item.description}</p>
+                  </div>
 
-                <footer>
-                  <span>{formattedOldPrices[index]}</span>
-                  <strong>{formattedPrices[index]}</strong>
-                </footer>
+                  <footer>
+                    <span>
+                      {item.oldPrice ? formattedOldPrices[index] : ''}
+                    </span>
+                    <strong>{formattedPrices[index]}</strong>
+                  </footer>
+                </aside>
               </article>
             </Link>
           </li>
@@ -62,7 +66,6 @@ RecommendedList.propTypes = {
       id: PropTypes.number,
       image_url: PropTypes.string,
       title: PropTypes.string,
-      description: PropTypes.string,
     })
   ),
 };

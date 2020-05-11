@@ -2,39 +2,50 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   h2 {
-    margin: 0px 8px;
+    margin: 8px 8px 0px 8px;
     font-weight: normal;
   }
 
   ul {
     display: flex;
-    align-items: center;
-    overflow-x: scroll;
-  }
-
-  article {
-    width: 120px;
-    border-radius: 8px;
-    overflow: hidden;
-
-    display: flex;
     flex-direction: column;
-
-    background: #fff;
+    justify-content: center;
+    align-items: center;
     margin: 8px;
   }
 
-  article .main {
-    padding: 4px;
-  }
-
-  article img {
+  li {
     width: 100%;
-    height: 80px;
-    object-fit: cover;
   }
 
-  .main {
+  li + li {
+    margin-top: 16px;
+  }
+
+  article {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  picture {
+    margin: auto;
+  }
+
+  img {
+    width: 140px;
+    height: 100%;
+    object-fit: cover;
+    max-height: 115px;
+  }
+
+  aside {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     h1 {
       font-size: 0.9em;
     }
@@ -42,19 +53,16 @@ export const Container = styled.section`
     p {
       font-size: 0.8em;
       color: #333;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
       margin-top: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
   }
 
-  footer {
-    margin-top: 8px;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  aside footer {
+    align-self: flex-end;
 
     span {
       color: #c23520aa;
@@ -64,6 +72,7 @@ export const Container = styled.section`
 
     strong {
       color: #c23520;
+      margin-left: 8px;
     }
   }
 `;
