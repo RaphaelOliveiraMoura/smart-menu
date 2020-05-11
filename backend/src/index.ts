@@ -1,3 +1,4 @@
 import app from './app';
 
-app.listen(3333);
+// eslint-disable-next-line no-console
+app.listen(3333, () => console.log('Application running...'));

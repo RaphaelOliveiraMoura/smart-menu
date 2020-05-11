@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import DashboardController from './app/controllers/DashboardController';
-import ItemController from './app/controllers/ItemController';
-import RequestController from './app/controllers/RequestController';
-import FinishRequestController from './app/controllers/FinishRequestController';
-import PendingOrderController from './app/controllers/PendingOrderController';
+import DashboardController from '@controllers/DashboardController';
+import ItemController from '@controllers/ItemController';
+import RequestController from '@controllers/RequestController';
+import FinishRequestController from '@controllers/FinishRequestController';
+import PendingOrderController from '@controllers/PendingOrderController';
 
 const routes = Router();
 
