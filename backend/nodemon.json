@@ -1,0 +1,6 @@
+{
+  "ext": "*.ts",
+  "ignore": ["node_modules"],
+  "watch": ["src", "yarn.lock"],
+  "exec": "ts-node src/index.ts"
+}

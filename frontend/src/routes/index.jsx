@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Switch } from 'react-router-dom';
 
+import Admin from '~/pages/Admin';
 import Help from '~/pages/Help';
 import Home from '~/pages/Home';
 import ItemInfo from '~/pages/ItemInfo';
@@ -19,6 +20,9 @@ export default function Routes() {
       <RouteWrapper path="/requests" exact component={Requests} isPrivate />
       <RouteWrapper path="/help" exact component={Help} isPrivate />
       <RouteWrapper path="/item/:id" exact component={ItemInfo} isPrivate />
+
+      <RouteWrapper path="/admin" component={Admin} />
+
       <RouteWrapper path="*" component={NotFound} />
     </Switch>
   );

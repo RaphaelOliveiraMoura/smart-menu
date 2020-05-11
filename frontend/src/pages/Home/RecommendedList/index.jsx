@@ -3,20 +3,28 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import formattCurrency from '~/utils/formattCurrency';
+
 import { Container } from './styles';
 
 function RecommendedList({ recommendations }) {
-  const formattedOldPrices = useMemo(() => {
-    return recommendations.map(() => {
-      return '22,90 R$';
-    });
-  }, [recommendations]);
+  const formattedOldPrices = useMemo(
+    () =>
+      recommendations.map(
+        (recommendation) => formattCurrency(recommendation.oldPrice),
+        {}
+      ),
+    [recommendations]
+  );
 
-  const formattedPrices = useMemo(() => {
-    return recommendations.map(() => {
-      return '20,90 R$';
-    });
-  }, [recommendations]);
+  const formattedPrices = useMemo(
+    () =>
+      recommendations.map(
+        (recommendation) => formattCurrency(recommendation.price),
+        {}
+      ),
+    [recommendations]
+  );
 
   return (
     <Container>

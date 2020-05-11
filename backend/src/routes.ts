@@ -4,6 +4,7 @@ import DashboardController from './app/controllers/DashboardController';
 import ItemController from './app/controllers/ItemController';
 import RequestController from './app/controllers/RequestController';
 import FinishRequestController from './app/controllers/FinishRequestController';
+import PendingOrderController from './app/controllers/PendingOrderController';
 
 const routes = Router();
 
@@ -15,5 +16,7 @@ routes.post('/requests', RequestController.store);
 
 routes.get('/requests/finished', FinishRequestController.show);
 routes.post('/requests/finished', FinishRequestController.store);
+
+routes.get('/admin', PendingOrderController.index);
 
 export default routes;

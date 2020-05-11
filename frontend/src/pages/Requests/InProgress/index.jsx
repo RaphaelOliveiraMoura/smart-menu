@@ -42,11 +42,13 @@ function InProgress() {
               <h1>{request.item.title}</h1>
               <span>
                 Pedido realizado há&nbsp;
-                <strong>{request.formattedRequestedTime}</strong>
+                <strong>
+                  {request.formattedRequestedTime || '1 min atrás'}
+                </strong>
               </span>
               <span>
                 Tempo estimado de&nbsp;
-                <strong>{request.formattedEstimatedTime}</strong>
+                <strong>{request.formattedEstimatedTime || '40 min'}</strong>
               </span>
               <button
                 type="button"

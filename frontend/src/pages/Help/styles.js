@@ -42,7 +42,7 @@ export const Container = styled.section`
     background: #fff;
     border-radius: 8px;
     padding: 12px;
-    margin: 12px;
+    margin: 12px 0;
 
     h1 {
       color: #222;

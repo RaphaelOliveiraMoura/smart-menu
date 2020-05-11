@@ -41,7 +41,9 @@ function Finished() {
                 <h1>{finishedRequest.item.title}</h1>
                 <h2>
                   Pedido entregue há&nbsp;
-                  <strong>{finishedRequest.formattedFinishedAt}</strong>
+                  <strong>
+                    {finishedRequest.formattedFinishedAt || '1 min atrás'}
+                  </strong>
                 </h2>
                 <Rating name={`rating-${finishedRequest.id}`} />
                 <p>Deixe sua avaliação !!</p>
