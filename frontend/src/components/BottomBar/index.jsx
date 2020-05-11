@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AiOutlineHome, AiOutlineFileDone } from 'react-icons/ai';
 import { FiHelpCircle } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { Container } from './styles';
 
@@ -11,22 +11,22 @@ function BottomBar() {
     <Container>
       <ul>
         <li>
-          <Link to="/home">
+          <NavLink to="/home" activeClassName="selected">
             <AiOutlineHome size={20} />
             <span>Ínicio</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/requests">
+          <NavLink to="/requests" activeClassName="selected">
             <AiOutlineFileDone size={20} />
             <span>Pedidos</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/help">
+          <NavLink to="/help" activeClassName="selected">
             <FiHelpCircle size={20} />
             <span>Ajuda</span>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </Container>

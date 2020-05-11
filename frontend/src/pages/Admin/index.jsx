@@ -30,14 +30,18 @@ function Admin() {
                     alt={order.product.title}
                   />
                   <div className="order-informations">
-                    <h1>{order.product.title}</h1>
+                    <h1>
+                      {order.ammount}
+                      x&nbsp;
+                      {order.product.title}
+                    </h1>
                     <span>Observações</span>
-                    <p>{order.observations || 'Nenhuma observação'}</p>
+                    <p>{order.observations || '-'}</p>
                   </div>
                 </div>
                 <footer>
                   <strong>
-                    Mesa
+                    Mesa&nbsp;
                     {order.table.id}
                   </strong>
                 </footer>
@@ -59,9 +63,13 @@ function Admin() {
                     alt={order.product.title}
                   />
                   <div className="order-informations">
-                    <h1>{order.product.title}</h1>
+                    <h1>
+                      {order.ammount}
+                      x&nbsp;
+                      {order.product.title}
+                    </h1>
                     <span>Observações</span>
-                    <p>{order.observations || 'Nenhuma observação'}</p>
+                    <p>{order.observations || '-'}</p>
                   </div>
                 </div>
                 <footer>

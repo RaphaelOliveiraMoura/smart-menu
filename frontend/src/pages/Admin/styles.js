@@ -53,7 +53,13 @@ export const Container = styled.section`
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+  }
+
+  .order-informations {
+    flex: 1;
+    margin-left: 16px;
+    width: 200px;
   }
 
   footer {

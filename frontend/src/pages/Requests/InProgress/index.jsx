@@ -39,7 +39,11 @@ function InProgress() {
           <header>
             <img src={request.product.image_url} alt={request.product.title} />
             <div className="content">
-              <h1>{request.product.title}</h1>
+              <h1>
+                {request.ammount}
+                x&nbsp;
+                {request.product.title}
+              </h1>
               <span>
                 Pedido realizado há&nbsp;
                 <strong>

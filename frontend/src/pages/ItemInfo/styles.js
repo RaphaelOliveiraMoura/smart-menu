@@ -89,24 +89,69 @@ export const Container = styled.section`
     left: 8px;
     right: 8px;
     bottom: 16px;
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+
+    .ammount-input-container {
+      width: 30%;
+      margin-left: 8px;
+      position: relative;
+
+      input {
+        width: 100%;
+        height: 50px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-weight: bold;
+        font-size: 1.2em;
+        padding-left: 12px;
+      }
+
+      .options {
+        position: absolute;
+        top: 0;
+        right: 8px;
+        bottom: 0;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        svg {
+          margin: 4px;
+        }
+      }
+    }
   }
 
-  button {
-    padding: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .submit-order {
+    padding: 10px;
     background: #c23520;
-    margin-top: 16px;
     color: #fff;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.1em;
     box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.15);
 
     width: 100%;
-    display: flex;
-    align-items: center;
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    span {
+      font-size: 0.7em;
+      font-weight: normal;
+    }
 
     svg {
       margin-left: 8px;

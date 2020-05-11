@@ -12,6 +12,7 @@ class FinishedOrderController {
         table: { id: id_table },
         status: OrderStatus.DONE,
       },
+      order: { updatedAt: 'DESC' },
       relations: ['product'],
     });
 

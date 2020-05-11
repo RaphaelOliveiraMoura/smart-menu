@@ -28,10 +28,12 @@ export const Container = styled.section`
 
   article {
     display: flex;
+    align-items: center;
   }
 
   picture {
-    border-radius: 8px;
+    border-radius: 8px 30px;
+    height: 100%;
     overflow: hidden;
   }
 

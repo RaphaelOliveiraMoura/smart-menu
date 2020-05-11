@@ -38,7 +38,11 @@ function Finished() {
                 />
               </picture>
               <div className="content">
-                <h1>{finishedRequest.product.title}</h1>
+                <h1>
+                  {finishedRequest.ammount}
+                  x&nbsp;
+                  {finishedRequest.product.title}
+                </h1>
                 <h2>
                   Pedido entregue há&nbsp;
                   <strong>

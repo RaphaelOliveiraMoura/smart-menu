@@ -9,6 +9,7 @@ class RequestOrderController {
 
     const orders = await getRepository(Order).find({
       where: { status: OrderStatus.IN_PROGRESS, table: { id: id_table } },
+      order: { updatedAt: 'DESC' },
       relations: ['product'],
     });
 

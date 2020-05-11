@@ -21,5 +21,9 @@ export const Container = styled.nav`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    &.selected {
+      color: #c23520;
+    }
   }
 `;

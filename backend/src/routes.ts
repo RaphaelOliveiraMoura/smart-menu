@@ -10,10 +10,10 @@ const routes = Router();
 
 routes.get('/dashboard', DashboardController.index);
 
+routes.get('/products/:id', ProductController.show);
+
 routes.get('/orders/finished', FinishedOrderController.show);
 routes.post('/orders/finished', FinishedOrderController.store);
-
-routes.get('/products/:id', ProductController.show);
 
 routes.get('/orders', RequestOrderController.index);
 routes.post('/orders', RequestOrderController.store);
