@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 
 import api from '~/services/api';
 import history from '~/services/history';
+import { useSnackbar } from '~/store/snackbar';
 import formattCurrency from '~/utils/formattCurrency';
 
 import { Container } from './styles';
@@ -18,6 +19,8 @@ function ItemInfo() {
   const [item, setItem] = useState({});
   const [observations, setObservations] = useState('');
   const [ammount, setAmmount] = useState(1);
+
+  const { snackbarMessage } = useSnackbar();
 
   const subTotal = useMemo(() => {
     const total = ammount * item.price;
@@ -36,8 +39,13 @@ function ItemInfo() {
   }, [id]);
 
   async function handleSubmitRequest() {
-    await api.post('/orders', { idProduct: item.id, observations, ammount });
-    history.push('/home');
+    try {
+      await api.post('/orders', { idProduct: item.id, observations, ammount });
+      history.push('/home');
+      snackbarMessage('Pedido realizado');
+    } catch (error) {
+      snackbarMessage('Erro ao realizar pedido', { variant: 'error' });
+    }
   }
 
   return (

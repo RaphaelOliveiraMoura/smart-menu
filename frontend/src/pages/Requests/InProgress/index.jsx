@@ -4,11 +4,14 @@ import { AiOutlineQuestionCircle, AiOutlineInfoCircle } from 'react-icons/ai';
 import { MdErrorOutline } from 'react-icons/md';
 
 import api from '~/services/api';
+import { useSnackbar } from '~/store/snackbar';
 
 import { Container } from './styles';
 
 function InProgress() {
   const [requests, setRequests] = useState([]);
+
+  const { snackbarMessage } = useSnackbar();
 
   const loadRequests = useCallback(async () => {
     const response = await api.get('/orders');
@@ -20,10 +23,16 @@ function InProgress() {
   }, [loadRequests]);
 
   async function handleFinishRequest(idOrder) {
-    await api.post('/orders/finished', {
-      idOrder,
-    });
-    loadRequests();
+    try {
+      await api.post('/orders/finished', {
+        idOrder,
+      });
+      loadRequests();
+
+      snackbarMessage('Entrega confirmada');
+    } catch (error) {
+      snackbarMessage('Erro ao confirmar entrega', { variant: 'error' });
+    }
   }
 
   return (
