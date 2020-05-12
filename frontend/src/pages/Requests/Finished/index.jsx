@@ -23,7 +23,7 @@ function Finished() {
     <Container>
       {finishedRequests.length === 0 && (
         <div className="empty-requests">
-          Nenhum pedido em andamento
+          Nenhum pedido finalizado
           <MdErrorOutline size={24} color="#888" />
         </div>
       )}
