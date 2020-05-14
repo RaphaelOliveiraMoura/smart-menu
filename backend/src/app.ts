@@ -2,29 +2,36 @@ import '@config/Env';
 
 import cors from 'cors';
 import express, { Express, json } from 'express';
+import { Connection } from 'typeorm';
+
+import createConenction from '@database/index';
 
 import routes from './routes';
 
-import '@database/index';
-
 class Application {
-  public app: Express;
+  public express: Express;
+
+  public connection: Connection;
 
   constructor() {
-    this.app = express();
+    this.express = express();
+  }
+
+  async initialize(): Promise<void> {
+    this.connection = await createConenction();
 
     this.middlewares();
     this.routes();
   }
 
   middlewares(): void {
-    this.app.use(json());
-    this.app.use(cors());
+    this.express.use(json());
+    this.express.use(cors());
   }
 
   routes(): void {
-    this.app.use(routes);
+    this.express.use(routes);
   }
 }
 
-export default new Application().app;
+export default new Application();

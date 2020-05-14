@@ -5,9 +5,9 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "nodemon",
-    "build": "tsc",
+    "start": "node -r ./paths-resolver.js dist/index.js",
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpileOnly ./src/index.ts",
+    "build": "tsc --p tsconfig-build.json",
     "test": "NODE_ENV=test jest --coverage=false",
     "test:dev": "NODE_ENV=test jest --watchAll",
     "fix": "eslint ./src --ext .ts --fix",
@@ -15,6 +15,15 @@
   },
   "keywords": [],
   "author": "Raphael de Oliveira <raphaeldeoliveiramoura@gmail.com>",
+  "_moduleAliases": {
+    "@root": "dist",
+    "@app": "dist/app",
+    "@controllers": "dist/app/controllers",
+    "@models": "dist/app/models",
+    "@utils": "dist/app/utils",
+    "@database": "dist/database",
+    "@config": "dist/config"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
@@ -31,8 +40,10 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "module-alias": "^2.2.2",
     "pg": "^8.1.0",
     "sqlite3": "^4.2.0",
+    "tsconfig-paths": "^3.9.0",
     "typeorm": "^0.2.24",
     "yup": "^0.28.5"
   },
@@ -56,12 +67,11 @@
     "husky": "^4.2.5",
     "jest": "^25.3.0",
     "lint-staged": "^10.1.3",
-    "nodemon": "^2.0.3",
     "prettier": "^2.0.5",
     "supertest": "^4.0.2",
     "ts-jest": "^25.5.1",
     "ts-node": "^8.8.2",
-    "tsconfig-paths": "^3.9.0",
+    "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.3"
   }
 }

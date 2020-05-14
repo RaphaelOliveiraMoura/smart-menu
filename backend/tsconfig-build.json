@@ -69,6 +69,6 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["./src", "./__tests__"],
-  "exclude": ["node_modules", "coverage"]
+  "include": ["./src"],
+  "exclude": ["node_modules", "coverage", "./__tests__"]
 }

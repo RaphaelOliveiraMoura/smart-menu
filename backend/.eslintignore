@@ -5,3 +5,5 @@ dist
 coverage
 
 jest.config.js
+
+paths-resolver.js

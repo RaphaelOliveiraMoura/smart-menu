@@ -1,14 +1,10 @@
 import request from 'supertest';
-
 import { getRepository } from 'typeorm';
 
-import Order, { OrderStatus } from '../../src/app/models/Order';
-import Table from '../../src/app/models/Table';
-import Product from '../../src/app/models/Product';
-
-import connection from '../../src/database/index';
-
-import app from '../../src/app';
+import Order, { OrderStatus } from '@models/Order';
+import Product from '@models/Product';
+import Table from '@models/Table';
+import app from '@root/app';
 
 describe('DashboardController', () => {
   const inProgressProduct = {
@@ -32,8 +28,8 @@ describe('DashboardController', () => {
   };
 
   beforeAll(async () => {
-    const database = await connection;
-    await database.synchronize(true);
+    await app.initialize();
+    await app.connection.synchronize(true);
 
     await getRepository(Table).insert({ ...table });
     await getRepository(Product).insert([
@@ -57,7 +53,7 @@ describe('DashboardController', () => {
       },
     ]);
 
-    const response = await request(app).get('/dashboard');
+    const response = await request(app.express).get('/dashboard');
 
     expect(response.status).toEqual(200);
 
