@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
 import DashboardController from '@controllers/DashboardController';
-import ProductController from '@controllers/ProductController';
-import RequestOrderController from '@controllers/RequestOrderController';
-import ProductsOverviewController from '@controllers/ProductsOverviewController';
 import FinishedOrderController from '@controllers/FinishedOrderController';
+import ProductController from '@controllers/ProductController';
+import ProductsOverviewController from '@controllers/ProductsOverviewController';
+import RequestOrderController from '@controllers/RequestOrderController';
 
 const routes = Router();
 

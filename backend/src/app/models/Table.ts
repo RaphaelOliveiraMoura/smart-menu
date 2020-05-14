@@ -7,7 +7,6 @@ import {
 } from 'typeorm';
 
 import Order from '@models/Order';
-
 import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,

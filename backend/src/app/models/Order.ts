@@ -10,7 +10,6 @@ import {
 
 import Product from '@models/Product';
 import Table from '@models/Table';
-
 import {
   enumColumnType,
   createdAtColumnTypeProps,

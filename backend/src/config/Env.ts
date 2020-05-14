@@ -1,5 +1,5 @@
-import path from 'path';
 import { config as configDotenv } from 'dotenv';
+import path from 'path';
 
 import { getDatabaseConfigurations, DatabaseType } from './Database';
 

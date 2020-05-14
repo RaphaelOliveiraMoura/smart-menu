@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-
 import { getRepository } from 'typeorm';
 
 import Order, { OrderStatus } from '@models/Order';

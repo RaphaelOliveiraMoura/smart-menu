@@ -1,7 +1,7 @@
 import '@config/Env';
 
-import express, { Express, json } from 'express';
 import cors from 'cors';
+import express, { Express, json } from 'express';
 
 import routes from './routes';
 
