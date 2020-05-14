@@ -43,6 +43,7 @@
       "@app/*": ["app/*"],
       "@controllers/*": ["app/controllers/*"],
       "@models/*": ["app/models/*"],
+      "@utils/*": ["app/utils/*"],
       "@database/*": ["database/*"],
       "@config/*": ["config/*"]
     },

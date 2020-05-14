@@ -6,6 +6,11 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import {
+  createdAtColumnTypeProps,
+  updatedAtColumnTypeProps,
+} from '@utils/databaseColumnTypes';
+
 @Entity('products')
 export default class Product {
   @PrimaryGeneratedColumn()
@@ -28,16 +33,13 @@ export default class Product {
 
   @CreateDateColumn({
     name: 'created_at',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
+    ...createdAtColumnTypeProps,
   })
   createdAt: Date;
 
   @UpdateDateColumn({
     name: 'updated_at',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-    onUpdate: 'CURRENT_TIMESTAMP(6)',
+    ...updatedAtColumnTypeProps,
   })
   updatedAt: Date;
 }

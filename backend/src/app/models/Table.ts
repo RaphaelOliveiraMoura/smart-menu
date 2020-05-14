@@ -8,6 +8,11 @@ import {
 
 import Order from '@models/Order';
 
+import {
+  createdAtColumnTypeProps,
+  updatedAtColumnTypeProps,
+} from '@utils/databaseColumnTypes';
+
 @Entity('tables')
 export default class Table {
   @PrimaryGeneratedColumn()
@@ -18,16 +23,13 @@ export default class Table {
 
   @CreateDateColumn({
     name: 'created_at',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
+    ...createdAtColumnTypeProps,
   })
   createdAt: Date;
 
   @UpdateDateColumn({
     name: 'updated_at',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-    onUpdate: 'CURRENT_TIMESTAMP(6)',
+    ...updatedAtColumnTypeProps,
   })
   updatedAt: Date;
 }

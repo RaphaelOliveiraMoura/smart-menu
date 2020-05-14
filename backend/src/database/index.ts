@@ -1,4 +1,4 @@
-import { createConnection, ConnectionOptions } from 'typeorm';
+import { createConnection } from 'typeorm';
 
 import Env from '@config/Env';
 
@@ -11,4 +11,4 @@ export default createConnection({
   database: Env.database.database,
   entities: ['src/app/models/*.ts'],
   synchronize: true,
-} as ConnectionOptions);
+});

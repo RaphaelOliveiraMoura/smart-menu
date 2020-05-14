@@ -11,6 +11,12 @@ import {
 import Product from '@models/Product';
 import Table from '@models/Table';
 
+import {
+  enumColumnType,
+  createdAtColumnTypeProps,
+  updatedAtColumnTypeProps,
+} from '@utils/databaseColumnTypes';
+
 export enum OrderStatus {
   IN_PROGRESS = 'in_progress',
   DONE = 'done',
@@ -37,7 +43,7 @@ export default class Order {
   observations: string;
 
   @Column({
-    type: 'enum',
+    type: enumColumnType,
     enum: OrderStatus,
     default: OrderStatus.IN_PROGRESS,
   })
@@ -45,16 +51,13 @@ export default class Order {
 
   @CreateDateColumn({
     name: 'created_at',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
+    ...createdAtColumnTypeProps,
   })
   createdAt: Date;
 
   @UpdateDateColumn({
     name: 'updated_at',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-    onUpdate: 'CURRENT_TIMESTAMP(6)',
+    ...updatedAtColumnTypeProps,
   })
   updatedAt: Date;
 }

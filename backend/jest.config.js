@@ -66,6 +66,10 @@ module.exports = {
   moduleNameMapper: {
     '^@app/(.*)$': '<rootDir>/src/app/$1',
     '^@controllers/(.*)$': '<rootDir>/src/app/controllers/$1',
+    '^@models/(.*)$': '<rootDir>/src/app/models/$1',
+    '^@utils/(.*)$': '<rootDir>/src/app/utils/$1',
+    '^@database/(.*)$': '<rootDir>/src/database/$1',
+    '^@config/(.*)$': '<rootDir>/src/config/$1',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -110,7 +114,7 @@ module.exports = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  // setupFiles: [],
+  //   setupFiles: ['<rootDir>/__tests__/bootstrap.ts'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
