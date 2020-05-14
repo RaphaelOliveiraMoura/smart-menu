@@ -62,10 +62,6 @@ function ItemInfo() {
         <div className="description">
           <h1>{item.title}</h1>
           <p>{item.description}</p>
-          <div className="price">
-            <span>{item.formattedOldPrice}</span>
-            <strong>{item.formattedPrice}</strong>
-          </div>
         </div>
         <label htmlFor="observations">
           <span>

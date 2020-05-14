@@ -1,29 +1,16 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import formattCurrency from '~/utils/formattCurrency';
-
 import { Container } from './styles';
 
 function PromotionList({ promotions }) {
-  const formattedOldPrices = useMemo(
-    () =>
-      promotions.map((promotion) => formattCurrency(promotion.oldPrice), {}),
-    [promotions]
-  );
-
-  const formattedPrices = useMemo(
-    () => promotions.map((promotion) => formattCurrency(promotion.price), {}),
-    [promotions]
-  );
-
   return (
     <Container>
       <h2>Promoções</h2>
       <ul>
-        {promotions.map((item, index) => (
+        {promotions.map((item) => (
           <li key={String(item.id)}>
             <Link to={`/item/${item.id}`}>
               <article>
@@ -37,8 +24,8 @@ function PromotionList({ promotions }) {
                 </div>
 
                 <footer>
-                  <span>{item.oldPrice ? formattedOldPrices[index] : ''}</span>
-                  <strong>{formattedPrices[index]}</strong>
+                  <span>{item.formattedOldPrice}</span>
+                  <strong>{item.formattedPrice}</strong>
                 </footer>
               </article>
             </Link>

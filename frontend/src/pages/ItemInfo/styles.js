@@ -44,23 +44,6 @@ export const Container = styled.section`
     }
   }
 
-  div.description .price {
-    align-self: center;
-    margin-top: 16px;
-
-    span {
-      color: #c23520aa;
-      text-decoration: line-through;
-      font-size: 1.2em;
-    }
-
-    strong {
-      color: #c23520;
-      margin-left: 8px;
-      font-size: 1.4em;
-    }
-  }
-
   label {
     display: flex;
     flex-direction: column;
