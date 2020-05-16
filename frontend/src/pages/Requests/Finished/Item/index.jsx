@@ -35,10 +35,8 @@ function Item({ finishedRequest }) {
             {finishedRequest.product.title}
           </h1>
           <h2>
-            Pedido entregue há&nbsp;
-            <strong>
-              {finishedRequest.formattedFinishedAt || '1 min atrás'}
-            </strong>
+            Entregue há&nbsp;
+            <strong>{finishedRequest.formattedFinishedAt}</strong>
           </h2>
           <Rating
             name={`rating-${finishedRequest.id}`}

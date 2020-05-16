@@ -14,6 +14,7 @@ import Rating from '@models/Rating';
 import Table from '@models/Table';
 import {
   enumColumnType,
+  timestampColumnTypeProps,
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
 } from '@utils/databaseColumnTypes';
@@ -65,4 +66,12 @@ export default class Order {
     ...updatedAtColumnTypeProps,
   })
   updatedAt: Date;
+
+  @UpdateDateColumn({
+    ...timestampColumnTypeProps,
+    name: 'finished_at',
+    nullable: true,
+    default: null,
+  })
+  finishedAt: Date;
 }

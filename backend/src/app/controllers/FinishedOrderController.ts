@@ -31,6 +31,7 @@ class FinishedOrderController {
     }
 
     order.status = OrderStatus.DONE;
+    order.finishedAt = new Date();
 
     await orderRepository.save(order);
 

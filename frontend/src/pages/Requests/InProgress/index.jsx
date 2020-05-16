@@ -4,6 +4,7 @@ import { AiOutlineQuestionCircle, AiOutlineInfoCircle } from 'react-icons/ai';
 import { MdErrorOutline } from 'react-icons/md';
 
 import api from '~/services/api';
+import { getInProgressOrders } from '~/services/orders';
 import { useSnackbar } from '~/store/snackbar';
 
 import { Container } from './styles';
@@ -14,8 +15,8 @@ function InProgress() {
   const { snackbarMessage } = useSnackbar();
 
   const loadRequests = useCallback(async () => {
-    const response = await api.get('/orders');
-    setRequests(response.data);
+    const orders = await getInProgressOrders();
+    setRequests(orders);
   }, []);
 
   useEffect(() => {
@@ -54,10 +55,8 @@ function InProgress() {
                 {request.product.title}
               </h1>
               <span>
-                Pedido realizado há&nbsp;
-                <strong>
-                  {request.formattedRequestedTime || '1 min atrás'}
-                </strong>
+                realizado há&nbsp;
+                <strong>{request.formattedRequestedTime}</strong>
               </span>
               <span>
                 Tempo estimado de&nbsp;

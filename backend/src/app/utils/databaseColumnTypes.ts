@@ -9,7 +9,10 @@ const isTestEnvironment = process.env.NODE_ENV === 'test';
 
 export const timestampColumnTypeProps: ColumnOptions = isTestEnvironment
   ? { type: 'datetime' }
-  : { type: 'timestamp', default: (): string => 'CURRENT_TIMESTAMP(6)' };
+  : {
+      type: 'timestamp with time zone',
+      default: (): string => 'CURRENT_TIMESTAMP',
+    };
 
 export const createdAtColumnTypeProps: ColumnOptions = isTestEnvironment
   ? timestampColumnTypeProps
@@ -17,6 +20,6 @@ export const createdAtColumnTypeProps: ColumnOptions = isTestEnvironment
 
 export const updatedAtColumnTypeProps: ColumnOptions = isTestEnvironment
   ? timestampColumnTypeProps
-  : { ...timestampColumnTypeProps, onUpdate: 'CURRENT_TIMESTAMP(6)' };
+  : { ...timestampColumnTypeProps, onUpdate: 'CURRENT_TIMESTAMP' };
 
 export const enumColumnType = isTestEnvironment ? 'varchar' : 'enum';

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { MdErrorOutline } from 'react-icons/md';
 
-import api from '~/services/api';
+import { getFinishedOrders } from '~/services/orders';
 
 import FinishedRequestItem from './Item';
 import { Container } from './styles';
@@ -12,8 +12,8 @@ function Finished() {
 
   useEffect(() => {
     async function loadFinishedRequests() {
-      const response = await api.get('/orders/finished');
-      setFinishedRequests(response.data);
+      const orders = await getFinishedOrders();
+      setFinishedRequests(orders);
     }
 
     loadFinishedRequests();
