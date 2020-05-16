@@ -22,9 +22,17 @@ class FinishedOrderController {
   static async store(request: Request, response: Response): Promise<Response> {
     const { idOrder } = request.body;
 
-    const order = await getRepository(Order).update(idOrder, {
-      status: OrderStatus.DONE,
-    });
+    const orderRepository = await getRepository(Order);
+
+    const order = await orderRepository.findOne(idOrder);
+
+    if (!order) {
+      return response.status(400).json({ error: 'Invalid order' });
+    }
+
+    order.status = OrderStatus.DONE;
+
+    await orderRepository.save(order);
 
     return response.json(order);
   }

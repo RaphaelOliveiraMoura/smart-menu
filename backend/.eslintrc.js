@@ -21,7 +21,13 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'import-helpers'],
   rules: {
+    'no-unused-vars': ['error'],
     '@typescript-eslint/camelcase': ['off'],
+    'class-methods-use-this': 'off',
+    '@typescript-eslint/interface-name-prefix': [
+      'error',
+      { prefixWithI: 'always' },
+    ],
     'import/extensions': [
       'error',
       'ignorePackages',

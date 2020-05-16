@@ -3,7 +3,7 @@ import path from 'path';
 
 import { getDatabaseConfigurations, DatabaseType } from './Database';
 
-interface Environment {
+interface IEnvironment {
   database: {
     type: DatabaseType;
     host: string;
@@ -19,4 +19,4 @@ configDotenv({ path: path.resolve(__dirname, '..', '..', dotenvFilename) });
 
 export default {
   database: getDatabaseConfigurations(),
-} as Environment;
+} as IEnvironment;
