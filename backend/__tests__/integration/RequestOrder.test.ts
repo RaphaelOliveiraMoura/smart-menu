@@ -8,7 +8,7 @@ import ProcuctsFactory from '../factories/ProcuctsFactory';
 import TablesFactory from '../factories/TablesFactory';
 import truncate from '../truncate';
 
-describe('Dashboard', () => {
+describe('RequestOrder', () => {
   beforeEach(() => truncate());
 
   it('should be able get all in progress orders from a table', async () => {

@@ -6,9 +6,11 @@ import {
   UpdateDateColumn,
   JoinColumn,
   ManyToOne,
+  OneToOne,
 } from 'typeorm';
 
 import Product from '@models/Product';
+import Rating from '@models/Rating';
 import Table from '@models/Table';
 import {
   enumColumnType,
@@ -34,6 +36,10 @@ export default class Order {
   @ManyToOne(() => Table, (table) => table.orders)
   @JoinColumn({ name: 'id_table' })
   table: Table;
+
+  @OneToOne(() => Rating)
+  @JoinColumn({ name: 'id_rating' })
+  rating: Rating;
 
   @Column({ type: 'integer', default: 1 })
   ammount: number;

@@ -13,7 +13,7 @@ class FinishedOrderController {
         status: OrderStatus.DONE,
       },
       order: { updatedAt: 'DESC' },
-      relations: ['product'],
+      relations: ['product', 'rating'],
     });
 
     return response.json(orders);
