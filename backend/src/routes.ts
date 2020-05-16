@@ -1,7 +1,9 @@
 import { Router } from 'express';
 
 import DashboardController from '@controllers/DashboardController';
+import DeliveredOrderController from '@controllers/DeliveredOrderController';
 import FinishedOrderController from '@controllers/FinishedOrderController';
+import NotDeliveredOrderController from '@controllers/NotDeliveredOrderController';
 import ProductController from '@controllers/ProductController';
 import ProductsOverviewController from '@controllers/ProductsOverviewController';
 import RatingController from '@controllers/RatingController';
@@ -13,10 +15,12 @@ routes.get('/dashboard', DashboardController.index);
 
 routes.get('/products/:id', ProductController.show);
 
-routes.get('/orders/finished', FinishedOrderController.show);
 routes.post('/orders/finished', FinishedOrderController.store);
 
-routes.get('/orders', RequestOrderController.index);
+routes.get('/orders/delivery', DeliveredOrderController.show);
+routes.post('/orders/delivery', DeliveredOrderController.store);
+
+routes.get('/orders', NotDeliveredOrderController.index);
 routes.post('/orders', RequestOrderController.store);
 
 routes.post('/orders/:id_order/rating', RatingController.store);

@@ -25,7 +25,7 @@ function InProgress() {
 
   async function handleFinishRequest(idOrder) {
     try {
-      await api.post('/orders/finished', {
+      await api.post('/orders/delivery', {
         idOrder,
       });
       loadRequests();
@@ -65,6 +65,7 @@ function InProgress() {
               <button
                 type="button"
                 onClick={() => handleFinishRequest(request.id)}
+                disabled={request.status !== 'done'}
               >
                 Confirmar entrega
               </button>

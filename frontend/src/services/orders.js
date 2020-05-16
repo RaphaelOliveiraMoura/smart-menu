@@ -14,17 +14,17 @@ export async function getInProgressOrders() {
 
   return data.map((order) => ({
     ...order,
-    formattedRequestedTime: relativeFormatTime(order.updatedAt),
+    formattedRequestedTime: relativeFormatTime(order.createdAt),
   }));
 }
 
-export async function getFinishedOrders() {
-  const { data } = await api.get('/orders/finished');
+export async function getDeliveredOrders() {
+  const { data } = await api.get('/orders/delivery');
 
   return data.map((order) => ({
     ...order,
-    formattedFinishedAt: order.finishedAt
-      ? relativeFormatTime(order.finishedAt)
+    formattedFinishedAt: order.deliveredAt
+      ? relativeFormatTime(order.deliveredAt)
       : null,
   }));
 }

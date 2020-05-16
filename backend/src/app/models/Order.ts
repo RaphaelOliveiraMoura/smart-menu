@@ -56,22 +56,30 @@ export default class Order {
   status: OrderStatus;
 
   @CreateDateColumn({
-    name: 'created_at',
     ...createdAtColumnTypeProps,
+    name: 'created_at',
   })
   createdAt: Date;
 
   @UpdateDateColumn({
-    name: 'updated_at',
     ...updatedAtColumnTypeProps,
+    name: 'updated_at',
   })
   updatedAt: Date;
 
-  @UpdateDateColumn({
+  @Column({
     ...timestampColumnTypeProps,
-    name: 'finished_at',
+    name: 'done_at',
     nullable: true,
     default: null,
   })
-  finishedAt: Date;
+  doneAt: Date;
+
+  @Column({
+    ...timestampColumnTypeProps,
+    name: 'delivered_at',
+    nullable: true,
+    default: null,
+  })
+  deliveredAt: Date;
 }

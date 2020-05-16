@@ -14,6 +14,7 @@ describe('Dashboard', () => {
   it('should return a list of in progress and finished products from all tables', async () => {
     const productsInProgressAmmount = 10;
     const productsFinishedAmmount = 5;
+    const productsDeliveredAmmount = 5;
 
     await TablesFactory.generate(1, { id: 1 });
     await TablesFactory.generate(1, { id: 2 });
@@ -25,8 +26,15 @@ describe('Dashboard', () => {
       table: { id: 1 },
       product: { ìd: 1 },
     });
+
     await OrderFactory.generate(productsFinishedAmmount, {
       status: OrderStatus.DONE,
+      table: { id: 2 },
+      product: { ìd: 1 },
+    });
+
+    await OrderFactory.generate(productsDeliveredAmmount, {
+      status: OrderStatus.DELIVERED,
       table: { id: 2 },
       product: { ìd: 1 },
     });
@@ -37,5 +45,6 @@ describe('Dashboard', () => {
 
     expect(response.body.inProgress.length).toEqual(productsInProgressAmmount);
     expect(response.body.finished.length).toEqual(productsFinishedAmmount);
+    expect(response.body.delivered.length).toEqual(productsDeliveredAmmount);
   });
 });

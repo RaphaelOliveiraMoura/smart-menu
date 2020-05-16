@@ -1,21 +1,9 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 
-import Order, { OrderStatus } from '@models/Order';
+import Order from '@models/Order';
 
 class RequestOrderController {
-  static async index(request: Request, response: Response): Promise<Response> {
-    const { id_table } = request.headers;
-
-    const orders = await getRepository(Order).find({
-      where: { status: OrderStatus.IN_PROGRESS, table: { id: id_table } },
-      order: { updatedAt: 'DESC' },
-      relations: ['product'],
-    });
-
-    return response.json(orders);
-  }
-
   static async store(request: Request, response: Response): Promise<Response> {
     const { id_table } = request.headers;
 

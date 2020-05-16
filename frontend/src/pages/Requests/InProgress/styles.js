@@ -72,6 +72,10 @@ export const Container = styled.div`
       color: #fff;
       border-radius: 8px;
     }
+
+    button:disabled {
+      background: #c6c6c6;
+    }
   }
 
   .separator {

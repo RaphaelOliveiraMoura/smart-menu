@@ -2,14 +2,17 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 26px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 12px;
 
   section {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 0px 26px;
+    padding: 16px;
+    margin: 0 8px;
+    min-height: 100vh;
+    border-radius: 8px;
 
     h2 {
       text-align: center;
@@ -20,8 +23,27 @@ export const Container = styled.section`
     }
   }
 
+  .dragging {
+    article {
+      background: #fff5;
+    }
+  }
+
+  .canDrop {
+    section {
+      border: 1px solid #666;
+      border-style: dashed;
+    }
+  }
+
+  .isOver {
+    section {
+      background: #8881;
+    }
+  }
+
   article {
-    width: 100%;
+    max-width: 100%;
     background: #fff;
     border-radius: 4px;
     padding: 8px;
@@ -29,8 +51,8 @@ export const Container = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 26px;
-    border: 2px #ddd dashed;
+    margin: 16px 0;
+    border: 1px #ddd solid;
 
     img {
       width: 120px;
@@ -70,5 +92,12 @@ export const Container = styled.section`
     padding-bottom: 8px;
     border-top: 1px solid #ddd;
     width: 80%;
+  }
+
+  & > div:nth-child(1) {
+    article {
+      border: 2px #ddd dashed;
+      cursor: pointer;
+    }
   }
 `;

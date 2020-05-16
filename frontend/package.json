@@ -32,6 +32,8 @@
     "history": "^4.10.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-dnd": "^10.0.2",
+    "react-dnd-html5-backend": "^10.0.2",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
     "react-qr-reader": "^2.2.1",
