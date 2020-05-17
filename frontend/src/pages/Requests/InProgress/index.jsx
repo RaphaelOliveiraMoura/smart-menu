@@ -55,7 +55,7 @@ function InProgress() {
                 {request.product.title}
               </h1>
               <span>
-                realizado há&nbsp;
+                Realizado há&nbsp;
                 <strong>{request.formattedRequestedTime}</strong>
               </span>
               <span>

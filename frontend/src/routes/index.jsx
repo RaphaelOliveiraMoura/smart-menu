@@ -10,20 +10,20 @@ import Login from '~/pages/Login';
 import NotFound from '~/pages/NotFound';
 import Requests from '~/pages/Requests';
 
-import RouteWrapper from './RouteWrapper';
+import Route from './RouteWrapper';
 
 export default function Routes() {
   return (
     <Switch>
-      <RouteWrapper path="/" exact component={Login} />
-      <RouteWrapper path="/home" exact component={Home} isPrivate />
-      <RouteWrapper path="/requests" exact component={Requests} isPrivate />
-      <RouteWrapper path="/help" exact component={Help} isPrivate />
-      <RouteWrapper path="/item/:id" exact component={ItemInfo} isPrivate />
+      <Route path="/" exact component={Login} mobile />
+      <Route path="/home" exact component={Home} mobile isPrivate />
+      <Route path="/requests" exact component={Requests} mobile isPrivate />
+      <Route path="/help" exact component={Help} mobile isPrivate />
+      <Route path="/item/:id" exact component={ItemInfo} mobile isPrivate />
 
-      <RouteWrapper path="/admin" component={Admin} />
+      <Route path="/admin" component={Admin} />
 
-      <RouteWrapper path="*" component={NotFound} />
+      <Route path="*" component={NotFound} />
     </Switch>
   );
 }

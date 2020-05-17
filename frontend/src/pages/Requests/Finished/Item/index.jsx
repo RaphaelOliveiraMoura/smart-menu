@@ -22,12 +22,10 @@ function Item({ finishedRequest }) {
   return (
     <li>
       <article>
-        <picture>
-          <img
-            src={finishedRequest.product.image_url}
-            alt={finishedRequest.product.title}
-          />
-        </picture>
+        <img
+          src={finishedRequest.product.image_url}
+          alt={finishedRequest.product.title}
+        />
         <div className="content">
           <h1>
             {finishedRequest.ammount}

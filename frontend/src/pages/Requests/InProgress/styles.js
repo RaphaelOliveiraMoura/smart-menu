@@ -37,7 +37,7 @@ export const Container = styled.div`
       object-fit: cover;
       border-radius: 8px 30px;
       overflow: hidden;
-      margin: auto;
+      margin: auto 8px;
     }
   }
 

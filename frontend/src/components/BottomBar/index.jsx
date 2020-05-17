@@ -6,9 +6,9 @@ import { NavLink } from 'react-router-dom';
 
 import { Container } from './styles';
 
-function BottomBar() {
+function BottomBar({ ...props }) {
   return (
-    <Container>
+    <Container {...props}>
       <ul>
         <li>
           <NavLink to="/home" activeClassName="selected">

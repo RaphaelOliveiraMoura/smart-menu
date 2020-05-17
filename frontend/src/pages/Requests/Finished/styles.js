@@ -31,16 +31,12 @@ export const Container = styled.section`
     align-items: center;
   }
 
-  picture {
-    border-radius: 8px 30px;
-    height: 100%;
-    overflow: hidden;
-  }
-
   img {
     width: 120px;
     height: 100%;
     object-fit: contain;
+    margin: auto 8px;
+    border-radius: 8px 30px;
   }
 
   article .content {

@@ -3,38 +3,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
-import AppContainer from '~/components/AppContainer/';
-import BottomBar from '~/components/BottomBar/';
 import { component } from '~/utils/customPropTypes';
 
-function RouteWrapper({ isPrivate, component: Component, ...props }) {
-  const AppContainerComponent = () => (
-    <AppContainer>
-      <Component />
-    </AppContainer>
-  );
+import * as MobileBuilder from './builders/Mobile';
+import * as WebBuilder from './builders/Web';
 
-  if (!isPrivate) {
-    return <Route component={AppContainerComponent} {...props} />;
-  }
+function RouteWrapper({ mobile, isPrivate, component: Component, ...props }) {
+  const ScreenBuilder = mobile ? MobileBuilder : WebBuilder;
 
-  const AppContainerWithBottomBar = () => (
-    <>
-      <AppContainerComponent />
-      <BottomBar />
-    </>
-  );
+  const AppContainerComponent = () =>
+    ScreenBuilder.build({ Component, isPrivate });
 
-  return <Route component={AppContainerWithBottomBar} {...props} />;
+  return <Route component={AppContainerComponent} {...props} />;
 }
 
 RouteWrapper.propTypes = {
   isPrivate: PropTypes.bool,
+  mobile: PropTypes.bool,
   component: component.isRequired,
 };
 
 RouteWrapper.defaultProps = {
   isPrivate: false,
+  mobile: false,
 };
 
 export default RouteWrapper;

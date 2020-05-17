@@ -29,10 +29,6 @@ export const Container = styled.section`
     background: #fff;
   }
 
-  picture {
-    margin: auto;
-  }
-
   img {
     width: 140px;
     height: 100%;

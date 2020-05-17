@@ -25,7 +25,7 @@ export default createGlobalStyle`
 
   body {
     -webkit-font-smoothing: antialiased !important;
-    background: #F5F5F5;
+    background: #333;
   }
 
   body, input, button, textarea {
@@ -55,5 +55,26 @@ export default createGlobalStyle`
 
   input[type=number] {
     -moz-appearance: textfield;
+  }
+
+  .mobile {
+    max-width: 500px;
+    margin: auto;
+    overflow: overlay;
+    width: 100%;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #c2352055;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c23520aa;
   }
 `;
