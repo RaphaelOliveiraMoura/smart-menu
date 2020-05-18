@@ -24,6 +24,11 @@ export const Container = styled.section`
     margin: 8px;
   }
 
+  .styles_root__3hJ8K span {
+    border-radius: 8px;
+    margin: 8px;
+  }
+
   article .main {
     padding: 4px;
   }

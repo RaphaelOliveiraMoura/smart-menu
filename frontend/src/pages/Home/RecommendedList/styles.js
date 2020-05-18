@@ -30,6 +30,15 @@ export const Container = styled.section`
     min-height: 95px;
   }
 
+  .styles_root__3hJ8K {
+    width: 100%;
+    margin-top: 16px;
+
+    span {
+      width: 100% !important;
+    }
+  }
+
   img {
     width: 140px;
     height: 100%;

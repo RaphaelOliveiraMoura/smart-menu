@@ -9,11 +9,14 @@ import { Container } from './styles';
 
 function Home() {
   const [homeInformations, setHomeInformations] = useState({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getHomeInformations() {
+      setLoading(true);
       const informations = await getOverviewHomeInformations();
       setHomeInformations(informations);
+      setLoading(false);
     }
 
     getHomeInformations();
@@ -26,8 +29,14 @@ function Home() {
         className="search-filters"
         label="Busque os melhores pratos"
       />
-      <PromotionList promotions={homeInformations.promotions} />
-      <RecommendedList recommended={homeInformations.recommended} />
+      <PromotionList
+        promotions={homeInformations.promotions}
+        loading={loading}
+      />
+      <RecommendedList
+        recommended={homeInformations.recommended}
+        loading={loading}
+      />
     </Container>
   );
 }

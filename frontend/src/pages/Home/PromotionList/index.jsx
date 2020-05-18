@@ -2,14 +2,21 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Shimmer } from 'react-shimmer';
 
 import { Container } from './styles';
 
-function PromotionList({ promotions }) {
+function PromotionList({ promotions, loading }) {
   return (
     <Container>
       <h2>Promoções</h2>
       <ul>
+        {loading &&
+          React.Children.toArray(
+            Array(8)
+              .fill(0)
+              .map(() => <Shimmer width={120} height={150} />)
+          )}
         {promotions.map((item) => (
           <li key={String(item.id)}>
             <Link to={`/item/${item.id}`}>
@@ -37,6 +44,7 @@ function PromotionList({ promotions }) {
 }
 
 PromotionList.propTypes = {
+  loading: PropTypes.bool,
   promotions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
@@ -48,6 +56,7 @@ PromotionList.propTypes = {
 };
 
 PromotionList.defaultProps = {
+  loading: false,
   promotions: [],
 };
 

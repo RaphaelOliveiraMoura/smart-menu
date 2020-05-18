@@ -2,14 +2,21 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Shimmer } from 'react-shimmer';
 
 import { Container } from './styles';
 
-function RecommendedList({ recommended }) {
+function RecommendedList({ recommended, loading }) {
   return (
     <Container>
       <h2>Recomendados</h2>
       <ul>
+        {loading &&
+          React.Children.toArray(
+            Array(4)
+              .fill(0)
+              .map(() => <Shimmer height={95} />)
+          )}
         {recommended.map((item) => (
           <li key={String(item.id)}>
             <Link to={`/item/${item.id}`}>
@@ -39,6 +46,7 @@ function RecommendedList({ recommended }) {
 }
 
 RecommendedList.propTypes = {
+  loading: PropTypes.bool,
   recommended: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
@@ -49,6 +57,7 @@ RecommendedList.propTypes = {
 };
 
 RecommendedList.defaultProps = {
+  loading: false,
   recommended: [],
 };
 
