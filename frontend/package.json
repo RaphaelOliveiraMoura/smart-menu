@@ -8,11 +8,14 @@
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "fix": "eslint ./src --ext .jsx,.js --fix",
-    "lint": "eslint ./src --ext .jsx,.js"
+    "lint": "eslint ./src --ext .jsx,.js",
+    "e2e": "cypress run",
+    "cy": "cypress open"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "cross-env CI=true yarn e2e"
     }
   },
   "lint-staged": {
@@ -44,8 +47,10 @@
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
+    "@types/cypress": "^1.1.3",
     "@types/date-fns": "^2.6.0",
     "babel-plugin-root-import": "^6.5.0",
+    "cypress": "^4.5.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
