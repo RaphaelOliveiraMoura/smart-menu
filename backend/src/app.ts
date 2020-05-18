@@ -2,9 +2,11 @@ import '@config/Env';
 
 import cors from 'cors';
 import express, { Express, json } from 'express';
+import { Server, createServer } from 'http';
 import { Connection } from 'typeorm';
 
 import createConenction from '@database/index';
+import WebSocketService from '@services/WebSocket';
 
 import routes from './routes';
 
@@ -13,8 +15,11 @@ class Application {
 
   public connection: Connection;
 
+  public server: Server;
+
   constructor() {
     this.express = express();
+    this.server = createServer(this.express);
   }
 
   async initialize(): Promise<void> {
@@ -22,6 +27,11 @@ class Application {
 
     this.middlewares();
     this.routes();
+    this.webSocket();
+  }
+
+  webSocket(): void {
+    WebSocketService.initialize(this.server);
   }
 
   middlewares(): void {

@@ -11,6 +11,8 @@ import history from '~/services/history';
 import { SnackbarProvider } from '~/store/snackbar';
 import GlobalStyles from '~/styles/GlobalStyles';
 
+import '~/services/socket';
+
 import theme from './styles/MaterialUICustomTheme';
 
 function App() {

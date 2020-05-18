@@ -9,16 +9,19 @@ class DashboardController {
 
     const inProgress = await orderRepository.find({
       where: { status: OrderStatus.IN_PROGRESS },
+      order: { createdAt: 'DESC' },
       relations: ['product', 'table'],
     });
 
     const finished = await orderRepository.find({
       where: { status: OrderStatus.DONE },
+      order: { doneAt: 'DESC' },
       relations: ['product', 'table'],
     });
 
     const delivered = await orderRepository.find({
       where: { status: OrderStatus.DELIVERED },
+      order: { deliveredAt: 'DESC' },
       relations: ['product', 'table'],
     });
 

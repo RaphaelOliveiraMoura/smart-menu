@@ -3,15 +3,14 @@ import styled from 'styled-components';
 export const Container = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 12px;
 
   section {
+    min-height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 16px;
     margin: 0 8px;
-    min-height: 100vh;
     border-radius: 8px;
 
     h2 {
@@ -55,8 +54,10 @@ export const Container = styled.section`
     border: 1px #ddd solid;
 
     img {
-      width: 120px;
-      border-radius: 8px 30px;
+      width: 80px;
+      height: 80px;
+      border-radius: 30px;
+      object-fit: cover;
     }
 
     h1 {

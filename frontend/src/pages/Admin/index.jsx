@@ -3,6 +3,11 @@ import React, { useEffect, useState, useCallback } from 'react';
 import DraggableComponent from '~/components/DraggableComponent';
 import DroppableComponent from '~/components/DroppableComponent';
 import api from '~/services/api';
+import {
+  subscribeToNewOrders,
+  subscribeToDeliveryOrder,
+} from '~/services/socket';
+import { useSnackbar } from '~/store/snackbar';
 
 import { Container } from './styles';
 
@@ -15,12 +20,26 @@ function Admin() {
     delivered: [],
   });
 
+  const { snackbarMessage } = useSnackbar();
+
   const loadOrders = useCallback(async () => {
     const response = await api.get('/dashboard');
     setOrders(response.data);
   }, []);
 
+  async function handleAddNewOrder() {
+    snackbarMessage('Novo pedido adicionado !!');
+    loadOrders();
+  }
+
+  async function handleDeliveryOrder() {
+    snackbarMessage('Pedido entregue !!');
+    loadOrders();
+  }
+
   useEffect(() => {
+    subscribeToNewOrders(handleAddNewOrder);
+    subscribeToDeliveryOrder(handleDeliveryOrder);
     loadOrders();
   }, [loadOrders]);
 
@@ -33,7 +52,12 @@ function Admin() {
     <Container>
       <DroppableComponent type={DRAG_AND_DROP_TYPE}>
         <section>
-          <h2>Pendentes</h2>
+          <h2>
+            Pendentes&nbsp;
+            <span role="img" aria-label="credit card">
+              ⏳&nbsp;
+            </span>
+          </h2>
           <ul>
             {orders.inProgress.map((order) => (
               <li key={String(order.id)}>
@@ -73,7 +97,12 @@ function Admin() {
         onDrop={handleDropFinishOrder}
       >
         <section>
-          <h2>Finalizados</h2>
+          <h2>
+            Finalizados&nbsp;
+            <span role="img" aria-label="credit card">
+              ☑&nbsp;
+            </span>
+          </h2>
           <ul>
             {orders.finished.map((order) => (
               <li key={String(order.id)}>
@@ -104,7 +133,12 @@ function Admin() {
       </DroppableComponent>
 
       <section>
-        <h2>Entregues</h2>
+        <h2>
+          Entregues&nbsp;
+          <span role="img" aria-label="credit card">
+            📦&nbsp;
+          </span>
+        </h2>
         <ul>
           {orders.delivered.map((order) => (
             <li key={String(order.id)}>

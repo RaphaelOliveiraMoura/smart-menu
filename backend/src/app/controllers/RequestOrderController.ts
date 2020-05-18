@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 
 import Order from '@models/Order';
+import WebSocketSerivce from '@services/WebSocket';
 
 class RequestOrderController {
   static async store(request: Request, response: Response): Promise<Response> {
@@ -15,6 +16,8 @@ class RequestOrderController {
       ammount,
       observations,
     });
+
+    WebSocketSerivce.emit('NEW_ORDER');
 
     return response.json(order);
   }

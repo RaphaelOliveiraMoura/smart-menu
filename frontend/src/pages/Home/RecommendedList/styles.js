@@ -27,6 +27,7 @@ export const Container = styled.section`
     border-radius: 8px;
     overflow: hidden;
     background: #fff;
+    min-height: 95px;
   }
 
   img {
@@ -37,6 +38,7 @@ export const Container = styled.section`
   }
 
   aside {
+    width: 100%;
     padding: 8px;
     display: flex;
     flex-direction: column;
