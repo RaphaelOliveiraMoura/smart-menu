@@ -1,5 +1,5 @@
 {
-  "name": "smart-menu",
+  "name": "smart-menu-backend",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -11,7 +11,9 @@
     "test": "NODE_ENV=test jest --coverage=false --runInBand",
     "test:dev": "NODE_ENV=test jest --watchAll --runInBand",
     "fix": "eslint . --ext .ts --fix",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "precommit": "lint-staged",
+    "prepush": "cross-env CI=true yarn test"
   },
   "keywords": [],
   "author": "Raphael de Oliveira <raphaeldeoliveiramoura@gmail.com>",
@@ -24,12 +26,6 @@
     "@utils": "dist/app/utils",
     "@database": "dist/database",
     "@config": "dist/config"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "cross-env CI=true yarn test"
-    }
   },
   "lint-staged": {
     "*.ts": [

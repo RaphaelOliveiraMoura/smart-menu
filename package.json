@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lerna": "^3.21.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run precommit",
+      "pre-push": "lerna run prepush"
+    }
+  },
+  "name": "smart-menu"
+}
