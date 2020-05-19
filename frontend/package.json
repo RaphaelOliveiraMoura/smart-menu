@@ -31,6 +31,7 @@
     "history": "^4.10.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-app-rewired": "^2.1.6",
     "react-dnd": "^10.0.2",
     "react-dnd-html5-backend": "^10.0.2",
     "react-dom": "^16.13.1",
@@ -59,8 +60,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "lint-staged": "^10.2.2",
-    "prettier": "^2.0.5",
-    "react-app-rewired": "^2.1.6"
+    "prettier": "^2.0.5"
   },
   "eslintConfig": {
     "extends": "react-app"

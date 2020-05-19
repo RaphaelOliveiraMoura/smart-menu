@@ -1,21 +1,23 @@
-FROM node:12.16.0
+FROM node:alpine as build
 
-RUN useradd -ms /bin/bash web
+WORKDIR /web
 
-RUN mkdir -p /home/web/app/node_modules && chown -R web:web /home/web
+COPY . /web
 
-WORKDIR /home/web/app
+ENV PATH /web/node_modules/.bin:$PATH
 
-COPY package.json yarn.* ./
-
-USER web
-
-RUN YARN_CACHE_FOLDER=/home/web yarn --production
-
-COPY --chown=web:web . .
+RUN yarn
 
 RUN yarn build
 
-EXPOSE 3000
+FROM nginx:alpine
 
-CMD ["yarn", "start"]
+COPY --from=build /web/build /usr/share/nginx/html
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+COPY ./ngninx/ngnix.conf /etc/nginx/conf.d
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
