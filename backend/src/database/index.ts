@@ -12,5 +12,5 @@ export default (): Promise<Connection> =>
     password: Env.database.password,
     database: Env.database.database,
     entities: [path.join(__dirname, '..', 'app/models/*.{ts,js}')],
-    synchronize: true,
+    synchronize: process.env.NODE_ENV === 'test',
   });

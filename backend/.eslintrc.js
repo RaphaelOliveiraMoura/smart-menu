@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'import-helpers'],
   rules: {
+    'import/prefer-default-export': 'off',
     'no-unused-vars': ['error'],
     '@typescript-eslint/camelcase': ['off'],
     'class-methods-use-this': 'off',

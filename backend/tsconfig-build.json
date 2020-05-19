@@ -43,6 +43,8 @@
       "@root/*": ["src/*"],
       "@app/*": ["src/app/*"],
       "@controllers/*": ["src/app/controllers/*"],
+      "@services/*": ["src/app/services/*"],
+      "@interfaces/*": ["src/app/interfaces/*"],
       "@models/*": ["src/app/models/*"],
       "@utils/*": ["src/app/utils/*"],
       "@database/*": ["src/database/*"],

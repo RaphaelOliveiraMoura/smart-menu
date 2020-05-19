@@ -12,6 +12,11 @@
     "test:dev": "NODE_ENV=test jest --watchAll --runInBand",
     "fix": "eslint . --ext .ts --fix",
     "lint": "eslint . --ext .ts",
+    "typeorm-ts": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm",
+    "seed:generate": "typeorm migration:create -c seed -n ",
+    "seed:run": "yarn typeorm-ts migration:run -c seed",
+    "db:drop": "yarn typeorm-ts schema:drop -c seed",
+    "db:sync": "yarn typeorm-ts schema:sync -c seed",
     "precommit": "lint-staged",
     "prepush": "cross-env CI=true yarn test"
   },
