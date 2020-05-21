@@ -13,7 +13,5 @@ insomnia.json
 .eslintignore
 .editorconfig
 
-tsconfig.json
-
 .env.example
 .env.test

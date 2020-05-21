@@ -22,4 +22,6 @@ COPY --from=build /home/web/build /usr/share/nginx/html
 
 #!/bin/bash
 
-CMD envsubst '\$PORT' < /etc/nginx/ngnix.template.conf > /etc/nginx/nginx.conf && cat /etc/nginx/nginx.conf && nginx -g 'daemon off;'
+CMD envsubst '\$PORT' < /etc/nginx/ngnix.template.conf > /etc/nginx/nginx.conf \
+  && cat /etc/nginx/nginx.conf \
+  && nginx -g 'daemon off;'

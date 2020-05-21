@@ -12,7 +12,7 @@ COPY . .
 RUN yarn build
 
 # Stage 2 - Production environment
-FROM node:12.16.0-alpine as release
+FROM node:12.16.0 as release
 
 WORKDIR /home/node/build
 

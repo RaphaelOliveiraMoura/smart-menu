@@ -24,6 +24,7 @@ services:
     user: node
     environment:
       - DB_HOST=database
+      - PORT=3333
     command: bash -c "./wait-for-it.sh database:5432 -- yarn db:sync && yarn seed:run && yarn start"
     depends_on:
       - database
@@ -31,7 +32,13 @@ services:
       - smart-menu-network
   frontend:
     container_name: smart-menu-frontend
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_API_URL=${REACT_APP_API_URL-http://localhost:3333}
+    environment:
+      - PORT=80
     env_file:
       - ./frontend/.env
     ports:

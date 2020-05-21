@@ -1,5 +1,10 @@
 require('dotenv');
 
+const productionConfigs =
+  process.env.NODE_ENV === 'production'
+    ? { ssl: true, extra: { ssl: { rejectUnauthorized: false } } }
+    : {};
+
 module.exports = [
   {
     name: 'seed',
@@ -9,8 +14,7 @@ module.exports = [
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    ssl: true,
-    extra: { ssl: { rejectUnauthorized: false } },
+    ...productionConfigs,
     migrations: ['src/database/seeds/*.ts'],
     entities: ['src/app/models/*.ts'],
     cli: {
