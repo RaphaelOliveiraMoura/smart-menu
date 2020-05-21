@@ -9,6 +9,8 @@ module.exports = [
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
+    ssl: true,
+    extra: { ssl: { rejectUnauthorized: false } },
     migrations: ['src/database/seeds/*.ts'],
     entities: ['src/app/models/*.ts'],
     cli: {

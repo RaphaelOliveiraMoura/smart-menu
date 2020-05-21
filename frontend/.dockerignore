@@ -2,3 +2,12 @@ node_modules
 
 cypress
 
+.env.example
+
+.eslintignore
+.eslintrc.js
+.prettierrc
+
+cypress.json
+
+jsonconfig.json

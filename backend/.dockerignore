@@ -1,11 +1,19 @@
 node_modules
+dist
 
 coverage
-
 __tests__
+jest.config.js
 
 sqlite
 
-dist
-
 insomnia.json
+.prettierrc
+.eslintrc.js
+.eslintignore
+.editorconfig
+
+tsconfig.json
+
+.env.example
+.env.test

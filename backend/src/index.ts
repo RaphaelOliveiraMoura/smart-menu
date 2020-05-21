@@ -3,7 +3,7 @@ import app from './app';
 app.initialize().then(() => {
   const server = app.server.listen(process.env.PORT, () =>
     // eslint-disable-next-line no-console
-    console.log('Application running...'),
+    console.log(`Application running on port ${process.env.PORT}...`),
   );
 
   process.on('SIGTERM', () => {

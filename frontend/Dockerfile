@@ -1,23 +1,25 @@
-FROM node:alpine as build
+FROM node:12.16.0-alpine AS build
 
-WORKDIR /web
+WORKDIR /home/web
 
-COPY . /web
+ARG REACT_APP_API_URL=https://afternoon-earth-40972.herokuapp.com/
 
-ENV PATH /web/node_modules/.bin:$PATH
+COPY package.json yarn.* ./
 
-RUN yarn
+RUN yarn --production
 
-RUN yarn build
+COPY . .
+
+RUN yarn run build
 
 FROM nginx:alpine
 
-COPY --from=build /web/build /usr/share/nginx/html
+COPY --from=build /home/web/ngninx/ngnix.template.conf /etc/nginx
 
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY ./ngninx/ngnix.conf /etc/nginx/conf.d
+COPY --from=build /home/web/build /usr/share/nginx/html
 
-EXPOSE 80
+#!/bin/bash
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD envsubst '\$PORT' < /etc/nginx/ngnix.template.conf > /etc/nginx/nginx.conf && cat /etc/nginx/nginx.conf && nginx -g 'daemon off;'
