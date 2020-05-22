@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 
 import Order, { OrderStatus } from '@models/Order';
-import WebSocketSerivce from '@services/WebSocket';
+import WebSocketService from '@services/WebSocket';
 
 class DeliveredOrderController {
   static async show(request: Request, response: Response): Promise<Response> {
@@ -36,7 +36,7 @@ class DeliveredOrderController {
 
     await orderRepository.save(order);
 
-    WebSocketSerivce.emit('DELIVERY_ORDER');
+    WebSocketService.emit('DELIVERY_ORDER');
 
     return response.json(order);
   }

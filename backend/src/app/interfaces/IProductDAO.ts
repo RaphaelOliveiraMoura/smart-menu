@@ -4,4 +4,7 @@ export default interface IProductDAO {
   image_url: string;
   price: number;
   oldPrice?: number;
+  category: {
+    id: number;
+  };
 }

@@ -3,12 +3,27 @@ import { getRepository, InsertResult } from 'typeorm';
 
 import Product from '@models/Product';
 
+import CategoryFactory from './CategoryFactory';
+
+interface IRelationalAttributes {
+  id_category?: number;
+}
+
 class ProductsFactory {
-  public generate(number = 1, attributes = {}): Promise<InsertResult> {
+  public async generate(
+    number = 1,
+    attributes = {},
+    relationalAttributes: IRelationalAttributes = {
+      id_category: 1,
+    },
+  ): Promise<InsertResult> {
+    await CategoryFactory.generate(1, { id: relationalAttributes.id_category });
+
     const products = Array(number)
       .fill(0)
       .map(() => ({
         id: faker.random.number(),
+        category: { id: relationalAttributes.id_category },
         title: faker.commerce.productName(),
         description: faker.lorem.words(5),
         image_url: faker.image.imageUrl(),

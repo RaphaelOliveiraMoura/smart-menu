@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import CheckboxesTags from '~/components/Inputs/CheckboxesTags';
-import { getOverviewHomeInformations } from '~/services/products';
+import {
+  getOverviewHomeInformations,
+  getAllCategories,
+} from '~/services/products';
 
 import PromotionList from './PromotionList';
 import RecommendedList from './RecommendedList';
@@ -9,18 +12,34 @@ import { Container } from './styles';
 
 function Home() {
   const [homeInformations, setHomeInformations] = useState({});
+  const [categories, setCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    async function getHomeInformations() {
-      setLoading(true);
-      const informations = await getOverviewHomeInformations();
-      setHomeInformations(informations);
-      setLoading(false);
-    }
-
-    getHomeInformations();
+  const getCategories = useCallback(async () => {
+    setLoading(true);
+    const categoriesFilters = await getAllCategories();
+    setCategories(categoriesFilters);
+    setLoading(false);
   }, []);
+
+  const getHomeInformations = useCallback(async () => {
+    setLoading(true);
+    const informations = await getOverviewHomeInformations({
+      categories: selectedCategories,
+    });
+    setHomeInformations(informations);
+    setLoading(false);
+  }, [selectedCategories]);
+
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
+
+  useEffect(() => {
+    getHomeInformations();
+  }, [getHomeInformations]);
 
   return (
     <Container>
@@ -28,6 +47,8 @@ function Home() {
         id="search-filters"
         className="search-filters"
         label="Busque os melhores pratos"
+        options={categories}
+        onChange={(_, selectedValues) => setSelectedCategories(selectedValues)}
       />
       <PromotionList
         promotions={homeInformations.promotions}

@@ -4,19 +4,25 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import PropTypes from 'prop-types';
 
-import topics from '~/mocks/topics';
-
 import Option from './Option';
 import { Container } from './styles';
 
-export default function CheckboxesTags({ id, label, placeholder, ...props }) {
+export default function CheckboxesTags({
+  id,
+  label,
+  placeholder,
+  options,
+  onChange,
+  ...props
+}) {
   return (
     <Container {...props}>
       <Autocomplete
         id={id}
         multiple
         className="autocomplete"
-        options={topics}
+        options={options}
+        onChange={onChange}
         disableCloseOnSelect
         getOptionLabel={(option) => option.title}
         renderOption={(option, { selected }) => (
@@ -40,9 +46,18 @@ CheckboxesTags.propTypes = {
   id: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   label: PropTypes.string,
+  onChange: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+    })
+  ),
 };
 
 CheckboxesTags.defaultProps = {
   placeholder: '',
   label: null,
+  onChange: () => {},
+  options: [],
 };

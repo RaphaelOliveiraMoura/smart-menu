@@ -10,6 +10,10 @@ export const Container = styled.section`
       background: #fff6;
       width: 100%;
       padding: 16px;
+
+      svg {
+        cursor: pointer;
+      }
     }
 
     img {

@@ -9,8 +9,17 @@ function formattProductPrices(product) {
   };
 }
 
-export async function getOverviewHomeInformations() {
-  const response = await api.get('/overview');
+export async function getOverviewHomeInformations({ categories = [] }) {
+  const categoriesIds = categories.map(({ id }) => id);
+
+  const filterByCategory =
+    categoriesIds.length > 0
+      ? { categories: JSON.stringify(categoriesIds) }
+      : null;
+
+  const response = await api.get('/overview', {
+    params: { ...filterByCategory },
+  });
 
   const { promotions, recommended } = response.data;
 
@@ -18,4 +27,10 @@ export async function getOverviewHomeInformations() {
     promotions: promotions.map(formattProductPrices),
     recommended: recommended.map(formattProductPrices),
   };
+}
+
+export async function getAllCategories() {
+  const response = await api.get('/categories');
+
+  return response.data;
 }

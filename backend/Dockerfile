@@ -12,10 +12,13 @@ COPY . .
 RUN yarn build
 
 # Stage 2 - Production environment
-FROM node:12.16.0 as release
+FROM node:12.16.0-alpine as release
 
 WORKDIR /home/node/build
 
 COPY --from=build /home/api ./
+
+# Stage 3 - Running app
+FROM node:12.16.0 as running
 
 CMD ["yarn", "start"]

@@ -5,6 +5,7 @@ import Product from '@models/Product';
 
 const productsList: IProductDAO[] = [
   {
+    category: { id: 1 },
     title: 'Frango com fritas',
     description:
       'Uma deliciosa porção de frango com fritas que você não vai resistir.',
@@ -12,6 +13,7 @@ const productsList: IProductDAO[] = [
     price: 12.99,
   },
   {
+    category: { id: 1 },
     title: 'Feijão Tropeiro 300g',
     description: 'O melhor feijão tropeiro de BH, feito pensando em você.',
     image_url:
@@ -20,6 +22,7 @@ const productsList: IProductDAO[] = [
     oldPrice: 20.5,
   },
   {
+    category: { id: 2 },
     title: 'Coca-Cola zero 2litro',
     description: 'Se delicie com o sabor da nova coca-cola zero',
     image_url:
@@ -28,6 +31,7 @@ const productsList: IProductDAO[] = [
     oldPrice: 5.8,
   },
   {
+    category: { id: 1 },
     title: 'Pastel de carne 12 unid.',
     description:
       'Pastel de carne moída feito na hora, quentinho com um sabor sem igual.',
@@ -36,6 +40,7 @@ const productsList: IProductDAO[] = [
     price: 16.9,
   },
   {
+    category: { id: 1 },
     title: 'Camarão a milanesa 400g',
     description:
       ' Peça agora o melhor camarão preparado com um toque especial para você.',
@@ -45,6 +50,7 @@ const productsList: IProductDAO[] = [
     oldPrice: 59.99,
   },
   {
+    category: { id: 1 },
     title: 'Salmão grelhado 200g',
     description: 'Salmão com um sabor que não se compara a nada que ja comeu.',
     image_url:
@@ -56,7 +62,7 @@ const productsList: IProductDAO[] = [
 
 export class Products1589838747135 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.connection.getRepository(Product).save(productsList);
+    await queryRunner.connection.getRepository(Product).save(productsList);
   }
 
   public async down(): Promise<void> {
