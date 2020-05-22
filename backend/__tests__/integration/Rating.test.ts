@@ -1,7 +1,7 @@
 import request from 'supertest';
 
+import { OrderStatus } from '@interfaces/models/IOrderModel';
 import app from '@root/app';
-import { OrderStatus } from '@root/app/models/Order';
 
 import OrderFactory from '../factories/OrderFactory';
 import RatingFactory from '../factories/RatingFactory';
@@ -40,7 +40,7 @@ describe('Rating', () => {
 
     expect(response.status).toEqual(200);
 
-    expect(response.body.rating.stars).toEqual(4);
+    expect(response.body.stars).toEqual(4);
   });
 
   it('should be able update a rating from a order', async () => {
@@ -58,7 +58,7 @@ describe('Rating', () => {
 
     expect(response.status).toEqual(200);
 
-    expect(response.body.rating.stars).toEqual(4);
+    expect(response.body.stars).toEqual(4);
   });
 
   it('should get error when try rate a invalid order', async () => {

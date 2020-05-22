@@ -8,22 +8,22 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import Category from '@models/Category';
+import TypeORMCategoryModel from '@infra/typeorm/models/TypeORMCategoryModel';
 import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
 } from '@utils/databaseColumnTypes';
 
 @Entity('products')
-export default class Product {
+export default class TypeORMProductModel {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Category, (category) => category.products, {
+  @ManyToOne(() => TypeORMCategoryModel, (category) => category.products, {
     nullable: true,
   })
   @JoinColumn({ name: 'id_category', referencedColumnName: 'id' })
-  category: Category;
+  category: TypeORMCategoryModel;
 
   @Column()
   title: string;

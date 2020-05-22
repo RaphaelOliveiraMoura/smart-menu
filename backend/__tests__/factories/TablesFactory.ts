@@ -1,7 +1,7 @@
 import faker from 'faker';
 import { getRepository, InsertResult } from 'typeorm';
 
-import Table from '@models/Table';
+import TypeORMTableModel from '@infra/typeorm/models/TypeORMTableModel';
 
 class TablesFactory {
   public generate(number = 1, attributes = {}): Promise<InsertResult> {
@@ -12,7 +12,7 @@ class TablesFactory {
         ...attributes,
       }));
 
-    return getRepository(Table)
+    return getRepository(TypeORMTableModel)
       .createQueryBuilder()
       .insert()
       .values([...tables])

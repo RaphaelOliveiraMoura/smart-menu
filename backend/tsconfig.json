@@ -15,6 +15,7 @@
       "@interfaces/*": ["src/app/interfaces/*"],
       "@models/*": ["src/app/models/*"],
       "@utils/*": ["src/app/utils/*"],
+      "@infra/*": ["src/app/infra/*"],
       "@database/*": ["src/database/*"],
       "@config/*": ["src/config/*"]
     },

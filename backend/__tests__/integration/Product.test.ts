@@ -1,7 +1,7 @@
 import faker from 'faker';
 import request from 'supertest';
 
-import IProductDAO from '@interfaces/IProductDAO';
+import IProductModel from '@interfaces/models/IProductModel';
 import app from '@root/app';
 
 import ProductsFactory from '../factories/ProcuctsFactory';
@@ -11,7 +11,7 @@ describe('Product', () => {
   beforeEach(() => truncate());
 
   it('should be get informations about one product', async () => {
-    const product: IProductDAO = {
+    const product: IProductModel = {
       title: faker.commerce.productName(),
       description: faker.lorem.words(10),
       image_url: faker.image.imageUrl(),

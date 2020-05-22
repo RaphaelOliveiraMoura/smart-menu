@@ -1,7 +1,7 @@
 import request from 'supertest';
 
+import { OrderStatus } from '@interfaces/models/IOrderModel';
 import app from '@root/app';
-import { OrderStatus } from '@root/app/models/Order';
 
 import OrderFactory from '../factories/OrderFactory';
 import ProcuctsFactory from '../factories/ProcuctsFactory';
@@ -42,12 +42,10 @@ describe('RequestOrder', () => {
     expect(response.status).toEqual(200);
 
     expect(response.body).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          status: OrderStatus.IN_PROGRESS,
-          ammount: order.ammount,
-        }),
-      ]),
+      expect.objectContaining({
+        status: OrderStatus.IN_PROGRESS,
+        ammount: order.ammount,
+      }),
     );
   });
 });

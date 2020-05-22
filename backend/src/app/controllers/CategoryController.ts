@@ -1,14 +1,10 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
 
-import Category from '@models/Category';
+import GetCategoriesService from '@services/GetCategoriesService';
 
 class CategoryController {
   static async index(_request: Request, response: Response): Promise<Response> {
-    const orderRepository = getRepository(Category);
-
-    const categories = await orderRepository.find();
-
+    const categories = await GetCategoriesService.execute();
     return response.json(categories);
   }
 }

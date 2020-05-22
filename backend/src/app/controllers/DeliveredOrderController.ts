@@ -1,44 +1,27 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
 
-import Order, { OrderStatus } from '@models/Order';
-import WebSocketService from '@services/WebSocket';
+import GetDeliveredOrdersFromTable from '@services/GetDeliveredOrdersFromTable';
+import UpdateOrderStatusToDelivered from '@services/UpdateOrderStatusToDelivered';
 
 class DeliveredOrderController {
   static async show(request: Request, response: Response): Promise<Response> {
     const { id_table } = request.headers;
 
-    const orders = await getRepository(Order).find({
-      where: {
-        table: { id: id_table },
-        status: OrderStatus.DELIVERED,
-      },
-      order: { updatedAt: 'DESC' },
-      relations: ['product', 'rating'],
-    });
+    const orders = await GetDeliveredOrdersFromTable.execute(Number(id_table));
 
     return response.json(orders);
   }
 
   static async store(request: Request, response: Response): Promise<Response> {
-    const { idOrder } = request.body;
+    try {
+      const { idOrder } = request.body;
 
-    const orderRepository = await getRepository(Order);
+      const order = await UpdateOrderStatusToDelivered.execute(idOrder);
 
-    const order = await orderRepository.findOne(idOrder);
-
-    if (!order) {
-      return response.status(400).json({ error: 'Invalid order' });
+      return response.json(order);
+    } catch ({ message = 'Internal Server Error', status = 500 }) {
+      return response.status(status).json({ error: message });
     }
-
-    order.status = OrderStatus.DELIVERED;
-    order.deliveredAt = new Date();
-
-    await orderRepository.save(order);
-
-    WebSocketService.emit('DELIVERY_ORDER');
-
-    return response.json(order);
   }
 }
 

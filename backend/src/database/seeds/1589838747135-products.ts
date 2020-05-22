@@ -1,9 +1,9 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-import IProductDAO from '@interfaces/IProductDAO';
-import Product from '@models/Product';
+import TypeORMProductModel from '@infra/typeorm/models/TypeORMProductModel';
+import IProductModel from '@interfaces/models/IProductModel';
 
-const productsList: IProductDAO[] = [
+const productsList: IProductModel[] = [
   {
     category: { id: 1 },
     title: 'Frango com fritas',
@@ -62,7 +62,9 @@ const productsList: IProductDAO[] = [
 
 export class Products1589838747135 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.connection.getRepository(Product).save(productsList);
+    await queryRunner.connection
+      .getRepository(TypeORMProductModel)
+      .save(productsList);
   }
 
   public async down(): Promise<void> {

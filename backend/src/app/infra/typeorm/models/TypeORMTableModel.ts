@@ -1,38 +1,34 @@
 import {
   Entity,
   PrimaryGeneratedColumn,
-  Column,
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
 
-import Product from '@models/Product';
+import TypeORMOrderModel from '@infra/typeorm/models/TypeORMOrderModel';
 import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
 } from '@utils/databaseColumnTypes';
 
-@Entity('categories')
-export default class Category {
+@Entity('tables')
+export default class Table {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  title: string;
-
-  @OneToMany(() => Product, (product) => product.category)
-  products?: Product[];
+  @OneToMany(() => TypeORMOrderModel, (order) => order.table)
+  orders: TypeORMOrderModel[];
 
   @CreateDateColumn({
-    ...createdAtColumnTypeProps,
     name: 'created_at',
+    ...createdAtColumnTypeProps,
   })
-  createdAt?: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({
-    ...updatedAtColumnTypeProps,
     name: 'updated_at',
+    ...updatedAtColumnTypeProps,
   })
-  updatedAt?: Date;
+  updatedAt: Date;
 }

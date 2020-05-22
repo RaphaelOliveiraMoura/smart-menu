@@ -1,7 +1,8 @@
 import faker from 'faker';
 import { getRepository, InsertResult } from 'typeorm';
 
-import Order, { OrderStatus } from '@models/Order';
+import TypeORMOrderModel from '@infra/typeorm/models/TypeORMOrderModel';
+import { OrderStatus } from '@interfaces/models/IOrderModel';
 
 import ProcuctsFactory from './ProcuctsFactory';
 import TablesFactory from './TablesFactory';
@@ -34,7 +35,7 @@ class ProductsFactory {
         ...attributes,
       }));
 
-    return getRepository(Order)
+    return getRepository(TypeORMOrderModel)
       .createQueryBuilder()
       .insert()
       .values([...orders])

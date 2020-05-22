@@ -1,7 +1,7 @@
 import faker from 'faker';
 import { getRepository, InsertResult } from 'typeorm';
 
-import Product from '@models/Product';
+import TypeORMProductModel from '@infra/typeorm/models/TypeORMProductModel';
 
 import CategoryFactory from './CategoryFactory';
 
@@ -32,7 +32,7 @@ class ProductsFactory {
         ...attributes,
       }));
 
-    return getRepository(Product)
+    return getRepository(TypeORMProductModel)
       .createQueryBuilder()
       .insert()
       .values([...products])

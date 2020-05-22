@@ -16,7 +16,7 @@ module.exports = [
     database: process.env.DB_NAME,
     ...productionConfigs,
     migrations: ['src/database/seeds/*.ts'],
-    entities: ['src/app/models/*.ts'],
+    entities: ['src/app/infra/typeorm/models/*.ts'],
     cli: {
       migrationsDir: 'src/database/seeds',
     },

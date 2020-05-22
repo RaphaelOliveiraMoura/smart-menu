@@ -1,7 +1,7 @@
 import faker from 'faker';
 import { getRepository, InsertResult } from 'typeorm';
 
-import Rating from '@models/Rating';
+import TypeORMRatingModel from '@infra/typeorm/models/TypeORMRatingModel';
 
 class RatingFactory {
   public generate(number = 1, attributes = {}): Promise<InsertResult> {
@@ -13,7 +13,7 @@ class RatingFactory {
         ...attributes,
       }));
 
-    return getRepository(Rating)
+    return getRepository(TypeORMRatingModel)
       .createQueryBuilder()
       .insert()
       .values([...ratings])

@@ -1,6 +1,6 @@
 import request from 'supertest';
 
-import { OrderStatus } from '@models/Order';
+import { OrderStatus } from '@interfaces/models/IOrderModel';
 import app from '@root/app';
 
 import OrderFactory from '../factories/OrderFactory';

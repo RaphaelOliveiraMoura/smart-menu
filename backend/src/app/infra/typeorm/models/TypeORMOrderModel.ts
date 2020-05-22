@@ -9,9 +9,10 @@ import {
   OneToOne,
 } from 'typeorm';
 
-import Product from '@models/Product';
-import Rating from '@models/Rating';
-import Table from '@models/Table';
+import TypeORMProductModel from '@infra/typeorm/models/TypeORMProductModel';
+import TypeORMRatingModel from '@infra/typeorm/models/TypeORMRatingModel';
+import TypeORMTableModel from '@infra/typeorm/models/TypeORMTableModel';
+import { OrderStatus } from '@interfaces/models/IOrderModel';
 import {
   enumColumnType,
   timestampColumnTypeProps,
@@ -19,28 +20,22 @@ import {
   updatedAtColumnTypeProps,
 } from '@utils/databaseColumnTypes';
 
-export enum OrderStatus {
-  IN_PROGRESS = 'in_progress',
-  DONE = 'done',
-  DELIVERED = 'delivered',
-}
-
 @Entity('orders')
-export default class Order {
+export default class TypeORMOrderModel {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Product, (product) => product.id)
+  @ManyToOne(() => TypeORMProductModel, (product) => product.id)
   @JoinColumn({ name: 'id_product' })
-  product: Product;
+  product: TypeORMProductModel;
 
-  @ManyToOne(() => Table, (table) => table.orders)
+  @ManyToOne(() => TypeORMTableModel, (table) => table.orders)
   @JoinColumn({ name: 'id_table' })
-  table: Table;
+  table: TypeORMTableModel;
 
-  @OneToOne(() => Rating)
+  @OneToOne(() => TypeORMRatingModel)
   @JoinColumn({ name: 'id_rating' })
-  rating: Rating;
+  rating: TypeORMRatingModel;
 
   @Column({ type: 'integer', default: 1 })
   ammount: number;

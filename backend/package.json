@@ -27,8 +27,10 @@
     "@app": "dist/app",
     "@controllers": "dist/app/controllers",
     "@services": "dist/app/services",
+    "@interfaces": "dist/app/interfaces",
     "@models": "dist/app/models",
     "@utils": "dist/app/utils",
+    "@infra": "dist/app/infra",
     "@database": "dist/database",
     "@config": "dist/config"
   },
