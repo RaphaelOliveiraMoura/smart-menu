@@ -1,48 +1,37 @@
-import { Repository, getRepository } from 'typeorm';
+import { getRepository } from 'typeorm';
 
-import TypeORMOrderModel from '@infra/typeorm/models/TypeORMOrderModel';
 import TypeORMRatingModel from '@infra/typeorm/models/TypeORMRatingModel';
 import IRatingDAO from '@interfaces/dao/IRatingDAO';
 import IRatingRepository from '@interfaces/repositories/IRatingRepository';
 
 export default class TypeORMRatingRepository implements IRatingRepository {
-  private orderRepository: Repository<TypeORMOrderModel>;
-
-  private ratingRepository: Repository<TypeORMRatingModel>;
-
-  constructor() {
-    this.orderRepository = getRepository(TypeORMOrderModel);
-    this.ratingRepository = getRepository(TypeORMRatingModel);
-  }
-
-  async updateOrCreate({
-    order,
-    stars,
-  }: IRatingDAO): Promise<TypeORMRatingModel | undefined> {
-    const findOrder = await this.orderRepository.findOne(order.id, {
-      relations: ['rating'],
+  async findByOrderId(
+    orderId: number,
+  ): Promise<TypeORMRatingModel | undefined> {
+    const rating = await getRepository(TypeORMRatingModel).findOne({
+      where: { order: { id: orderId } },
     });
 
-    if (!findOrder) {
-      return undefined;
-    }
+    return rating;
+  }
 
-    if (!findOrder.rating) {
-      const rating = this.ratingRepository.create({ stars });
+  async create(rating: IRatingDAO): Promise<TypeORMRatingModel> {
+    const createdRating = getRepository(TypeORMRatingModel).create(rating);
 
-      await this.ratingRepository.save(rating);
+    await getRepository(TypeORMRatingModel).save(createdRating);
 
-      findOrder.rating = rating;
+    return createdRating;
+  }
 
-      await this.orderRepository.save(order);
+  async update(
+    id: number,
+    updatedRating: TypeORMRatingModel,
+  ): Promise<TypeORMRatingModel | undefined> {
+    const { affected } = await getRepository(TypeORMRatingModel).update(
+      id,
+      updatedRating,
+    );
 
-      return rating;
-    }
-
-    findOrder.rating.stars = stars;
-
-    await this.ratingRepository.update(findOrder.rating.id, { stars });
-
-    return findOrder.rating;
+    return getRepository(TypeORMRatingModel).findOne(affected);
   }
 }

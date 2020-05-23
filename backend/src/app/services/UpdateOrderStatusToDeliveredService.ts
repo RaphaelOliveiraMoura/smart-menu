@@ -1,14 +1,17 @@
-import TypeORMOrderRepository from '@infra/typeorm/repositories/TypeORMOrderRepository';
+import { injectable, inject } from 'tsyringe';
+
 import IOrderModel, { OrderStatus } from '@interfaces/models/IOrderModel';
-import IOrderRespository from '@interfaces/repositories/IOrderRespository';
+import IOrderRepository from '@interfaces/repositories/IOrderRepository';
 import WebSocketService from '@services/WebSocket';
 
-class UpdateOrderStatusToDeliveredService {
-  private orderRepository: IOrderRespository;
+@injectable()
+export default class UpdateOrderStatusToDeliveredService {
+  constructor(
+    @inject('OrderRepository')
+    private orderRepository: IOrderRepository,
+  ) {}
 
   async execute(orderId: number): Promise<IOrderModel> {
-    this.orderRepository = new TypeORMOrderRepository();
-
     const updatedOrder = this.orderRepository.updateStatus({
       id: orderId,
       status: OrderStatus.DELIVERED,
@@ -19,5 +22,3 @@ class UpdateOrderStatusToDeliveredService {
     return updatedOrder;
   }
 }
-
-export default new UpdateOrderStatusToDeliveredService();

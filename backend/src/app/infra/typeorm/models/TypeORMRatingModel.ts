@@ -4,8 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
 } from 'typeorm';
 
+import TypeORMOrderModel from '@infra/typeorm/models/TypeORMOrderModel';
 import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
@@ -15,6 +17,9 @@ import {
 export default class Rating {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @OneToOne(() => TypeORMOrderModel, (order) => order.rating)
+  order: TypeORMOrderModel;
 
   @Column({ nullable: true })
   stars: number;

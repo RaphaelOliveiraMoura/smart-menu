@@ -1,17 +1,11 @@
-import { Repository, getRepository, IsNull, In, Not } from 'typeorm';
+import { getRepository, IsNull, In, Not } from 'typeorm';
 
 import TypeORMProductModel from '@infra/typeorm/models/TypeORMProductModel';
 import IProductRepository from '@interfaces/repositories/IProductRepository';
 
 export default class TypeORMProductRepository implements IProductRepository {
-  private productRepository: Repository<TypeORMProductModel>;
-
-  constructor() {
-    this.productRepository = getRepository(TypeORMProductModel);
-  }
-
   async findById(id: number): Promise<TypeORMProductModel | undefined> {
-    return this.productRepository.findOne(id);
+    return getRepository(TypeORMProductModel).findOne(id);
   }
 
   async findWithCategories(
@@ -27,7 +21,7 @@ export default class TypeORMProductRepository implements IProductRepository {
       }
     }
 
-    return this.productRepository.find({
+    return getRepository(TypeORMProductModel).find({
       where: { ...filterByCategories },
     });
   }
@@ -45,7 +39,7 @@ export default class TypeORMProductRepository implements IProductRepository {
       }
     }
 
-    return this.productRepository.find({
+    return getRepository(TypeORMProductModel).find({
       where: { oldPrice: Not(IsNull()), ...filterByCategories },
     });
   }

@@ -1,4 +1,5 @@
-import TypeORMProductRepository from '@infra/typeorm/repositories/TypeORMProductRepository';
+import { injectable, inject } from 'tsyringe';
+
 import IProductModel from '@interfaces/models/IProductModel';
 import IProductRepository from '@interfaces/repositories/IProductRepository';
 
@@ -7,12 +8,14 @@ interface IProductsOverview {
   promotions: IProductModel[];
 }
 
-class GetGroupedProductsOverviewService {
-  private productRepository: IProductRepository;
+@injectable()
+export default class GetGroupedProductsOverviewService {
+  constructor(
+    @inject('ProductRepository')
+    private productRepository: IProductRepository,
+  ) {}
 
   async execute(categories: number[] | null): Promise<IProductsOverview> {
-    this.productRepository = new TypeORMProductRepository();
-
     const recommended = await this.productRepository.findWithCategories(
       categories,
     );
@@ -27,5 +30,3 @@ class GetGroupedProductsOverviewService {
     };
   }
 }
-
-export default new GetGroupedProductsOverviewService();

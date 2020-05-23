@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     'import/prefer-default-export': 'off',
     'no-unused-vars': ['error'],
+    'no-useless-constructor': 'off',
     '@typescript-eslint/camelcase': ['off'],
     'class-methods-use-this': 'off',
     '@typescript-eslint/interface-name-prefix': [

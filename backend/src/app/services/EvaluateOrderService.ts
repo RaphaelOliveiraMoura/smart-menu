@@ -1,23 +1,43 @@
-import TypeORMRatingRepository from '@infra/typeorm/repositories/TypeORMRatingRepository';
+import { injectable, inject } from 'tsyringe';
+
 import IRatingDAO from '@interfaces/dao/IRatingDAO';
-import IOrderModel from '@interfaces/models/IOrderModel';
+import IRatingProduct from '@interfaces/models/IRatingProduct';
+import IOrderRepository from '@interfaces/repositories/IOrderRepository';
 import IRatingRepository from '@interfaces/repositories/IRatingRepository';
 import HttpErrors from '@utils/HttpErrors';
 
-class EvaluateOrderService {
-  private ratingRepository: IRatingRepository;
+@injectable()
+export default class EvaluateOrderService {
+  constructor(
+    @inject('RatingRepository')
+    private ratingRepository: IRatingRepository,
 
-  async execute(ratingDAO: IRatingDAO): Promise<IOrderModel> {
-    this.ratingRepository = new TypeORMRatingRepository();
+    @inject('OrderRepository')
+    private orderRepository: IOrderRepository,
+  ) {}
 
-    const rating = await this.ratingRepository.updateOrCreate(ratingDAO);
+  async execute(ratingDAO: IRatingDAO): Promise<IRatingProduct> {
+    const orderExists = await this.orderRepository.findById(ratingDAO.order.id);
 
-    if (!rating) {
+    if (!orderExists) {
       throw new HttpErrors('Invalid order')[400]();
     }
 
-    return rating;
+    const orderAlreadyHasRating = await this.ratingRepository.findByOrderId(
+      ratingDAO.order.id,
+    );
+
+    if (orderAlreadyHasRating && orderAlreadyHasRating.id) {
+      const updatedRating = await this.ratingRepository.update(
+        orderAlreadyHasRating.id,
+        { stars: ratingDAO.stars },
+      );
+
+      return updatedRating as IRatingProduct;
+    }
+
+    const createdRating = await this.ratingRepository.create(ratingDAO);
+
+    return createdRating;
   }
 }
-
-export default new EvaluateOrderService();

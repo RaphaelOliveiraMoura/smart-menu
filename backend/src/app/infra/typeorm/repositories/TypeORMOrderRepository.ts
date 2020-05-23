@@ -1,20 +1,20 @@
-import { Repository, getRepository, In } from 'typeorm';
+import { getRepository, In } from 'typeorm';
 
 import TypeORMOrderModel from '@infra/typeorm/models/TypeORMOrderModel';
 import IOrderDAO from '@interfaces/dao/IOrderDAO';
 import { OrderStatus } from '@interfaces/models/IOrderModel';
-import IOrderRespository from '@interfaces/repositories/IOrderRespository';
+import IOrderRepository from '@interfaces/repositories/IOrderRepository';
 import HttpErrors from '@utils/HttpErrors';
 
-export default class TypeORMOrderRepository implements IOrderRespository {
-  private orderRepository: Repository<TypeORMOrderModel>;
-
-  constructor() {
-    this.orderRepository = getRepository(TypeORMOrderModel);
+export default class TypeORMOrderRepository implements IOrderRepository {
+  async findById(id: number): Promise<TypeORMOrderModel | undefined> {
+    return getRepository(TypeORMOrderModel).findOne(id, {
+      relations: ['rating'],
+    });
   }
 
   async findByStatus(status: OrderStatus): Promise<TypeORMOrderModel[]> {
-    return this.orderRepository.find({
+    return getRepository(TypeORMOrderModel).find({
       where: { status },
       order: { createdAt: 'DESC' },
       relations: ['product', 'table'],
@@ -25,7 +25,7 @@ export default class TypeORMOrderRepository implements IOrderRespository {
     tableId: number,
     { status }: { status?: OrderStatus },
   ): Promise<TypeORMOrderModel[]> {
-    return this.orderRepository.find({
+    return getRepository(TypeORMOrderModel).find({
       where: { table: { id: tableId }, status },
       order: { updatedAt: 'DESC' },
       relations: ['product', 'rating'],
@@ -39,7 +39,7 @@ export default class TypeORMOrderRepository implements IOrderRespository {
     id: number;
     status: OrderStatus;
   }): Promise<TypeORMOrderModel> {
-    const order = await this.orderRepository.findOne(id);
+    const order = await getRepository(TypeORMOrderModel).findOne(id);
 
     if (!order) {
       throw new HttpErrors('Invalid order')[400]();
@@ -50,7 +50,7 @@ export default class TypeORMOrderRepository implements IOrderRespository {
     if (status === OrderStatus.DELIVERED) order.deliveredAt = new Date();
     if (status === OrderStatus.DONE) order.doneAt = new Date();
 
-    await this.orderRepository.save(order);
+    await getRepository(TypeORMOrderModel).save(order);
 
     return order;
   }
@@ -58,7 +58,7 @@ export default class TypeORMOrderRepository implements IOrderRespository {
   async findUndeliveredFromTable(
     tableId: number,
   ): Promise<TypeORMOrderModel[]> {
-    const orders = await this.orderRepository.find({
+    const orders = await getRepository(TypeORMOrderModel).find({
       where: {
         status: In([OrderStatus.IN_PROGRESS, OrderStatus.DONE]),
         table: { id: tableId },
@@ -71,9 +71,9 @@ export default class TypeORMOrderRepository implements IOrderRespository {
   }
 
   async create(orderDAO: IOrderDAO): Promise<TypeORMOrderModel> {
-    const order = this.orderRepository.create(orderDAO);
+    const order = getRepository(TypeORMOrderModel).create(orderDAO);
 
-    await this.orderRepository.save(order);
+    await getRepository(TypeORMOrderModel).save(order);
 
     return order;
   }

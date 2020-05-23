@@ -1,14 +1,17 @@
-import TypeORMProductRepository from '@infra/typeorm/repositories/TypeORMProductRepository';
+import { injectable, inject } from 'tsyringe';
+
 import IProductModel from '@interfaces/models/IProductModel';
 import IProductRepository from '@interfaces/repositories/IProductRepository';
 import HttpErrors from '@utils/HttpErrors';
 
-class GetProductByIdService {
-  private productRepository: IProductRepository;
+@injectable()
+export default class GetProductByIdService {
+  constructor(
+    @inject('ProductRepository')
+    private productRepository: IProductRepository,
+  ) {}
 
   async execute(tableId: number): Promise<IProductModel> {
-    this.productRepository = new TypeORMProductRepository();
-
     const product = await this.productRepository.findById(tableId);
 
     if (!product) {
@@ -18,5 +21,3 @@ class GetProductByIdService {
     return product;
   }
 }
-
-export default new GetProductByIdService();

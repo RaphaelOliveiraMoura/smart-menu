@@ -5,7 +5,9 @@ interface IFindByTableWhereClause {
   status?: OrderStatus;
 }
 
-export default interface IOrderRespository {
+export default interface IOrderRepository {
+  findById(id: number): Promise<IOrderModel | undefined>;
+
   findByStatus(status: OrderStatus): Promise<IOrderModel[]>;
 
   findByTable(

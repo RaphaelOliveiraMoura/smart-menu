@@ -2,5 +2,10 @@ import IRatingDAO from '@interfaces/dao/IRatingDAO';
 import IRatingProduct from '@interfaces/models/IRatingProduct';
 
 export default interface IProductRepository {
-  updateOrCreate(rating: IRatingDAO): Promise<IRatingProduct | undefined>;
+  findByOrderId(orderId: number): Promise<IRatingProduct | undefined>;
+  create(rating: IRatingDAO): Promise<IRatingProduct>;
+  update(
+    id: number,
+    updatedRating: IRatingProduct,
+  ): Promise<IRatingProduct | undefined>;
 }

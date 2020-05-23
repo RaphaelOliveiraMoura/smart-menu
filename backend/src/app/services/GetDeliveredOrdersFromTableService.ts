@@ -1,17 +1,18 @@
-import TypeORMOrderRepository from '@infra/typeorm/repositories/TypeORMOrderRepository';
-import IOrderModel, { OrderStatus } from '@interfaces/models/IOrderModel';
-import IOrderRespository from '@interfaces/repositories/IOrderRespository';
+import { inject, injectable } from 'tsyringe';
 
-class GetDeliveredOrdersFromTableService {
-  private orderRepository: IOrderRespository;
+import IOrderModel, { OrderStatus } from '@interfaces/models/IOrderModel';
+import IOrderRepository from '@interfaces/repositories/IOrderRepository';
+
+@injectable()
+export default class GetDeliveredOrdersFromTableService {
+  constructor(
+    @inject('OrderRepository')
+    private orderRepository: IOrderRepository,
+  ) {}
 
   async execute(tableId: number): Promise<IOrderModel[]> {
-    this.orderRepository = new TypeORMOrderRepository();
-
     return this.orderRepository.findByTable(tableId, {
       status: OrderStatus.DELIVERED,
     });
   }
 }
-
-export default new GetDeliveredOrdersFromTableService();

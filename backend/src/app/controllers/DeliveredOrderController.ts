@@ -1,15 +1,22 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 import GetDeliveredOrdersFromTableService from '@services/GetDeliveredOrdersFromTableService';
 import UpdateOrderStatusToDeliveredService from '@services/UpdateOrderStatusToDeliveredService';
+
+const getDeliveredOrdersFromTable = container.resolve(
+  GetDeliveredOrdersFromTableService,
+);
+
+const updateOrdersStatusToDelivered = container.resolve(
+  UpdateOrderStatusToDeliveredService,
+);
 
 class DeliveredOrderController {
   async show(request: Request, response: Response): Promise<Response> {
     const { id_table } = request.headers;
 
-    const orders = await GetDeliveredOrdersFromTableService.execute(
-      Number(id_table),
-    );
+    const orders = await getDeliveredOrdersFromTable.execute(Number(id_table));
 
     return response.json(orders);
   }
@@ -18,7 +25,7 @@ class DeliveredOrderController {
     try {
       const { idOrder } = request.body;
 
-      const order = await UpdateOrderStatusToDeliveredService.execute(idOrder);
+      const order = await updateOrdersStatusToDelivered.execute(idOrder);
 
       return response.json(order);
     } catch ({ message = 'Internal Server Error', status = 500 }) {

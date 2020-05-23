@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "husky": "^4.2.5",
+    "husky": "^4.2.4",
     "lerna": "^3.21.0"
   },
   "husky": {
@@ -9,5 +9,6 @@
       "pre-push": "lerna run prepush"
     }
   },
-  "name": "smart-menu"
+  "name": "smart-menu",
+  "license": "MIT"
 }

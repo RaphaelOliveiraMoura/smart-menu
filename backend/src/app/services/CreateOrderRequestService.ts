@@ -1,15 +1,18 @@
-import TypeORMOrderRepository from '@infra/typeorm/repositories/TypeORMOrderRepository';
+import { injectable, inject } from 'tsyringe';
+
 import IOrderDAO from '@interfaces/dao/IOrderDAO';
 import IOrderModel from '@interfaces/models/IOrderModel';
-import IOrderRespository from '@interfaces/repositories/IOrderRespository';
+import IOrderRepository from '@interfaces/repositories/IOrderRepository';
 import WebSocketService from '@services/WebSocket';
 
-class CreateOrderRequestService {
-  private orderRepository: IOrderRespository;
+@injectable()
+export default class CreateOrderRequestService {
+  constructor(
+    @inject('OrderRepository')
+    private orderRepository: IOrderRepository,
+  ) {}
 
   async execute(orderDAO: IOrderDAO): Promise<IOrderModel> {
-    this.orderRepository = new TypeORMOrderRepository();
-
     const order = await this.orderRepository.create(orderDAO);
 
     WebSocketService.emit('NEW_ORDER');
@@ -17,5 +20,3 @@ class CreateOrderRequestService {
     return order;
   }
 }
-
-export default new CreateOrderRequestService();

@@ -1,6 +1,7 @@
-import TypeORMOrderRepository from '@infra/typeorm/repositories/TypeORMOrderRepository';
+import { injectable, inject } from 'tsyringe';
+
 import IOrderModel, { OrderStatus } from '@interfaces/models/IOrderModel';
-import IOrderRespository from '@interfaces/repositories/IOrderRespository';
+import IOrderRepository from '@interfaces/repositories/IOrderRepository';
 
 interface IDashboardOrdersInf {
   inProgress: IOrderModel[];
@@ -8,12 +9,14 @@ interface IDashboardOrdersInf {
   delivered: IOrderModel[];
 }
 
-class GetGroupedOrdersByTypeService {
-  private orderRepository: IOrderRespository;
+@injectable()
+export default class GetGroupedOrdersByTypeService {
+  constructor(
+    @inject('OrderRepository')
+    private orderRepository: IOrderRepository,
+  ) {}
 
   async execute(): Promise<IDashboardOrdersInf> {
-    this.orderRepository = new TypeORMOrderRepository();
-
     const inProgress = await this.orderRepository.findByStatus(
       OrderStatus.IN_PROGRESS,
     );
@@ -31,5 +34,3 @@ class GetGroupedOrdersByTypeService {
     };
   }
 }
-
-export default new GetGroupedOrdersByTypeService();

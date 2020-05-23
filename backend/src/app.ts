@@ -1,4 +1,5 @@
 import '@config/Env';
+import '@app/container';
 
 import cors from 'cors';
 import express, { Express, json } from 'express';
