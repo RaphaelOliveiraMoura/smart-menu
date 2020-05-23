@@ -11,7 +11,7 @@ import TypeORMProductModel from '@infra/typeorm/models/TypeORMProductModel';
 import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
-} from '@utils/databaseColumnTypes';
+} from '@infra/typeorm/utils/databaseColumnTypes';
 
 @Entity('categories')
 export default class TypeORMCategoryModel {

@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 
-import GetUnDeliveredOrdersFromTable from '@services/GetUnDeliveredOrdersFromTable';
+import GetUnDeliveredOrdersFromTableService from '@services/GetUnDeliveredOrdersFromTableService';
 
 class NotDeliveredOrderController {
-  static async index(request: Request, response: Response): Promise<Response> {
+  async index(request: Request, response: Response): Promise<Response> {
     const { id_table } = request.headers;
 
-    const orders = await GetUnDeliveredOrdersFromTable.execute(
+    const orders = await GetUnDeliveredOrdersFromTableService.execute(
       Number(id_table),
     );
 

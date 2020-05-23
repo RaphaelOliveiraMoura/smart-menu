@@ -3,7 +3,7 @@ import IProductModel from '@interfaces/models/IProductModel';
 import IProductRepository from '@interfaces/repositories/IProductRepository';
 import HttpErrors from '@utils/HttpErrors';
 
-class GetProductById {
+class GetProductByIdService {
   private productRepository: IProductRepository;
 
   async execute(tableId: number): Promise<IProductModel> {
@@ -19,4 +19,4 @@ class GetProductById {
   }
 }
 
-export default new GetProductById();
+export default new GetProductByIdService();

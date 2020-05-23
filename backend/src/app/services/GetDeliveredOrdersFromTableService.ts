@@ -1,15 +1,17 @@
 import TypeORMOrderRepository from '@infra/typeorm/repositories/TypeORMOrderRepository';
-import IOrderModel from '@interfaces/models/IOrderModel';
+import IOrderModel, { OrderStatus } from '@interfaces/models/IOrderModel';
 import IOrderRespository from '@interfaces/repositories/IOrderRespository';
 
-class GetUnDeliveredOrdersFromTable {
+class GetDeliveredOrdersFromTableService {
   private orderRepository: IOrderRespository;
 
   async execute(tableId: number): Promise<IOrderModel[]> {
     this.orderRepository = new TypeORMOrderRepository();
 
-    return this.orderRepository.findUndeliveredFromTable(tableId);
+    return this.orderRepository.findByTable(tableId, {
+      status: OrderStatus.DELIVERED,
+    });
   }
 }
 
-export default new GetUnDeliveredOrdersFromTable();
+export default new GetDeliveredOrdersFromTableService();

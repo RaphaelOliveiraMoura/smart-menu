@@ -8,7 +8,7 @@ interface IDashboardOrdersInf {
   delivered: IOrderModel[];
 }
 
-class GetDashboardOrdersInf {
+class GetGroupedOrdersByTypeService {
   private orderRepository: IOrderRespository;
 
   async execute(): Promise<IDashboardOrdersInf> {
@@ -17,7 +17,9 @@ class GetDashboardOrdersInf {
     const inProgress = await this.orderRepository.findByStatus(
       OrderStatus.IN_PROGRESS,
     );
+
     const finished = await this.orderRepository.findByStatus(OrderStatus.DONE);
+
     const delivered = await this.orderRepository.findByStatus(
       OrderStatus.DELIVERED,
     );
@@ -30,4 +32,4 @@ class GetDashboardOrdersInf {
   }
 }
 
-export default new GetDashboardOrdersInf();
+export default new GetGroupedOrdersByTypeService();

@@ -3,9 +3,9 @@ import '@config/Env';
 import cors from 'cors';
 import express, { Express, json } from 'express';
 import { Server, createServer } from 'http';
-import { Connection } from 'typeorm';
 
-import createConenction from '@database/index';
+import database from '@database/index';
+import IDatabaseConnection from '@database/interfaces/IDatabaseConnection';
 import WebSocketService from '@services/WebSocket';
 
 import routes from './routes';
@@ -13,7 +13,7 @@ import routes from './routes';
 class Application {
   public express: Express;
 
-  public connection: Connection;
+  public connection: IDatabaseConnection;
 
   public server: Server;
 
@@ -23,7 +23,7 @@ class Application {
   }
 
   async initialize(): Promise<void> {
-    this.connection = await createConenction();
+    this.connection = await database.connect();
 
     this.middlewares();
     this.routes();

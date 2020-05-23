@@ -9,7 +9,7 @@ import {
 import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
-} from '@utils/databaseColumnTypes';
+} from '@infra/typeorm/utils/databaseColumnTypes';
 
 @Entity('ratings')
 export default class Rating {

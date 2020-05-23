@@ -4,7 +4,7 @@ import IOrderModel from '@interfaces/models/IOrderModel';
 import IOrderRespository from '@interfaces/repositories/IOrderRespository';
 import WebSocketService from '@services/WebSocket';
 
-class MakeRequestsOder {
+class CreateOrderRequestService {
   private orderRepository: IOrderRespository;
 
   async execute(orderDAO: IOrderDAO): Promise<IOrderModel> {
@@ -18,4 +18,4 @@ class MakeRequestsOder {
   }
 }
 
-export default new MakeRequestsOder();
+export default new CreateOrderRequestService();

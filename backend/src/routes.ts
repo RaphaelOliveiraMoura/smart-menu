@@ -10,24 +10,34 @@ import ProductsOverviewController from '@controllers/ProductsOverviewController'
 import RatingController from '@controllers/RatingController';
 import RequestOrderController from '@controllers/RequestOrderController';
 
+const categoryController = new CategoryController();
+const dashboardController = new DashboardController();
+const deliveredOrderController = new DeliveredOrderController();
+const finishedOrderController = new FinishedOrderController();
+const notDeliveredOrderController = new NotDeliveredOrderController();
+const productController = new ProductController();
+const productsOverviewController = new ProductsOverviewController();
+const ratingController = new RatingController();
+const requestOrderController = new RequestOrderController();
+
 const routes = Router();
 
-routes.get('/dashboard', DashboardController.index);
+routes.get('/dashboard', dashboardController.index);
 
-routes.get('/products/:id', ProductController.show);
+routes.get('/products/:id', productController.show);
 
-routes.post('/orders/finished', FinishedOrderController.store);
+routes.post('/orders/finished', finishedOrderController.store);
 
-routes.get('/orders/delivery', DeliveredOrderController.show);
-routes.post('/orders/delivery', DeliveredOrderController.store);
+routes.get('/orders/delivery', deliveredOrderController.show);
+routes.post('/orders/delivery', deliveredOrderController.store);
 
-routes.get('/orders', NotDeliveredOrderController.index);
-routes.post('/orders', RequestOrderController.store);
+routes.get('/orders', notDeliveredOrderController.index);
+routes.post('/orders', requestOrderController.store);
 
-routes.post('/orders/:id_order/rating', RatingController.store);
+routes.post('/orders/:id_order/rating', ratingController.store);
 
-routes.get('/overview', ProductsOverviewController.index);
+routes.get('/overview', productsOverviewController.index);
 
-routes.get('/categories', CategoryController.index);
+routes.get('/categories', categoryController.index);
 
 export default routes;

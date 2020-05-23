@@ -1,17 +1,23 @@
 import TypeORMOrderRepository from '@infra/typeorm/repositories/TypeORMOrderRepository';
 import IOrderModel, { OrderStatus } from '@interfaces/models/IOrderModel';
 import IOrderRespository from '@interfaces/repositories/IOrderRespository';
+import WebSocketService from '@services/WebSocket';
 
-class GetDeliveredOrdersFromTable {
+class UpdateOrderStatusToDeliveredService {
   private orderRepository: IOrderRespository;
 
-  async execute(tableId: number): Promise<IOrderModel[]> {
+  async execute(orderId: number): Promise<IOrderModel> {
     this.orderRepository = new TypeORMOrderRepository();
 
-    return this.orderRepository.findByTable(tableId, {
+    const updatedOrder = this.orderRepository.updateStatus({
+      id: orderId,
       status: OrderStatus.DELIVERED,
     });
+
+    WebSocketService.emit('DELIVERY_ORDER');
+
+    return updatedOrder;
   }
 }
 
-export default new GetDeliveredOrdersFromTable();
+export default new UpdateOrderStatusToDeliveredService();

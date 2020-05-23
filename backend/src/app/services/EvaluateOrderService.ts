@@ -4,7 +4,7 @@ import IOrderModel from '@interfaces/models/IOrderModel';
 import IRatingRepository from '@interfaces/repositories/IRatingRepository';
 import HttpErrors from '@utils/HttpErrors';
 
-class MakeRating {
+class EvaluateOrderService {
   private ratingRepository: IRatingRepository;
 
   async execute(ratingDAO: IRatingDAO): Promise<IOrderModel> {
@@ -20,4 +20,4 @@ class MakeRating {
   }
 }
 
-export default new MakeRating();
+export default new EvaluateOrderService();

@@ -12,7 +12,7 @@ import TypeORMCategoryModel from '@infra/typeorm/models/TypeORMCategoryModel';
 import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
-} from '@utils/databaseColumnTypes';
+} from '@infra/typeorm/utils/databaseColumnTypes';
 
 @Entity('products')
 export default class TypeORMProductModel {

@@ -1,22 +1,24 @@
 import { Request, Response } from 'express';
 
-import GetDeliveredOrdersFromTable from '@services/GetDeliveredOrdersFromTable';
-import UpdateOrderStatusToDelivered from '@services/UpdateOrderStatusToDelivered';
+import GetDeliveredOrdersFromTableService from '@services/GetDeliveredOrdersFromTableService';
+import UpdateOrderStatusToDeliveredService from '@services/UpdateOrderStatusToDeliveredService';
 
 class DeliveredOrderController {
-  static async show(request: Request, response: Response): Promise<Response> {
+  async show(request: Request, response: Response): Promise<Response> {
     const { id_table } = request.headers;
 
-    const orders = await GetDeliveredOrdersFromTable.execute(Number(id_table));
+    const orders = await GetDeliveredOrdersFromTableService.execute(
+      Number(id_table),
+    );
 
     return response.json(orders);
   }
 
-  static async store(request: Request, response: Response): Promise<Response> {
+  async store(request: Request, response: Response): Promise<Response> {
     try {
       const { idOrder } = request.body;
 
-      const order = await UpdateOrderStatusToDelivered.execute(idOrder);
+      const order = await UpdateOrderStatusToDeliveredService.execute(idOrder);
 
       return response.json(order);
     } catch ({ message = 'Internal Server Error', status = 500 }) {

@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 
-import MakeRating from '@services/MakeRating';
+import EvaluateOrderService from '@services/EvaluateOrderService';
 
 class RatingController {
-  static async store(request: Request, response: Response): Promise<Response> {
+  async store(request: Request, response: Response): Promise<Response> {
     try {
       const { stars } = request.body;
       const { id_order } = request.params;
 
-      const rating = await MakeRating.execute({
+      const rating = await EvaluateOrderService.execute({
         stars,
         order: { id: Number(id_order) },
       });

@@ -1,8 +1,3 @@
-/**
- * This file was necessary because the sqlite database dont have the same
- * functionalities of other relational database, so to align and fix the
- * differences between theirs, this file center all of this points.
- */
 import { ColumnOptions } from 'typeorm';
 
 const isTestEnvironment = process.env.NODE_ENV === 'test';

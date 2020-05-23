@@ -12,13 +12,13 @@ import {
 import TypeORMProductModel from '@infra/typeorm/models/TypeORMProductModel';
 import TypeORMRatingModel from '@infra/typeorm/models/TypeORMRatingModel';
 import TypeORMTableModel from '@infra/typeorm/models/TypeORMTableModel';
-import { OrderStatus } from '@interfaces/models/IOrderModel';
 import {
   enumColumnType,
   timestampColumnTypeProps,
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
-} from '@utils/databaseColumnTypes';
+} from '@infra/typeorm/utils/databaseColumnTypes';
+import { OrderStatus } from '@interfaces/models/IOrderModel';
 
 @Entity('orders')
 export default class TypeORMOrderModel {

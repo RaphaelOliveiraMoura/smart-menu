@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 
-import GetProductsOverview from '@services/GetProductsOverview';
+import GetGroupedProductsOverviewService from '@services/GetGroupedProductsOverviewService';
 
 class ProductsOverviewController {
-  static async index(request: Request, response: Response): Promise<Response> {
+  async index(request: Request, response: Response): Promise<Response> {
     const { categories } = request.query;
 
     const categoriesFilter = categories ? JSON.parse(String(categories)) : null;
 
-    const productsOverview = await GetProductsOverview.execute(
+    const productsOverview = await GetGroupedProductsOverviewService.execute(
       categoriesFilter,
     );
 

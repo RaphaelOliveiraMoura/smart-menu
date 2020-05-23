@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 
-import GetDashboardOrdersInf from '@services/GetDashboardOrdersInf';
+import GetGroupedOrdersByTypeService from '@services/GetGroupedOrdersByTypeService';
 
 class DashboardController {
-  static async index(_request: Request, response: Response): Promise<Response> {
-    const dashboard = await GetDashboardOrdersInf.execute();
+  async index(_request: Request, response: Response): Promise<Response> {
+    const dashboard = await GetGroupedOrdersByTypeService.execute();
     return response.json(dashboard);
   }
 }

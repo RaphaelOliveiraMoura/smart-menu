@@ -7,7 +7,7 @@ interface IProductsOverview {
   promotions: IProductModel[];
 }
 
-class GetProductsOverview {
+class GetGroupedProductsOverviewService {
   private productRepository: IProductRepository;
 
   async execute(categories: number[] | null): Promise<IProductsOverview> {
@@ -28,4 +28,4 @@ class GetProductsOverview {
   }
 }
 
-export default new GetProductsOverview();
+export default new GetGroupedProductsOverviewService();

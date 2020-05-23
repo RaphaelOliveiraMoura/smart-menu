@@ -10,7 +10,7 @@ import TypeORMOrderModel from '@infra/typeorm/models/TypeORMOrderModel';
 import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
-} from '@utils/databaseColumnTypes';
+} from '@infra/typeorm/utils/databaseColumnTypes';
 
 @Entity('tables')
 export default class Table {

@@ -1,9 +1,8 @@
 import TypeORMOrderRepository from '@infra/typeorm/repositories/TypeORMOrderRepository';
 import IOrderModel, { OrderStatus } from '@interfaces/models/IOrderModel';
 import IOrderRespository from '@interfaces/repositories/IOrderRespository';
-import WebSocketService from '@services/WebSocket';
 
-class UpdateOrderStatusToDelivered {
+class UpdateOrderStatusToDoneService {
   private orderRepository: IOrderRespository;
 
   async execute(orderId: number): Promise<IOrderModel> {
@@ -11,13 +10,11 @@ class UpdateOrderStatusToDelivered {
 
     const updatedOrder = this.orderRepository.updateStatus({
       id: orderId,
-      status: OrderStatus.DELIVERED,
+      status: OrderStatus.DONE,
     });
-
-    WebSocketService.emit('DELIVERY_ORDER');
 
     return updatedOrder;
   }
 }
 
-export default new UpdateOrderStatusToDelivered();
+export default new UpdateOrderStatusToDoneService();
