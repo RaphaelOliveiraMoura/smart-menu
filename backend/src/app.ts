@@ -2,12 +2,20 @@ import '@config/Env';
 import '@app/container';
 
 import cors from 'cors';
-import express, { Express, json } from 'express';
+import express, {
+  Request,
+  Response,
+  NextFunction,
+  Express,
+  json,
+} from 'express';
+import 'express-async-errors';
 import { Server, createServer } from 'http';
 
 import database from '@database/index';
 import IDatabaseConnection from '@database/interfaces/IDatabaseConnection';
 import WebSocketService from '@services/WebSocket';
+import HttpError from '@utils/HttpError';
 
 import routes from './routes';
 
@@ -26,9 +34,14 @@ class Application {
   async initialize(): Promise<void> {
     this.connection = await database.connect();
 
+    this.webSocket();
+    this.http();
+  }
+
+  http(): void {
     this.middlewares();
     this.routes();
-    this.webSocket();
+    this.handleErrors();
   }
 
   webSocket(): void {
@@ -42,6 +55,21 @@ class Application {
 
   routes(): void {
     this.express.use(routes);
+  }
+
+  handleErrors(): void {
+    this.express.use(
+      // eslint-disable-next-line
+      (error: Error, _req: Request, res: Response, _next: NextFunction) => {
+        if (error instanceof HttpError) {
+          const { message, statusCode } = error;
+
+          return res.status(statusCode).json({ error: message });
+        }
+
+        return res.status(500).json({ error: 'Internal Server Error' });
+      },
+    );
   }
 }
 

@@ -4,7 +4,7 @@ import IRatingDAO from '@interfaces/dao/IRatingDAO';
 import IRatingProduct from '@interfaces/models/IRatingProduct';
 import IOrderRepository from '@interfaces/repositories/IOrderRepository';
 import IRatingRepository from '@interfaces/repositories/IRatingRepository';
-import HttpErrors from '@utils/HttpErrors';
+import HttpError from '@utils/HttpError';
 
 @injectable()
 export default class EvaluateOrderService {
@@ -20,7 +20,7 @@ export default class EvaluateOrderService {
     const orderExists = await this.orderRepository.findById(ratingDAO.order.id);
 
     if (!orderExists) {
-      throw new HttpErrors('Invalid order')[400]();
+      throw new HttpError('Invalid order').withStatus(400);
     }
 
     const orderAlreadyHasRating = await this.ratingRepository.findByOrderId(

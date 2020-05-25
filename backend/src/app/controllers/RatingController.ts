@@ -7,19 +7,15 @@ const evaluateOrder = container.resolve(EvaluateOrderService);
 
 class RatingController {
   async store(request: Request, response: Response): Promise<Response> {
-    try {
-      const { stars } = request.body;
-      const { id_order } = request.params;
+    const { stars } = request.body;
+    const { id_order } = request.params;
 
-      const rating = await evaluateOrder.execute({
-        stars,
-        order: { id: Number(id_order) },
-      });
+    const rating = await evaluateOrder.execute({
+      stars,
+      order: { id: Number(id_order) },
+    });
 
-      return response.json(rating);
-    } catch ({ message, status = 500 }) {
-      return response.status(status).json({ error: message });
-    }
+    return response.json(rating);
   }
 }
 

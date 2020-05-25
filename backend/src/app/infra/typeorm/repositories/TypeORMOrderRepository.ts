@@ -4,7 +4,7 @@ import TypeORMOrderModel from '@infra/typeorm/models/TypeORMOrderModel';
 import IOrderDAO from '@interfaces/dao/IOrderDAO';
 import { OrderStatus } from '@interfaces/models/IOrderModel';
 import IOrderRepository from '@interfaces/repositories/IOrderRepository';
-import HttpErrors from '@utils/HttpErrors';
+import HttpError from '@utils/HttpError';
 
 export default class TypeORMOrderRepository implements IOrderRepository {
   async findById(id: number): Promise<TypeORMOrderModel | undefined> {
@@ -42,7 +42,7 @@ export default class TypeORMOrderRepository implements IOrderRepository {
     const order = await getRepository(TypeORMOrderModel).findOne(id);
 
     if (!order) {
-      throw new HttpErrors('Invalid order')[400]();
+      throw new HttpError('Invalid order').withStatus(400);
     }
 
     order.status = status;

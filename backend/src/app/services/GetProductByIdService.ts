@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import IProductModel from '@interfaces/models/IProductModel';
 import IProductRepository from '@interfaces/repositories/IProductRepository';
-import HttpErrors from '@utils/HttpErrors';
+import HttpError from '@utils/HttpError';
 
 @injectable()
 export default class GetProductByIdService {
@@ -15,7 +15,7 @@ export default class GetProductByIdService {
     const product = await this.productRepository.findById(tableId);
 
     if (!product) {
-      throw new HttpErrors('Invalid product')[400]();
+      throw new HttpError('Invalid product').withStatus(400);
     }
 
     return product;

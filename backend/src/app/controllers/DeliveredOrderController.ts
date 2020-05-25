@@ -22,15 +22,11 @@ class DeliveredOrderController {
   }
 
   async store(request: Request, response: Response): Promise<Response> {
-    try {
-      const { idOrder } = request.body;
+    const { idOrder } = request.body;
 
-      const order = await updateOrdersStatusToDelivered.execute(idOrder);
+    const order = await updateOrdersStatusToDelivered.execute(idOrder);
 
-      return response.json(order);
-    } catch ({ message = 'Internal Server Error', status = 500 }) {
-      return response.status(status).json({ error: message });
-    }
+    return response.json(order);
   }
 }
 
