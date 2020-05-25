@@ -3,6 +3,9 @@
     "husky": "^4.2.4",
     "lerna": "^3.21.0"
   },
+  "scripts": {
+    "docker:up": "docker-compose --env-file=./backend/.env up --build --force-recreate"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lerna run precommit",
