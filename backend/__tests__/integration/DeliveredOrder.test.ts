@@ -1,6 +1,7 @@
 import request from 'supertest';
 
 import { OrderStatus } from '@interfaces/models/IOrderModel';
+import WebSocket from '@lib/WebSocket';
 import app from '@root/app';
 
 import OrderFactory from '../factories/OrderFactory';
@@ -28,6 +29,8 @@ describe('DeliveredOrder', () => {
   });
 
   it('should be able change order status to delivered', async () => {
+    const webSocketSpy = jest.spyOn(WebSocket, 'emit');
+
     await OrderFactory.generate(1, {
       id: 1,
       status: OrderStatus.IN_PROGRESS,
@@ -40,6 +43,8 @@ describe('DeliveredOrder', () => {
       .send({ idOrder: 1 });
 
     expect(response.status).toEqual(200);
+
+    expect(webSocketSpy).toHaveBeenCalledWith('DELIVERY_ORDER');
 
     expect(response.body.status).toEqual(OrderStatus.DELIVERED);
   });

@@ -14,7 +14,7 @@ import { Server, createServer } from 'http';
 
 import database from '@database/index';
 import IDatabaseConnection from '@database/interfaces/IDatabaseConnection';
-import WebSocketService from '@services/WebSocket';
+import WebSocketService from '@lib/WebSocket';
 import HttpError from '@utils/HttpError';
 
 import routes from './routes';

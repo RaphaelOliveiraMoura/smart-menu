@@ -33,6 +33,7 @@
     "@models": "dist/app/models",
     "@utils": "dist/app/utils",
     "@infra": "dist/app/infra",
+    "@lib": "dist/app/lib",
     "@database": "dist/database",
     "@config": "dist/config"
   },

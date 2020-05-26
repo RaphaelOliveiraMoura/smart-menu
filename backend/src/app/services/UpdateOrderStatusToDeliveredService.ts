@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import IOrderModel, { OrderStatus } from '@interfaces/models/IOrderModel';
 import IOrderRepository from '@interfaces/repositories/IOrderRepository';
-import WebSocketService from '@services/WebSocket';
+import WebSocketService from '@lib/WebSocket';
 
 @injectable()
 export default class UpdateOrderStatusToDeliveredService {

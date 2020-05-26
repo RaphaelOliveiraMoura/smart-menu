@@ -1,6 +1,7 @@
 import request from 'supertest';
 
 import { OrderStatus } from '@interfaces/models/IOrderModel';
+import WebSocket from '@lib/WebSocket';
 import app from '@root/app';
 
 import OrderFactory from '../factories/OrderFactory';
@@ -25,6 +26,8 @@ describe('RequestOrder', () => {
   });
 
   it('should be able create a new order', async () => {
+    const webSocketSpy = jest.spyOn(WebSocket, 'emit');
+
     await TablesFactory.generate(1, { id: 5 });
     await ProcuctsFactory.generate(1, { id: 15 });
 
@@ -40,6 +43,8 @@ describe('RequestOrder', () => {
       .send(order);
 
     expect(response.status).toEqual(200);
+
+    expect(webSocketSpy).toHaveBeenCalledWith('NEW_ORDER');
 
     expect(response.body).toEqual(
       expect.objectContaining({
