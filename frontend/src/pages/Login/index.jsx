@@ -22,7 +22,7 @@ function Login() {
       <img src={logo} alt="Smart Menu" />
       <header>
         <h1>
-          Escaneio o QRCode presente na sua mesa e faça os pedidos de forma
+          Escaneie o QRCode presente na sua mesa e faça os pedidos de forma
           muito mais prática e eficiente !
         </h1>
         <AiOutlineQrcode size={45} />

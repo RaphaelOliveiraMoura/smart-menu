@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 
 import api from '~/services/api';
 
-function Item({ finishedRequest }) {
+import { AnimationArticle } from '../styles';
+
+function Item({ finishedRequest, index }) {
   const [rating, setRating] = useState(
     finishedRequest.rating && finishedRequest.rating.stars
   );
@@ -21,7 +23,7 @@ function Item({ finishedRequest }) {
 
   return (
     <li>
-      <article>
+      <AnimationArticle delay={(index + 1) * 100}>
         <img
           src={finishedRequest.product.image_url}
           alt={finishedRequest.product.title}
@@ -43,7 +45,7 @@ function Item({ finishedRequest }) {
           />
           <p>Deixe sua avaliação !!</p>
         </div>
-      </article>
+      </AnimationArticle>
     </li>
   );
 }
@@ -62,6 +64,7 @@ Item.propTypes = {
       stars: PropTypes.number,
     }),
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default Item;

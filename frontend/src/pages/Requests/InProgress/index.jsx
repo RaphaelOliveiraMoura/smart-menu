@@ -7,7 +7,7 @@ import api from '~/services/api';
 import { getInProgressOrders } from '~/services/orders';
 import { useSnackbar } from '~/store/snackbar';
 
-import { Container } from './styles';
+import { Container, AnimationArticle } from './styles';
 
 function InProgress() {
   const [requests, setRequests] = useState([]);
@@ -44,8 +44,8 @@ function InProgress() {
           <MdErrorOutline size={24} color="#888" />
         </div>
       )}
-      {requests.map((request) => (
-        <article key={String(request.id)}>
+      {requests.map((request, index) => (
+        <AnimationArticle key={String(request.id)} delay={(index + 1) * 100}>
           <header>
             <img src={request.product.image_url} alt={request.product.title} />
             <div className="content">
@@ -82,7 +82,7 @@ function InProgress() {
               Mais detalhes
             </button>
           </footer>
-        </article>
+        </AnimationArticle>
       ))}
     </Container>
   );

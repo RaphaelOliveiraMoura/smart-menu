@@ -14,15 +14,18 @@ export const Container = styled.div`
     justify-content: center;
     color: #888;
   }
+`;
 
-  article {
-    background: #fff;
-    border-radius: 4px;
-    margin: 8px;
-    width: 100%;
-  }
+export const AnimationArticle = styled.article`
+  background: #fff;
+  border-radius: 4px;
+  margin: 8px;
+  width: 100%;
+  animation: leftToRigthSkew 0.6s;
+  animation-fill-mode: backwards;
+  animation-delay: ${({ delay }) => `${delay}ms`};
 
-  article .content {
+  .content {
     padding: 12px 12px 0 12px;
   }
 
@@ -99,6 +102,20 @@ export const Container = styled.div`
       svg {
         margin-right: 4px;
       }
+    }
+  }
+
+  @keyframes leftToRigthSkew {
+    from {
+      opacity: 0;
+      transform: skew(10deg, 0deg);
+      transform: translateX(-200px);
+    }
+
+    to {
+      opacity: 1;
+      transform: skew(0deg, 0deg);
+      transform: translateX(0px);
     }
   }
 `;

@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
+  animation: leftToRigth 0.8s;
+  animation-fill-mode: backwards;
+
   h2 {
     margin: 0px 8px;
     font-weight: normal;
@@ -69,6 +72,17 @@ export const Container = styled.section`
 
     strong {
       color: #c23520;
+    }
+  }
+
+  @keyframes leftToRigth {
+    from {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
     }
   }
 `;

@@ -74,6 +74,9 @@ function ItemInfo() {
             value={observations}
             onChange={(e) => setObservations(e.target.value)}
             placeholder="Adicione observações sobre seu pedido. (ex: remover cebola, adicionar bacon)"
+            autoCorrect="off"
+            autoComplete="off"
+            spellCheck="false"
             cols="30"
             rows="5"
           />

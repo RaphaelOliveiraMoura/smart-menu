@@ -24,6 +24,9 @@ export const Container = styled.section`
     display: flex;
     align-items: center;
 
+    animation: topToBottom 1.2s;
+    animation-fill-mode: backwards;
+
     svg {
       margin-left: 8px;
     }
@@ -31,6 +34,8 @@ export const Container = styled.section`
 
   img {
     width: 70%;
+    animation: leftToRigth 1.2s;
+    animation-fill-mode: backwards;
   }
 
   h2 {
@@ -43,6 +48,8 @@ export const Container = styled.section`
     border-radius: 8px;
     padding: 12px;
     margin: 12px 0;
+    animation: bottomToTop 0.8s;
+    animation-fill-mode: backwards;
 
     h1 {
       color: #222;
@@ -54,6 +61,40 @@ export const Container = styled.section`
       margin-top: 12px;
       text-align: justify;
       line-height: 18px;
+    }
+  }
+
+  @keyframes topToBottom {
+    from {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes leftToRigth {
+    from {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes bottomToTop {
+    from {
+      opacity: 0;
+      transform: translateY(400px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
     }
   }
 `;

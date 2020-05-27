@@ -25,11 +25,14 @@ export const Container = styled.section`
     width: 100%;
     border-radius: 8px;
   }
+`;
 
-  article {
-    display: flex;
-    align-items: center;
-  }
+export const AnimationArticle = styled.article`
+  display: flex;
+  align-items: center;
+  animation: rigthToLeftSkew 0.6s;
+  animation-fill-mode: backwards;
+  animation-delay: ${({ delay }) => `${delay}ms`};
 
   img {
     width: 120px;
@@ -39,7 +42,7 @@ export const Container = styled.section`
     border-radius: 8px 30px;
   }
 
-  article .content {
+  .content {
     display: flex;
     flex-direction: column;
     padding: 8px 12px;
@@ -65,6 +68,20 @@ export const Container = styled.section`
       align-self: flex-end;
       font-size: 0.7em;
       color: #666;
+    }
+  }
+
+  @keyframes rigthToLeftSkew {
+    from {
+      opacity: 0;
+      transform: skew(-10deg, 0deg);
+      transform: translateX(200px);
+    }
+
+    to {
+      opacity: 1;
+      transform: skew(0deg, 0deg);
+      transform: translateX(0px);
     }
   }
 `;

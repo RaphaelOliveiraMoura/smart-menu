@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
+  animation: bottomToTop 0.8s;
+  animation-fill-mode: backwards;
+
   h2 {
     margin: 8px 8px 0px 8px;
     font-weight: normal;
@@ -80,6 +83,17 @@ export const Container = styled.section`
     strong {
       color: #c23520;
       margin-left: 8px;
+    }
+  }
+
+  @keyframes bottomToTop {
+    from {
+      opacity: 0;
+      transform: translateY(400px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
     }
   }
 `;

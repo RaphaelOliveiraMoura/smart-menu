@@ -28,10 +28,11 @@ function Finished() {
         </div>
       )}
       <ul>
-        {finishedRequests.map((finishedRequest) => (
+        {finishedRequests.map((finishedRequest, index) => (
           <FinishedRequestItem
             key={String(finishedRequest.id)}
             finishedRequest={finishedRequest}
+            index={index}
           />
         ))}
       </ul>
