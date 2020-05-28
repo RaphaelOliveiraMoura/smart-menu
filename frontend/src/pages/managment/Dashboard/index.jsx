@@ -13,7 +13,7 @@ import { Container } from './styles';
 
 const DRAG_AND_DROP_TYPE = 'ADMIN_DASHBOARD_DRAG_AND_DROP';
 
-function Admin() {
+function Dashboard() {
   const [orders, setOrders] = useState({
     inProgress: [],
     finished: [],
@@ -170,4 +170,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default Dashboard;

@@ -48,6 +48,10 @@ export const Container = styled.section`
     padding: 8px;
   }
 
+  section {
+    max-width: 380px;
+  }
+
   section > div {
     overflow: hidden;
     background: #3333;
