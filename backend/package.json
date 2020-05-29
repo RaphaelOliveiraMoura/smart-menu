@@ -27,12 +27,8 @@
   "_moduleAliases": {
     "@root": "dist",
     "@app": "dist/app",
-    "@controllers": "dist/app/controllers",
-    "@services": "dist/app/services",
-    "@interfaces": "dist/app/interfaces",
-    "@models": "dist/app/models",
-    "@utils": "dist/app/utils",
-    "@infra": "dist/app/infra",
+    "@modules": "dist/app/modules",
+    "@shared": "dist/app/shared",
     "@lib": "dist/app/lib",
     "@database": "dist/database",
     "@config": "dist/config"

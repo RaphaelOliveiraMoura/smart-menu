@@ -1,8 +1,8 @@
 import faker from 'faker';
 import { getRepository, InsertResult } from 'typeorm';
 
-import TypeORMOrderModel from '@infra/typeorm/models/TypeORMOrderModel';
-import { OrderStatus } from '@interfaces/models/IOrderModel';
+import TypeORMOrderModel from '@shared/infra/typeorm/models/TypeORMOrderModel';
+import { OrderStatus } from '@shared/models/IOrderModel';
 
 import ProcuctsFactory from './ProcuctsFactory';
 import TablesFactory from './TablesFactory';

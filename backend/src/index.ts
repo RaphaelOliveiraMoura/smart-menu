@@ -1,9 +1,11 @@
 import app from './app';
 
+const port = process.env.PORT || 3333;
+
 app.initialize().then(() => {
-  const server = app.server.listen(process.env.PORT, () =>
+  const server = app.server.listen(port, () =>
     // eslint-disable-next-line no-console
-    console.log(`Application running on port ${process.env.PORT}...`),
+    console.log(`Application running on port ${port}...`),
   );
 
   process.on('SIGTERM', () => {

@@ -1,7 +1,7 @@
 import faker from 'faker';
 import { getRepository, InsertResult } from 'typeorm';
 
-import TypeORMRatingModel from '@infra/typeorm/models/TypeORMRatingModel';
+import TypeORMRatingModel from '@shared/infra/typeorm/models/TypeORMRatingModel';
 
 class RatingFactory {
   public generate(number = 1, attributes = {}): Promise<InsertResult> {

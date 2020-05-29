@@ -1,5 +1,5 @@
-import TypeORM from '@database/typeorm/TypeORM';
+import TypeORM from '@shared/infra/typeorm/database';
 
-const databse = new TypeORM();
+const database = new TypeORM();
 
-export default databse;
+export default database;

@@ -1,8 +1,8 @@
 import faker from 'faker';
 import request from 'supertest';
 
-import IProductModel from '@interfaces/models/IProductModel';
 import app from '@root/app';
+import IProductModel from '@shared/models/IProductModel';
 
 import ProductsFactory from '../factories/ProcuctsFactory';
 import truncate from '../truncate';

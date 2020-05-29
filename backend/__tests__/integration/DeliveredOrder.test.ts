@@ -1,8 +1,8 @@
 import request from 'supertest';
 
-import { OrderStatus } from '@interfaces/models/IOrderModel';
 import WebSocket from '@lib/WebSocket';
 import app from '@root/app';
+import { OrderStatus } from '@shared/models/IOrderModel';
 
 import OrderFactory from '../factories/OrderFactory';
 import truncate from '../truncate';

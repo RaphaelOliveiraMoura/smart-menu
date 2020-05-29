@@ -1,7 +1,7 @@
 import request from 'supertest';
 
-import { OrderStatus } from '@interfaces/models/IOrderModel';
 import app from '@root/app';
+import { OrderStatus } from '@shared/models/IOrderModel';
 
 import OrderFactory from '../factories/OrderFactory';
 import ProductsFactory from '../factories/ProcuctsFactory';

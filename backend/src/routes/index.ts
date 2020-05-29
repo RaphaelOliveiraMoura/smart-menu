@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import clientRoutes from './client';
-import managementRoutes from './management';
+import clientRoutes from '@modules/client/infra/http/routes';
+import managementRoutes from '@modules/managment/infra/http/routes';
 
 const routes = Router();
 

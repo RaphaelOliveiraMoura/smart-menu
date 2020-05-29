@@ -8,12 +8,8 @@
     "paths": {
       "@root/*": ["src/*"],
       "@app/*": ["src/app/*"],
-      "@controllers/*": ["src/app/controllers/*"],
-      "@services/*": ["src/app/services/*"],
-      "@interfaces/*": ["src/app/interfaces/*"],
-      "@models/*": ["src/app/models/*"],
-      "@utils/*": ["src/app/utils/*"],
-      "@infra/*": ["src/app/infra/*"],
+      "@modules/*": ["src/app/modules/*"],
+      "@shared/*": ["src/app/shared/*"],
       "@lib/*": ["src/app/lib/*"],
       "@database/*": ["src/database/*"],
       "@config/*": ["src/config/*"]

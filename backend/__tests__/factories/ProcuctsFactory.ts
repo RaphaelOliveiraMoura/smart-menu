@@ -1,7 +1,7 @@
 import faker from 'faker';
 import { getRepository, InsertResult } from 'typeorm';
 
-import TypeORMProductModel from '@infra/typeorm/models/TypeORMProductModel';
+import TypeORMProductModel from '@shared/infra/typeorm/models/TypeORMProductModel';
 
 import CategoryFactory from './CategoryFactory';
 

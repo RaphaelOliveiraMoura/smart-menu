@@ -1,7 +1,7 @@
 import faker from 'faker';
 import { getRepository, InsertResult } from 'typeorm';
 
-import TypeORMTableModel from '@infra/typeorm/models/TypeORMTableModel';
+import TypeORMTableModel from '@shared/infra/typeorm/models/TypeORMTableModel';
 
 class TablesFactory {
   public generate(number = 1, attributes = {}): Promise<InsertResult> {

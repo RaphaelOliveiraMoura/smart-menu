@@ -1,23 +1,16 @@
-import '@config/Env';
+import '@root/bootstrap';
 import '@app/container';
 
 import cors from 'cors';
-import express, {
-  Request,
-  Response,
-  NextFunction,
-  Express,
-  json,
-} from 'express';
+import express, { Express, json } from 'express';
 import 'express-async-errors';
 import { Server, createServer } from 'http';
 
 import database from '@database/index';
 import IDatabaseConnection from '@database/interfaces/IDatabaseConnection';
 import WebSocketService from '@lib/WebSocket';
-import HttpError from '@utils/HttpError';
-
-import routes from './routes';
+import routes from '@root/routes';
+import handleErrors from '@shared/infra/http/middlewares/handleErrors';
 
 class Application {
   public express: Express;
@@ -39,37 +32,14 @@ class Application {
   }
 
   http(): void {
-    this.middlewares();
-    this.routes();
-    this.handleErrors();
+    this.express.use(json());
+    this.express.use(cors());
+    this.express.use(routes);
+    this.express.use(handleErrors);
   }
 
   webSocket(): void {
     WebSocketService.initialize(this.server);
-  }
-
-  middlewares(): void {
-    this.express.use(json());
-    this.express.use(cors());
-  }
-
-  routes(): void {
-    this.express.use(routes);
-  }
-
-  handleErrors(): void {
-    this.express.use(
-      // eslint-disable-next-line
-      (error: Error, _req: Request, res: Response, _next: NextFunction) => {
-        if (error instanceof HttpError) {
-          const { message, statusCode } = error;
-
-          return res.status(statusCode).json({ error: message });
-        }
-
-        return res.status(500).json({ error: 'Internal Server Error' });
-      },
-    );
   }
 }
 

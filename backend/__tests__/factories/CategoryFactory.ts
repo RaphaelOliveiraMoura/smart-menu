@@ -1,7 +1,7 @@
 import faker from 'faker';
 import { getRepository, InsertResult } from 'typeorm';
 
-import TypeORMCategoryModel from '@infra/typeorm/models/TypeORMCategoryModel';
+import TypeORMCategoryModel from '@shared/infra/typeorm/models/TypeORMCategoryModel';
 
 class CategoryFactory {
   public generate(number = 1, attributes = {}): Promise<InsertResult> {
