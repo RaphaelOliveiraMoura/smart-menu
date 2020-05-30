@@ -1,6 +1,5 @@
 import request from 'supertest';
 
-import WebSocket from '@lib/WebSocket';
 import app from '@root/app';
 import { OrderStatus } from '@shared/models/IOrderModel';
 
@@ -8,6 +7,7 @@ import OrderFactory from '../factories/OrderFactory';
 import ProcuctsFactory from '../factories/ProcuctsFactory';
 import TablesFactory from '../factories/TablesFactory';
 import truncate from '../truncate';
+import WebSocket from './instances/WebSocket';
 
 describe('RequestOrder', () => {
   beforeEach(() => truncate());

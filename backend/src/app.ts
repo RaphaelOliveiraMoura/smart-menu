@@ -5,13 +5,14 @@ import cors from 'cors';
 import express, { Express, json } from 'express';
 import 'express-async-errors';
 import { Server, createServer } from 'http';
+import { injectable, inject, container } from 'tsyringe';
 
-import database from '@database/index';
-import IDatabaseConnection from '@database/interfaces/IDatabaseConnection';
-import WebSocketService from '@lib/WebSocket';
-import routes from '@root/routes';
+import database, { IDatabaseConnection } from '@database/index';
 import handleErrors from '@shared/infra/http/middlewares/handleErrors';
+import routes from '@shared/infra/http/routes';
+import IWebSocket from '@shared/services/IWebSocket';
 
+@injectable()
 class Application {
   public express: Express;
 
@@ -19,7 +20,10 @@ class Application {
 
   public server: Server;
 
-  constructor() {
+  constructor(
+    @inject('@shared/WebSocket')
+    private webSocketService: IWebSocket,
+  ) {
     this.express = express();
     this.server = createServer(this.express);
   }
@@ -39,8 +43,8 @@ class Application {
   }
 
   webSocket(): void {
-    WebSocketService.initialize(this.server);
+    this.webSocketService.initialize(this.server);
   }
 }
 
-export default new Application();
+export default container.resolve(Application);

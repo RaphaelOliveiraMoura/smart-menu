@@ -1,7 +1,9 @@
 import { Server } from 'http';
 import socketIo, { Server as WebSocketServer } from 'socket.io';
 
-class WebSocketService {
+import IWebSocket from '@shared/services/IWebSocket';
+
+class WebSocketService implements IWebSocket {
   public io: WebSocketServer;
 
   private connections: string[] = [];
@@ -21,4 +23,4 @@ class WebSocketService {
   }
 }
 
-export default new WebSocketService();
+export default WebSocketService;
