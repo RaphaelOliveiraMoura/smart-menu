@@ -17,13 +17,15 @@ export default class GetGroupedOrdersByTypeService {
   ) {}
 
   async execute(): Promise<IDashboardOrdersInf> {
-    const inProgress = await this.orderRepository.findByStatus(
+    const inProgress = await this.orderRepository.findAllByStatus(
       OrderStatus.IN_PROGRESS,
     );
 
-    const finished = await this.orderRepository.findByStatus(OrderStatus.DONE);
+    const finished = await this.orderRepository.findAllByStatus(
+      OrderStatus.DONE,
+    );
 
-    const delivered = await this.orderRepository.findByStatus(
+    const delivered = await this.orderRepository.findAllByStatus(
       OrderStatus.DELIVERED,
     );
 

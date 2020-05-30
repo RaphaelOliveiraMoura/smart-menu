@@ -1,11 +1,14 @@
 import IProductModel from '@shared/models/IProductModel';
+import SharedProductRepository from '@shared/repositories/IProductRepository';
 
-export default interface IProductRepository {
+export default interface IProductRepository extends SharedProductRepository {
   findById(id: number): Promise<IProductModel | undefined>;
 
-  findWithCategories(categories: number[] | null): Promise<IProductModel[]>;
+  findFilteredByCategories(
+    categories: number[] | null,
+  ): Promise<IProductModel[]>;
 
-  findPromotionsWithCategories(
+  findPromotionsFilteredByCategories(
     categories: number[] | null,
   ): Promise<IProductModel[]>;
 }

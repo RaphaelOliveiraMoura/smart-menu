@@ -1,7 +1,8 @@
 import IOrderModel, { OrderStatus } from '@shared/models/IOrderModel';
+import SharedOrderRepository from '@shared/repositories/IOrderRepository';
 
-export default interface IOrderRepository {
-  findByStatus(status: OrderStatus): Promise<IOrderModel[]>;
+export default interface IOrderRepository extends SharedOrderRepository {
+  findAllByStatus(status: OrderStatus): Promise<IOrderModel[]>;
 
   updateStatus({
     id,

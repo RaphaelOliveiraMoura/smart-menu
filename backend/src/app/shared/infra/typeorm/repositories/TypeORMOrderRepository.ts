@@ -1,4 +1,4 @@
-import { getRepository, In } from 'typeorm';
+import { getRepository } from 'typeorm';
 
 import IOrderDTO from '@shared/dtos/IOrderDTO';
 import TypeORMOrderModel from '@shared/infra/typeorm/models/TypeORMOrderModel';
@@ -10,25 +10,6 @@ export default class TypeORMOrderRepository implements IOrderRepository {
   async findById(id: number): Promise<TypeORMOrderModel | undefined> {
     return getRepository(TypeORMOrderModel).findOne(id, {
       relations: ['rating'],
-    });
-  }
-
-  async findByStatus(status: OrderStatus): Promise<TypeORMOrderModel[]> {
-    return getRepository(TypeORMOrderModel).find({
-      where: { status },
-      order: { createdAt: 'DESC' },
-      relations: ['product', 'table'],
-    });
-  }
-
-  async findByTable(
-    tableId: number,
-    { status }: { status?: OrderStatus },
-  ): Promise<TypeORMOrderModel[]> {
-    return getRepository(TypeORMOrderModel).find({
-      where: { table: { id: tableId }, status },
-      order: { updatedAt: 'DESC' },
-      relations: ['product', 'rating'],
     });
   }
 
@@ -53,21 +34,6 @@ export default class TypeORMOrderRepository implements IOrderRepository {
     await getRepository(TypeORMOrderModel).save(order);
 
     return order;
-  }
-
-  async findUndeliveredFromTable(
-    tableId: number,
-  ): Promise<TypeORMOrderModel[]> {
-    const orders = await getRepository(TypeORMOrderModel).find({
-      where: {
-        status: In([OrderStatus.IN_PROGRESS, OrderStatus.DONE]),
-        table: { id: tableId },
-      },
-      order: { updatedAt: 'DESC' },
-      relations: ['product'],
-    });
-
-    return orders;
   }
 
   async create(orderDTO: IOrderDTO): Promise<TypeORMOrderModel> {

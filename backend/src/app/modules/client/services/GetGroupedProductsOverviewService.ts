@@ -16,11 +16,11 @@ export default class GetGroupedProductsOverviewService {
   ) {}
 
   async execute(categories: number[] | null): Promise<IProductsOverview> {
-    const recommended = await this.productRepository.findWithCategories(
+    const recommended = await this.productRepository.findFilteredByCategories(
       categories,
     );
 
-    const promotions = await this.productRepository.findPromotionsWithCategories(
+    const promotions = await this.productRepository.findPromotionsFilteredByCategories(
       categories,
     );
 
