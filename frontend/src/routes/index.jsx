@@ -12,27 +12,16 @@ import NotFound from '~/pages/NotFound';
 
 import Route from './RouteWrapper';
 
-function ClientRoutes() {
+export default function Routes() {
   return (
-    <>
+    <Switch>
       <Route path="/" exact component={Login} mobile />
       <Route path="/home" exact component={Home} mobile isPrivate />
       <Route path="/requests" exact component={Orders} mobile isPrivate />
       <Route path="/help" exact component={Help} mobile isPrivate />
       <Route path="/item/:id" exact component={ItemInfo} mobile isPrivate />
-    </>
-  );
-}
 
-function ManagmentRoutes() {
-  return <Route path="/admin" component={Dashboard} />;
-}
-
-export default function Routes() {
-  return (
-    <Switch>
-      <ClientRoutes />
-      <ManagmentRoutes />
+      <Route path="/admin" component={Dashboard} />
 
       <Route path="*" component={NotFound} />
     </Switch>
