@@ -1,9 +1,9 @@
-import { MigrationInterface, QueryRunner } from 'typeorm';
+import { MigrationInterface, QueryRunner, DeepPartial } from 'typeorm';
 
 import TypeORMProductModel from '@shared/infra/typeorm/models/TypeORMProductModel';
 import IProductModel from '@shared/models/IProductModel';
 
-const productsList: IProductModel[] = [
+const productsList: DeepPartial<IProductModel>[] = [
   {
     category: { id: 1 },
     title: 'Frango com fritas',

@@ -12,9 +12,10 @@ import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
 } from '@shared/infra/typeorm/utils/databaseColumnTypes';
+import IRating from '@shared/models/IRating';
 
 @Entity('ratings')
-export default class Rating {
+export default class Rating implements IRating {
   @PrimaryGeneratedColumn()
   id: number;
 

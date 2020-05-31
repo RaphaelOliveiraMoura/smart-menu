@@ -18,10 +18,10 @@ import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
 } from '@shared/infra/typeorm/utils/databaseColumnTypes';
-import { OrderStatus } from '@shared/models/IOrderModel';
+import IOrderModel, { OrderStatus } from '@shared/models/IOrderModel';
 
 @Entity('orders')
-export default class TypeORMOrderModel {
+export default class TypeORMOrderModel implements IOrderModel {
   @PrimaryGeneratedColumn()
   id: number;
 

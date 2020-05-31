@@ -1,10 +1,6 @@
 import IOrderDTO from '@shared/dtos/IOrderDTO';
 import IOrderModel, { OrderStatus } from '@shared/models/IOrderModel';
 
-interface IFindByTableWhereClause {
-  status?: OrderStatus;
-}
-
 export default interface IOrderRepository {
   findById(id: number): Promise<IOrderModel | undefined>;
 
@@ -14,7 +10,7 @@ export default interface IOrderRepository {
   }: {
     id: number;
     status: OrderStatus;
-  }): Promise<IOrderModel>;
+  }): Promise<IOrderModel | undefined>;
 
   create(order: IOrderDTO): Promise<IOrderModel>;
 }

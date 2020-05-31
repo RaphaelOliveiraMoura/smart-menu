@@ -8,14 +8,14 @@ export enum OrderStatus {
 }
 
 export default interface IOrderModel {
-  id?: number;
-  table?: ITableModel;
-  product?: IProductModel;
+  id: number;
+  table: ITableModel;
+  product: IProductModel;
   observations?: string;
-  status?: OrderStatus;
-  ammount?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
+  status: OrderStatus;
+  ammount: number;
+  createdAt: Date;
+  updatedAt: Date;
   doneAt?: Date;
   devliveredAt?: Date;
 }

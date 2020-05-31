@@ -12,9 +12,10 @@ import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
 } from '@shared/infra/typeorm/utils/databaseColumnTypes';
+import ICategoryModel from '@shared/models/ICategoryModel';
 
 @Entity('categories')
-export default class TypeORMCategoryModel {
+export default class TypeORMCategoryModel implements ICategoryModel {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -28,11 +29,11 @@ export default class TypeORMCategoryModel {
     ...createdAtColumnTypeProps,
     name: 'created_at',
   })
-  createdAt?: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({
     ...updatedAtColumnTypeProps,
     name: 'updated_at',
   })
-  updatedAt?: Date;
+  updatedAt: Date;
 }

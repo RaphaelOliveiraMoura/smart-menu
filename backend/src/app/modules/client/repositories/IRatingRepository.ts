@@ -5,5 +5,8 @@ import SharedRatingRepository from '@shared/repositories/IRatingRepository';
 export default interface IProductRepository extends SharedRatingRepository {
   findByOrderId(orderId: number): Promise<IRating | undefined>;
   create(rating: IRatingDTO): Promise<IRating>;
-  update(id: number, updatedRating: IRating): Promise<IRating | undefined>;
+  update(
+    id: number,
+    updatedRating: Partial<IRating>,
+  ): Promise<IRating | undefined>;
 }

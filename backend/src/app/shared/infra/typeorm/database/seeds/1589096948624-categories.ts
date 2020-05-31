@@ -2,7 +2,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 
 import TypeORMCategoryModel from '@shared/infra/typeorm/models/TypeORMCategoryModel';
 
-const categories: TypeORMCategoryModel[] = [
+const categories: Partial<TypeORMCategoryModel>[] = [
   { id: 1, title: 'Porções' },
   { id: 2, title: 'Bebidas' },
 ];

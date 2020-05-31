@@ -13,9 +13,10 @@ import {
   createdAtColumnTypeProps,
   updatedAtColumnTypeProps,
 } from '@shared/infra/typeorm/utils/databaseColumnTypes';
+import IProductModel from '@shared/models/IProductModel';
 
 @Entity('products')
-export default class TypeORMProductModel {
+export default class TypeORMProductModel implements IProductModel {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -44,11 +45,11 @@ export default class TypeORMProductModel {
     name: 'created_at',
     ...createdAtColumnTypeProps,
   })
-  createdAt?: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({
     name: 'updated_at',
     ...updatedAtColumnTypeProps,
   })
-  updatedAt?: Date;
+  updatedAt: Date;
 }

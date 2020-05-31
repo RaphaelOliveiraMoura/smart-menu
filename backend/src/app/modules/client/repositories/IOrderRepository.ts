@@ -22,7 +22,7 @@ export default interface IOrderRepository extends SharedOrderRepository {
   }: {
     id: number;
     status: OrderStatus;
-  }): Promise<IOrderModel>;
+  }): Promise<IOrderModel | undefined>;
 
   create(order: IOrderDTO): Promise<IOrderModel>;
 }
