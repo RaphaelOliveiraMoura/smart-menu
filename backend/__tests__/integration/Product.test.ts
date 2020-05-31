@@ -11,7 +11,7 @@ describe('Product', () => {
   beforeEach(() => truncate());
 
   it('should be get informations about one product', async () => {
-    const product: IProductModel = {
+    const product: Partial<IProductModel> = {
       title: faker.commerce.productName(),
       description: faker.lorem.words(10),
       image_url: faker.image.imageUrl(),

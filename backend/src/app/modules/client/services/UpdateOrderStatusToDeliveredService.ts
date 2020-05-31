@@ -14,7 +14,7 @@ export default class UpdateOrderStatusToDeliveredService {
     private webSocketService: IWebSocket,
   ) {}
 
-  async execute(orderId: number): Promise<IOrderModel> {
+  async execute(orderId: number): Promise<IOrderModel | undefined> {
     const updatedOrder = this.orderRepository.updateStatus({
       id: orderId,
       status: OrderStatus.DELIVERED,
