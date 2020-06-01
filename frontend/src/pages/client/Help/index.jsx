@@ -1,18 +1,16 @@
 import React from 'react';
 
 import helpImage from '~/assets/help.svg';
-import history from '~/services/history';
+import { useClientAuth } from '~/store/clientAuth';
 
 import { Container } from './styles';
 
 function Help() {
-  function handleChangeTable() {
-    history.push('/');
-  }
+  const { logout } = useClientAuth();
 
   return (
     <Container>
-      <button type="button" onClick={handleChangeTable}>
+      <button type="button" onClick={logout}>
         Trocar de mesa
       </button>
       <img src={helpImage} alt="Ajuda" />

@@ -9,7 +9,7 @@ const getUndeliveredOrdersFromTable = container.resolve(
 
 class NotDeliveredOrderController {
   async index(request: Request, response: Response): Promise<Response> {
-    const { id_table } = request.headers;
+    const { id_table } = request.clientSessionPayload;
 
     const orders = await getUndeliveredOrdersFromTable.execute(
       Number(id_table),

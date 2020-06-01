@@ -5,20 +5,22 @@ import { OrderStatus } from '@shared/models/IOrderModel';
 
 import OrderFactory from '../factories/OrderFactory';
 import ProcuctsFactory from '../factories/ProcuctsFactory';
-import TablesFactory from '../factories/TablesFactory';
 import truncate from '../truncate';
 import WebSocket from './instances/WebSocket';
+import { clientAuthentication } from './utils/authenticate';
 
 describe('RequestOrder', () => {
   beforeEach(() => truncate());
 
   it('should be able get all in progress orders from a table', async () => {
+    const { token, idTable } = await clientAuthentication();
+
     await OrderFactory.generate(10, {}, { id_table: 1 });
-    await OrderFactory.generate(5, {}, { id_table: 2 });
+    await OrderFactory.generate(5, {}, { id_table: idTable });
 
     const response = await request(app.express)
       .get('/orders')
-      .set('id_table', String(2));
+      .set('authorization', token);
 
     expect(response.status).toEqual(200);
 
@@ -26,9 +28,10 @@ describe('RequestOrder', () => {
   });
 
   it('should be able create a new order', async () => {
+    const { token } = await clientAuthentication();
+
     const webSocketSpy = jest.spyOn(WebSocket, 'emit');
 
-    await TablesFactory.generate(1, { id: 5 });
     await ProcuctsFactory.generate(1, { id: 15 });
 
     const order = {
@@ -39,7 +42,7 @@ describe('RequestOrder', () => {
 
     const response = await request(app.express)
       .post('/orders')
-      .set('id_table', String(5))
+      .set('authorization', token)
       .send(order);
 
     expect(response.status).toEqual(200);

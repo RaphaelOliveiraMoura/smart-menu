@@ -7,6 +7,9 @@ import ProductController from '@modules/client/controllers/ProductController';
 import ProductsOverviewController from '@modules/client/controllers/ProductsOverviewController';
 import RatingController from '@modules/client/controllers/RatingController';
 import RequestOrderController from '@modules/client/controllers/RequestOrderController';
+import SessionController from '@modules/client/controllers/SessionController';
+
+import jwt from '../middlewares/jwt';
 
 const categoryController = new CategoryController();
 const deliveredOrderController = new DeliveredOrderController();
@@ -15,8 +18,13 @@ const productController = new ProductController();
 const productsOverviewController = new ProductsOverviewController();
 const ratingController = new RatingController();
 const requestOrderController = new RequestOrderController();
+const sessionController = new SessionController();
 
 const routes = Router();
+
+routes.post('/sessions', sessionController.store);
+
+routes.use(jwt);
 
 routes.get('/products/:id', productController.show);
 

@@ -6,11 +6,14 @@ import IProductModel from '@shared/models/IProductModel';
 
 import ProductsFactory from '../factories/ProcuctsFactory';
 import truncate from '../truncate';
+import { clientAuthentication } from './utils/authenticate';
 
 describe('Product', () => {
   beforeEach(() => truncate());
 
   it('should be get informations about one product', async () => {
+    const { token } = await clientAuthentication();
+
     const product: Partial<IProductModel> = {
       title: faker.commerce.productName(),
       description: faker.lorem.words(10),
@@ -21,7 +24,9 @@ describe('Product', () => {
 
     await ProductsFactory.generate(1, { id: 1, ...product });
 
-    const response = await request(app.express).get(`/products/${1}`);
+    const response = await request(app.express)
+      .get(`/products/${1}`)
+      .set('authorization', token);
 
     expect(response.status).toEqual(200);
 

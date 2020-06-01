@@ -7,7 +7,7 @@ const createOrderRequest = container.resolve(CreateOrderRequestService);
 
 class RequestOrderController {
   async store(request: Request, response: Response): Promise<Response> {
-    const { id_table } = request.headers;
+    const { id_table } = request.clientSessionPayload;
 
     const { idProduct, ammount, observations } = request.body;
 

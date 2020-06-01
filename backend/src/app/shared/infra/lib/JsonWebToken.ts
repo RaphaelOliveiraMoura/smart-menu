@@ -7,14 +7,14 @@ const expiresIn = '1d';
 
 export default class JsonWebToken<T extends object> implements IJwt<T> {
   async sign(payload: T): Promise<string | null> {
-    const token = await jwt.sign(payload, secretKey, { expiresIn });
+    const token = jwt.sign(payload, secretKey, { expiresIn });
 
     return token;
   }
 
   async check(token: string): Promise<T | null> {
     try {
-      const payload = await jwt.verify(token, secretKey);
+      const payload = jwt.verify(token, secretKey);
 
       if (!payload) return null;
 

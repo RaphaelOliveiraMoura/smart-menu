@@ -8,7 +8,7 @@ class TablesFactory {
     const tables = Array(number)
       .fill(0)
       .map(() => ({
-        id: faker.random.number(),
+        id: faker.random.number({ max: 2000 }),
         ...attributes,
       }));
 

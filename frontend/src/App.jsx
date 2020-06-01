@@ -8,6 +8,7 @@ import { Router } from 'react-router-dom';
 import Snackbar from '~/components/Snackbar';
 import Routes from '~/routes/';
 import history from '~/services/history';
+import { ClientAuthProvider } from '~/store/clientAuth';
 import { SnackbarProvider } from '~/store/snackbar';
 import GlobalStyles from '~/styles/GlobalStyles';
 
@@ -17,17 +18,19 @@ import theme from './styles/MaterialUICustomTheme';
 
 function App() {
   return (
-    <Router history={history}>
-      <ThemeProvider theme={theme}>
-        <DndProvider backend={Backend}>
-          <SnackbarProvider>
-            <Routes />
-            <Snackbar />
-            <GlobalStyles />
-          </SnackbarProvider>
-        </DndProvider>
-      </ThemeProvider>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <DndProvider backend={Backend}>
+        <SnackbarProvider>
+          <ClientAuthProvider>
+            <Router history={history}>
+              <Routes />
+              <Snackbar />
+              <GlobalStyles />
+            </Router>
+          </ClientAuthProvider>
+        </SnackbarProvider>
+      </DndProvider>
+    </ThemeProvider>
   );
 }
 

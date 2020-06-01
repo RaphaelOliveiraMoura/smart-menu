@@ -3,7 +3,7 @@ import React from 'react';
 import AppContainer from '~/components/AppContainer/';
 import { component } from '~/utils/customPropTypes';
 
-export function build({ Component }) {
+export default function BuildWebRoutes({ Component }) {
   return (
     <>
       <AppContainer>
@@ -13,6 +13,6 @@ export function build({ Component }) {
   );
 }
 
-build.propTypes = {
+BuildWebRoutes.propTypes = {
   Component: component.isRequired,
 };

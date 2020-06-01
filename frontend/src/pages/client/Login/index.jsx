@@ -5,20 +5,26 @@ import { FiHelpCircle } from 'react-icons/fi';
 import QrReader from 'react-qr-reader';
 
 import logo from '~/assets/logo.png';
-import history from '~/services/history';
+import { useClientAuth } from '~/store/clientAuth';
 
 import { Container } from './styles';
 
 function Login() {
-  function handleScanQRCode(payload) {
+  const { signin } = useClientAuth();
+
+  async function handleScanQRCode(payload) {
     if (payload) {
-      history.push('/home');
+      await signin(1);
     }
   }
 
   return (
     <Container>
-      <FiHelpCircle size={22} className="help-icon" />
+      <FiHelpCircle
+        size={22}
+        className="help-icon"
+        onClick={() => handleScanQRCode('fake-payload')}
+      />
       <img src={logo} alt="Smart Menu" />
       <header>
         <h1>
