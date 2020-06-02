@@ -30,6 +30,7 @@ export const Container = styled.section`
 export const AnimationArticle = styled.article`
   display: flex;
   align-items: center;
+
   animation: rigthToLeftSkew 0.6s;
   animation-fill-mode: backwards;
   animation-delay: ${({ delay }) => `${delay}ms`};

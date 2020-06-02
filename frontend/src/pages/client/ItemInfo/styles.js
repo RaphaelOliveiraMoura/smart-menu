@@ -21,6 +21,9 @@ export const Container = styled.section`
       width: 100%;
       object-fit: cover;
     }
+
+    animation: topToBottom 0.6s;
+    animation-fill-mode: backwards;
   }
 
   div.content {
@@ -35,6 +38,9 @@ export const Container = styled.section`
     padding: 20px 8px;
     border-radius: 8px;
     background: #fff;
+
+    animation: fadeIn 1.2s;
+    animation-fill-mode: backwards;
 
     h1 {
       text-align: center;
@@ -69,6 +75,9 @@ export const Container = styled.section`
     border: 0;
     border-radius: 8px;
     font-size: 0.8em;
+
+    animation: fadeIn 1.2s;
+    animation-fill-mode: backwards;
   }
 
   footer {
@@ -84,6 +93,9 @@ export const Container = styled.section`
       width: 30%;
       margin-left: 8px;
       position: relative;
+
+      animation: rigthToLeft 0.8s;
+      animation-fill-mode: backwards;
 
       input {
         width: 100%;
@@ -129,6 +141,9 @@ export const Container = styled.section`
 
     width: 100%;
 
+    animation: leftToRigth 0.8s;
+    animation-fill-mode: backwards;
+
     div {
       display: flex;
       justify-content: center;
@@ -142,6 +157,51 @@ export const Container = styled.section`
 
     svg {
       margin-left: 8px;
+    }
+  }
+
+  @keyframes topToBottom {
+    from {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes leftToRigth {
+    from {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes rigthToLeft {
+    from {
+      opacity: 0;
+      transform: translateX(200px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
     }
   }
 `;

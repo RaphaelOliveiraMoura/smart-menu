@@ -53,6 +53,9 @@ export const Container = styled.section`
     margin: 16px 0;
     border: 1px #ddd solid;
 
+    animation: bottomToTop 0.6s;
+    animation-fill-mode: backwards;
+
     img {
       width: 80px;
       height: 80px;
@@ -99,6 +102,17 @@ export const Container = styled.section`
     article {
       border: 2px #ddd dashed;
       cursor: pointer;
+    }
+  }
+
+  @keyframes bottomToTop {
+    from {
+      opacity: 0;
+      transform: translateY(200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
     }
   }
 `;
