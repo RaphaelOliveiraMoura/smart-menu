@@ -22,6 +22,8 @@ Then, after that you just need to run the follow command:
 
 ```sh
   ~ docker-compose --env-file=./backend/.env up
+  or
+  ~ yarn docker:up
 ```
 
 ## Usage example
@@ -43,8 +45,6 @@ Then, after that you just need to run the follow command:
 
 For this project was used some SOLID and DDD concepts very important to improve the software sacalibility and maintainability.
 
-In the backend was used Typescript to give more powers adding types and to make more easier understand the data structure in all parts of the code.
+In the backend was used Typescript to give more "powers" adding types and to make more easier understand the data structure in all parts of the code.
 
 Was used Docker and DockerCompose to make the deployment process more simple, and to be easier start the project without any external dependences, just docker.
-
-![Architecture](documentation/arquiteture.png)
