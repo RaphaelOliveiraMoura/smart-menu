@@ -4,12 +4,19 @@ export const Container = styled.section`
   position: relative;
 
   header {
+    animation: scale 0.6s;
+    animation-fill-mode: both;
+
     .toolbar {
       position: absolute;
       top: 0;
       background: #fff6;
       width: 100%;
       padding: 16px;
+      z-index: 5;
+
+      animation: rigthToLeft 1s;
+      animation-fill-mode: backwards;
 
       svg {
         cursor: pointer;
@@ -20,10 +27,10 @@ export const Container = styled.section`
       height: 200px;
       width: 100%;
       object-fit: cover;
-    }
 
-    animation: topToBottom 0.6s;
-    animation-fill-mode: backwards;
+      animation: topToBottom 0.6s;
+      animation-fill-mode: both;
+    }
   }
 
   div.content {
@@ -167,8 +174,18 @@ export const Container = styled.section`
     }
 
     to {
-      opacity: 1;
+      opacity: 0.9;
       transform: translateY(0px);
+    }
+  }
+
+  @keyframes scale {
+    from {
+      transform: scale(0.4);
+    }
+
+    to {
+      transform: scale(1);
     }
   }
 
