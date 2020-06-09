@@ -29,6 +29,7 @@ describe('Dashboard', () => {
 
     await OrderFactory.generate(productsFinishedAmmount, {
       status: OrderStatus.DONE,
+      doneAt: new Date(),
       table: { id: 2 },
       product: { ìd: 1 },
     });

@@ -1,3 +1,4 @@
+import { differenceInMinutes } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
 
 import IOrderRepository from '@modules/managment/repositories/IOrderRepository';
@@ -8,6 +9,8 @@ interface IDashboardOrdersInf {
   finished: IOrderModel[];
   delivered: IOrderModel[];
 }
+
+const OUTSIDE_ORDER_TIME_IN_MINUTES = 30;
 
 @injectable()
 export default class GetGroupedOrdersByTypeService {
@@ -29,10 +32,24 @@ export default class GetGroupedOrdersByTypeService {
       OrderStatus.DELIVERED,
     );
 
+    const finishedAfterOutsideDate = finished.filter((order) => {
+      return (
+        differenceInMinutes(order.doneAt as Date, new Date()) >
+        OUTSIDE_ORDER_TIME_IN_MINUTES
+      );
+    });
+
+    const finishedBeforeOutsideDate = finished.filter((order) => {
+      return (
+        differenceInMinutes(order.doneAt as Date, new Date()) <
+        OUTSIDE_ORDER_TIME_IN_MINUTES
+      );
+    });
+
     return {
       inProgress,
-      finished,
-      delivered,
+      finished: finishedBeforeOutsideDate,
+      delivered: [...delivered, ...finishedAfterOutsideDate],
     };
   }
 }
