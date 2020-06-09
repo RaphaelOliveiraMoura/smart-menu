@@ -9,12 +9,14 @@ import { useClientAuth } from '~/store/clientAuth';
 
 import { Container } from './styles';
 
+const FAKE_PAYLOAD = 1;
+
 function Login() {
   const { signin } = useClientAuth();
 
   async function handleScanQRCode(payload) {
     if (payload) {
-      await signin(1);
+      await signin(payload);
     }
   }
 
@@ -23,7 +25,7 @@ function Login() {
       <FiHelpCircle
         size={22}
         className="help-icon"
-        onClick={() => handleScanQRCode('fake-payload')}
+        onClick={() => handleScanQRCode(FAKE_PAYLOAD)}
       />
       <img src={logo} alt="Smart Menu" />
       <header>

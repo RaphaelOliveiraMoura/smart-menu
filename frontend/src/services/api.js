@@ -7,8 +7,11 @@ const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    localStorage.removeItem('@smart-menu/token');
-    window.location.reload();
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('@smart-menu/token');
+      window.location.reload();
+    }
+
     return Promise.reject(error);
   }
 );

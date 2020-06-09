@@ -48,7 +48,7 @@ export const ClientAuthProvider = ({ children }) => {
 
         history.push('/home');
       } catch (error) {
-        snackbarMessage('Erro durante autenticação', { variant: 'error' });
+        snackbarMessage('QRCode inválido', { variant: 'error' });
       }
     },
     [snackbarMessage]
